@@ -47,4 +47,27 @@ public class Unit : MonoBehaviour
             }
         }
     }
+
+	private GameObject FindMonster()
+	{
+		List<Monster> monsters = InGameManager.instance.monsterList;
+		int len = monsters.Count;
+		float distance = Mathf.Infinity;
+
+		GameObject targetMonster = null;
+
+		for(int i = 0; i < len; i++)
+		{
+			Vector2 offset = monsters[i].transform.position - transform.position;
+			float sqrDistance = offset.sqrMagnitude;
+
+			if(sqrDistance < distance)
+			{
+				targetMonster = monsters[i].gameObject;
+				distance = sqrDistance;
+			}
+		}
+
+		return targetMonster;
+	}
 }
