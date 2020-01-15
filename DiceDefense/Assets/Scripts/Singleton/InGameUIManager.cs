@@ -16,7 +16,10 @@ public class InGameUIManager : UIManager<InGameUIManager>
 
 	public int aa;
 
-	[HideInInspector] public Panel_MainInGame panel_mainInGame;
+	[HideInInspector] public Panel_MainInGame panel_MainInGame;
+    [HideInInspector] public Panel_Upgrade panel_Upgrade;
+    [HideInInspector] public Panel_Quest panel_Quest;
+    [HideInInspector] public Panel_Setting panel_Setting;
 
 	/* [PROTECTED && PRIVATE VARIABLE]		*/
 
@@ -29,6 +32,9 @@ public class InGameUIManager : UIManager<InGameUIManager>
 	{
 		base.Awake();
 
-		GetUiInstance(out panel_mainInGame);
+		GetUiInstance(out panel_MainInGame);
+        GetUiInstance(out panel_Upgrade);
+        GetUiInstance(out panel_Quest);
+        GetUiInstance(out panel_Setting);
 	}
 }

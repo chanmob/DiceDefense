@@ -16,13 +16,45 @@ public class Panel_MainInGame : UI_Base
 
 	public Text text_gold;
 
-	/* [PROTECTED && PRIVATE VARIABLE]		*/
+    /* [PROTECTED && PRIVATE VARIABLE]		*/
+
+    private InGameManager _ingameManager;
+
+    /*----------------[PUBLIC METHOD]------------------------------*/
 
 
-	/*----------------[PUBLIC METHOD]------------------------------*/
+    /*----------------[PROTECTED && PRIVATE METHOD]----------------*/
 
+    protected override void Start()
+    {
+        base.Start();
 
-	/*----------------[PROTECTED && PRIVATE METHOD]----------------*/
+        if(_ingameManager == null)
+        {
+            _ingameManager = InGameManager.instance;
+        }
+    }
 
+    protected override void OnClickButtons(string buttonName)
+    {
+        base.OnClickButtons(buttonName);
 
+        switch (buttonName)
+        {
+            case "Button_Upgrade":
+                InGameUIManager.instance.panel_Upgrade.Show();
+                break;
+            case "Button_Quest":
+                InGameUIManager.instance.panel_Quest.Show();
+                break;
+            case "Button_BuyUnit":
+                _ingameManager.BuyUnit();
+                break;
+            case "Button_Setting":
+                InGameUIManager.instance.panel_Setting.Show();
+                break;
+            case "Button_GameSpeed":
+                break;
+        }
+    }
 }

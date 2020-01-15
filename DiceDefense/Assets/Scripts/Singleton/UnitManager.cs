@@ -13,6 +13,8 @@ public class UnitManager : Singleton<UnitManager>
 {
     /* [PUBLIC VARIABLE]					*/
 
+    public Unit[] units;
+    public Unit[] hiddenUnits;
 
     /* [PROTECTED && PRIVATE VARIABLE]		*/
 

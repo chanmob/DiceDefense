@@ -92,6 +92,10 @@ where T : Object
 			_monoBehaviours.Add(prefabName, prefab);
 			_resourcesPath[path].Add(prefabName);
 		}
+        else
+        {
+            Debug.LogError("MonoBehaviour Prefab 존재하지 않음");
+        }
 	}
 
 	private void LoadSprite(string path, string prefabName)
@@ -113,6 +117,7 @@ where T : Object
 	{
 		base.Awake();
 
-		InitLoadResourcesPath("Sprites", DataDefine.ResourceType.Sprite);
+        //InitLoadResourcesPath("Units", DataDefine.ResourceType.MonoBehaviour);
+        InitLoadResourcesPath("Sprites", DataDefine.ResourceType.Sprite);
 	}
 }

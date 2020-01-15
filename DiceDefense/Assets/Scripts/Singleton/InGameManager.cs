@@ -20,9 +20,15 @@ public class InGameManager : Singleton<InGameManager>
 	[HideInInspector] public int round;
 	[HideInInspector] public int gold;
 
-	/* [PROTECTED && PRIVATE VARIABLE]		*/
+    public int[] percent = new int[3];
 
-	[SerializeField] private Transform backgroundParent;
+    public int amount_Upgrade1 = 0;
+    public int amount_Upgrade2 = 0;
+    public int amount_Upgrade3 = 0;
+
+    /* [PROTECTED && PRIVATE VARIABLE]		*/
+
+    [SerializeField] private Transform backgroundParent;
 
 	private List<int> spawnIndex;
 
@@ -36,14 +42,37 @@ public class InGameManager : Singleton<InGameManager>
 	{
 		int index = RandomSpawnIndex(spawnIndex);
 
-		isSpawned[index] = true;
+        int rank = GetPercent();
+        int division = Random.Range(0, 3);
+
+        Instantiate(UnitManager.instance.units[division], spawnTransform[index].position, Quaternion.identity);
+
+        //switch (rank)
+        //{
+        //    case 0:
+        //        Instantiate(UnitManager.instance.units[division], spawnTransform[index].position, Quaternion.identity);
+        //        break;
+        //    case 1:
+        //        Instantiate(UnitManager.instance.units[division], spawnTransform[index].position, Quaternion.identity);
+        //        break;
+        //    case 2:
+        //        Instantiate(UnitManager.instance.hiddenUnits[division], spawnTransform[index].position, Quaternion.identity);
+        //        break;
+        //}
+
+        isSpawned[index] = true;
 	}
 
 	public void GetGold(int value)
 	{
 		gold += value;
-		InGameUIManager.instance.panel_mainInGame.text_gold.text = gold.ToString();
+		InGameUIManager.instance.panel_MainInGame.text_gold.text = gold.ToString();
 	}
+
+    public bool CheckGold(int cost)
+    {
+        return cost <= gold;
+    }
 
 	/*----------------[PROTECTED && PRIVATE METHOD]----------------*/
 
@@ -76,6 +105,36 @@ public class InGameManager : Singleton<InGameManager>
 
 		return returnValue;
 	}
+
+    /// <summary>
+    /// 0 - 노말, 1 - 슈퍼, 2- 히든
+    /// </summary>
+    /// <returns></returns>
+    private int GetPercent()
+    {
+        int len = percent.Length;
+        int sum = 0;
+        int returnValue = 0;
+
+        for(int i = 0; i < len; i++)
+        {
+            sum += percent[i];
+        }
+
+        int ran = Random.Range(0, sum);
+
+        for(int i = 0; i < len; i++)
+        {
+            ran -= percent[i];
+
+            if(ran <= 0)
+            {
+                returnValue = i;
+            }
+        }
+
+        return returnValue;
+    }
 
 	//private void Update()
 	//   {
