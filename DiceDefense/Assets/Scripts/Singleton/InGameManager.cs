@@ -17,6 +17,9 @@ public class InGameManager : Singleton<InGameManager>
 
 	public List<Monster> monsterList;
 
+	[HideInInspector] public int round;
+	[HideInInspector] public int gold;
+
 	/* [PROTECTED && PRIVATE VARIABLE]		*/
 
 	[SerializeField] private Transform backgroundParent;
@@ -34,6 +37,12 @@ public class InGameManager : Singleton<InGameManager>
 		int index = RandomSpawnIndex(spawnIndex);
 
 		isSpawned[index] = true;
+	}
+
+	public void GetGold(int value)
+	{
+		gold += value;
+		InGameUIManager.instance.panel_mainInGame.text_gold.text = gold.ToString();
 	}
 
 	/*----------------[PROTECTED && PRIVATE METHOD]----------------*/

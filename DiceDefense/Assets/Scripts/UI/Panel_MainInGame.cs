@@ -14,6 +14,7 @@ public class Panel_MainInGame : UI_Base
 {
 	/* [PUBLIC VARIABLE]					*/
 
+	public Text text_gold;
 
 	/* [PROTECTED && PRIVATE VARIABLE]		*/
 

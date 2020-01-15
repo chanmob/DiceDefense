@@ -10,9 +10,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InGameUIManager : UIManager
+public class InGameUIManager : UIManager<InGameUIManager>
 {
 	/* [PUBLIC VARIABLE]					*/
+
+	public int aa;
 
 	[HideInInspector] public Panel_MainInGame panel_mainInGame;
 

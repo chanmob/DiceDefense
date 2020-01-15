@@ -9,7 +9,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIManager : Singleton<UIManager>
+public class UIManager<DERIVED_CLASS> : Singleton<DERIVED_CLASS>
+	where DERIVED_CLASS : UIManager<DERIVED_CLASS>
 {
 	/* [PUBLIC VARIABLE]					*/
 

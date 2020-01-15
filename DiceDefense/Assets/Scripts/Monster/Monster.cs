@@ -16,11 +16,13 @@ public class Monster : MonoBehaviour
 
     public float speed;
 
-    /* [PROTECTED && PRIVATE VARIABLE]		*/
+	/* [PROTECTED && PRIVATE VARIABLE]		*/
+
+	private InGameManager _ingameManager;
 
     private Transform _waypoint;
 
-    private Text _text;
+    private Text _text_HP;
 
     private int _hp;
     private int _waypointIndex;
@@ -29,8 +31,7 @@ public class Monster : MonoBehaviour
 
     public void Hit(int damage)
     {
-        _hp -= damage;
-        _text.text = _hp.ToString();
+		DecreaseHP(damage);
 
         if (_hp <= 0)
         {
@@ -47,19 +48,35 @@ public class Monster : MonoBehaviour
 
     protected virtual void Enable()
     {
+		if (_ingameManager == null)
+			_ingameManager = InGameManager.instance;
 
-    }
+		SetHP(_ingameManager.round * ((int)(_ingameManager.round * 0.1f) + 1) * 10);
+	}
 
-    protected virtual void Die()
+	private void OnDisable()
+	{
+		Disable();
+	}
+
+	protected virtual void Disable()
+	{
+
+	}
+
+	protected virtual void Die()
     {
-
+		_ingameManager.monsterList.Remove(this);
     }
 
     private void Start()
     {
-        _text = GetComponentInChildren<Text>();
+        _text_HP = GetComponentInChildren<Text>();
         _waypointIndex = 0;
         _waypoint = WayPointManager.instance.waypoints[_waypointIndex];
+
+		if(_ingameManager == null)
+			_ingameManager = InGameManager.instance;
     }
 
     private void FixedUpdate()
@@ -77,4 +94,16 @@ public class Monster : MonoBehaviour
             }
         }
     }
+
+	private void SetHP(int hp)
+	{
+		_hp = hp;
+		_text_HP.text = _hp.ToString();
+	}
+
+	private void DecreaseHP(int damage)
+	{
+		_hp -= damage;
+		_text_HP.text = _hp.ToString();
+	}
 }
