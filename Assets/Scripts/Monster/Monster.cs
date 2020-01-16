@@ -27,9 +27,12 @@ public class Monster : MonoBehaviour
     private int _hp;
     private int _waypointIndex;
 
-    /*----------------[PUBLIC METHOD]------------------------------*/
+	private DataDefine.Attribute _firstAttribute = DataDefine.Attribute.None;
+	private DataDefine.Attribute _secondAttribute = DataDefine.Attribute.None;
 
-    public void Hit(int damage)
+	/*----------------[PUBLIC METHOD]------------------------------*/
+
+	public void Hit(int damage)
     {
 		DecreaseHP(damage);
 
@@ -61,7 +64,9 @@ public class Monster : MonoBehaviour
 
 	protected virtual void Disable()
 	{
-
+		transform.position = _waypoint.position;
+		_ingameManager.monsterList.Remove(this);
+		_ingameManager.GetGold(20);
 	}
 
 	protected virtual void Die()
@@ -78,6 +83,7 @@ public class Monster : MonoBehaviour
     {
         _waypointIndex = 0;
         _waypoint = WayPointManager.instance.waypoints[_waypointIndex];
+		transform.position = _waypoint.position;
 
 		if(_ingameManager == null)
 			_ingameManager = InGameManager.instance;

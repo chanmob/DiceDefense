@@ -14,10 +14,15 @@ public class Bullet : MonoBehaviour
 	/* [PUBLIC VARIABLE]					*/
 
 	public float speed;
+	public int power;
 
 	/* [PROTECTED && PRIVATE VARIABLE]		*/
 
 	private Monster _targetMonster;
+	private ObjectPoolManager _objectpoolManager;
+
+	private DataDefine.Attribute _firstAttribute = DataDefine.Attribute.None;
+	private DataDefine.Attribute _secondAttribute = DataDefine.Attribute.None;
 
 	/*----------------[PUBLIC METHOD]------------------------------*/
 
@@ -26,13 +31,24 @@ public class Bullet : MonoBehaviour
 		_targetMonster = monster;
 	}
 
+	public void SetAttribute(DataDefine.Attribute first = DataDefine.Attribute.None, DataDefine.Attribute second = DataDefine.Attribute.None)
+	{
+		_firstAttribute = first;
+		_secondAttribute = second;
+	}
+
 	/*----------------[PROTECTED && PRIVATE METHOD]----------------*/
+
+	private void Start()
+	{
+		_objectpoolManager = ObjectPoolManager.instance;
+	}
 
 	private void FixedUpdate()
 	{
 		if(_targetMonster == null)
 		{
-			ObjectPoolManager.instance.ReturnBullet(this);
+			_objectpoolManager.ReturnBullet(this);
 		}
 		else
 		{
@@ -42,7 +58,7 @@ public class Bullet : MonoBehaviour
 			}
 			else
 			{
-				ObjectPoolManager.instance.ReturnBullet(this);
+				_objectpoolManager.ReturnBullet(this);
 			}
 		}
 	}
@@ -51,7 +67,17 @@ public class Bullet : MonoBehaviour
 	{
 		if(collision.gameObject == _targetMonster.gameObject)
 		{
+			if (_firstAttribute != DataDefine.Attribute.None)
+			{
 
+			}
+			if (_secondAttribute != DataDefine.Attribute.None)
+			{
+
+			}
+
+			_targetMonster.Hit(power);
+			_objectpoolManager.ReturnBullet(this);
 		}
 	}
 }

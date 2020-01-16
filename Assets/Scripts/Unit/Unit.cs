@@ -14,7 +14,7 @@ public class Unit : MonoBehaviour
     /* [PUBLIC VARIABLE]					*/
 
     public float attackSpeed;
-    public float power;
+    public int power;
     public float attackRange;
 
     public DataDefine.Attribute firstAttribue = DataDefine.Attribute.None;
@@ -25,6 +25,8 @@ public class Unit : MonoBehaviour
 
     private Vector3? _clickPosition;
 
+	private ObjectPoolManager _objectpoolManager;
+
     /*----------------[PUBLIC METHOD]------------------------------*/
 
     public void MoveToClickPosition(Vector3 pos)
@@ -32,9 +34,17 @@ public class Unit : MonoBehaviour
         _clickPosition = pos;
     }
 
-    /*----------------[PROTECTED && PRIVATE METHOD]----------------*/
+	/*----------------[PROTECTED && PRIVATE METHOD]----------------*/
 
-    private void Update()
+	private void Start()
+	{
+		if(_objectpoolManager == null)
+			_objectpoolManager = ObjectPoolManager.instance;
+
+		//InvokeRepeating("Attack", 0f, attackSpeed);
+	}
+
+	private void Update()
     {
         if(_clickPosition != null)
         {
@@ -69,5 +79,21 @@ public class Unit : MonoBehaviour
 		}
 
 		return targetMonster;
+	}
+
+	private void Attack()
+	{
+		GameObject target = FindMonster();
+
+		if (target == null)
+			return;
+
+		Monster targetMonster = target.GetComponent<Monster>();
+
+		Bullet bullet = _objectpoolManager.GetBullet();
+		bullet.transform.position = transform.position;
+		bullet.power = power;
+		bullet.SetTarget(targetMonster);
+		bullet.gameObject.SetActive(true);
 	}
 }

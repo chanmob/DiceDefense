@@ -62,7 +62,12 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
 
 		if(len == 0)
 		{
+			Bullet bulletPrefab = ResourceManager.instance.GetMonoBehavioursObject<Bullet>("Monster");
+			Bullet bullet = Instantiate(bulletPrefab);
+			bullet.transform.SetParent(monsterPoolParent.transform);
+			bullet.gameObject.SetActive(false);
 
+			newBullet = bullet;
 		}
 		else
 		{
@@ -102,7 +107,7 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
         for(int i = 0; i < count; i++)
         {
 			Monster newMonster = Instantiate(monsterPrefab);
-			//stack_Monster.Push(newMonster);
+			stack_Monster.Push(newMonster);
 			newMonster.transform.SetParent(monsterPoolParent.transform);
 			newMonster.gameObject.SetActive(false);
         }
@@ -114,7 +119,10 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
 
 		for(int i = 0; i < count; i++)
 		{
-
+			Bullet newBullet = Instantiate(bulletPrefab);
+			stack_Bullet.Push(newBullet);
+			newBullet.transform.SetParent(monsterPoolParent.transform);
+			newBullet.gameObject.SetActive(false);
 		}
 	}
 }
