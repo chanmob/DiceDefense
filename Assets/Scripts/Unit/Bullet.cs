@@ -69,7 +69,17 @@ public class Bullet : MonoBehaviour
 		{
 			if (_firstAttribute != DataDefine.Attribute.None)
 			{
-
+				switch (_firstAttribute)
+				{
+					case DataDefine.Attribute.Air:
+						break;
+					case DataDefine.Attribute.Fire:
+						break;
+					case DataDefine.Attribute.Ice:
+						break;
+					case DataDefine.Attribute.Lava:
+						break;
+				}			
 			}
 			if (_secondAttribute != DataDefine.Attribute.None)
 			{

@@ -14,8 +14,10 @@ public class Unit : MonoBehaviour
     /* [PUBLIC VARIABLE]					*/
 
     public float attackSpeed;
-    public int power;
-    public float attackRange;
+	public float attackRange;
+
+	public int power;
+	public int unitPositionIndex;
 
     public DataDefine.Attribute firstAttribue = DataDefine.Attribute.None;
     public DataDefine.Attribute secondAttribue = DataDefine.Attribute.None;
@@ -24,8 +26,10 @@ public class Unit : MonoBehaviour
     /* [PROTECTED && PRIVATE VARIABLE]		*/
 
     private Vector3? _clickPosition;
+	private Vector3 diffMouseAndPosition;
 
 	private ObjectPoolManager _objectpoolManager;
+	private InGameManager _ingameManager;
 
     /*----------------[PUBLIC METHOD]------------------------------*/
 
@@ -36,10 +40,65 @@ public class Unit : MonoBehaviour
 
 	/*----------------[PROTECTED && PRIVATE METHOD]----------------*/
 
+	private void OnMouseDown()
+	{
+		diffMouseAndPosition = transform.position - Input.mousePosition;	
+	}
+
+	private void OnMouseDrag()
+	{
+		transform.position = Input.mousePosition + diffMouseAndPosition;
+	}
+
+	private void OnMouseUp()
+	{
+		List<Transform> transformList = _ingameManager.spawnTransform;
+
+		int len = transformList.Count;
+		float distance = Mathf.Infinity;
+		int idx = -1;
+
+		for (int i = 0; i < len; i++)
+		{
+			Vector2 offset = transformList[i].transform.position - transform.position;
+			float sqrDistance = offset.sqrMagnitude;
+
+			if (sqrDistance < distance)
+			{
+				idx = i;
+				distance = sqrDistance;
+			}
+		}
+
+		if (idx != -1 && distance <= 1000)
+		{
+			if (_ingameManager.isSpawned[idx] == false)
+			{
+				transform.position = transformList[idx].transform.position;
+			}
+			else
+			{
+				Unit temp = UnitManager.instance.unitArray[idx];
+				transform.position = transformList[idx].transform.position;
+				temp.transform.position = transformList[unitPositionIndex].transform.position;
+
+				temp.unitPositionIndex = unitPositionIndex;
+				unitPositionIndex = idx;
+			}
+		}
+		else
+		{
+			transform.position = _ingameManager.spawnTransform[unitPositionIndex].position;
+		}
+	}
+
 	private void Start()
 	{
 		if(_objectpoolManager == null)
 			_objectpoolManager = ObjectPoolManager.instance;
+
+		if (_ingameManager == null)
+			_ingameManager = InGameManager.instance;
 
 		//InvokeRepeating("Attack", 0f, attackSpeed);
 	}
@@ -60,7 +119,7 @@ public class Unit : MonoBehaviour
 
 	private GameObject FindMonster()
 	{
-		List<Monster> monsters = InGameManager.instance.monsterList;
+		List<Monster> monsters = _ingameManager.monsterList;
 		int len = monsters.Count;
 		float distance = Mathf.Infinity;
 

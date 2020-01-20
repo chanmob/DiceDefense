@@ -27,8 +27,8 @@ public class Monster : MonoBehaviour
     private int _hp;
     private int _waypointIndex;
 
-	private DataDefine.Attribute _firstAttribute = DataDefine.Attribute.None;
-	private DataDefine.Attribute _secondAttribute = DataDefine.Attribute.None;
+	public DataDefine.Attribute firstAttribute = DataDefine.Attribute.None;
+	public DataDefine.Attribute secondAttribute = DataDefine.Attribute.None;
 
 	/*----------------[PUBLIC METHOD]------------------------------*/
 
@@ -42,9 +42,41 @@ public class Monster : MonoBehaviour
         }
     }
 
-    /*----------------[PROTECTED && PRIVATE METHOD]----------------*/
+	public float CheckFirstAttribute(DataDefine.Attribute strength, DataDefine.Attribute weakness)
+	{
+		if(firstAttribute == strength)
+		{
+			return 2;
+		}
+		else if(firstAttribute == weakness)
+		{
+			return 0.5f;
+		}
+		else
+		{
+			return 1;
+		}
+	}
 
-    private void OnEnable()
+	public float CheckSecondAttribute(DataDefine.Attribute strength, DataDefine.Attribute weakness)
+	{
+		if (secondAttribute == strength)
+		{
+			return 2;
+		}
+		else if (secondAttribute == weakness)
+		{
+			return 0.5f;
+		}
+		else
+		{
+			return 1;
+		}
+	}
+
+	/*----------------[PROTECTED && PRIVATE METHOD]----------------*/
+
+	private void OnEnable()
     {
         Enable();
     }

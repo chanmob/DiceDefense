@@ -15,6 +15,7 @@ public class InGameManager : Singleton<InGameManager>
 
     public Unit unit;
 
+	public List<Monster> roundCheckMonster;
 	public List<Monster> monsterList;
 
 	[HideInInspector] public List<int> spawnIndex;
@@ -31,6 +32,8 @@ public class InGameManager : Singleton<InGameManager>
     public int amount_Upgrade1 = 0;
     public int amount_Upgrade2 = 0;
     public int amount_Upgrade3 = 0;
+
+	public int indexLength = 0;
 
     /* [PROTECTED && PRIVATE VARIABLE]		*/
 
@@ -65,6 +68,7 @@ public class InGameManager : Singleton<InGameManager>
 
 		Transform[] backgroundChildren = backgroundParent.GetComponentsInChildren<Transform>();
 		int len = backgroundChildren.Length;
+		indexLength = len - 1;
 		isSpawned = new bool[len];
 
 		for (int i = 1; i < len; i++)
@@ -109,7 +113,7 @@ public class InGameManager : Singleton<InGameManager>
 				yield return new WaitForSeconds(0.2f);
 			}
 
-			yield return new WaitUntil(() => monsterList.Count <= 0);
+			yield return new WaitUntil(() => roundCheckMonster.Count <= 0);
 
 			round++;
 		}

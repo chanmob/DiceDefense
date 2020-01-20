@@ -16,9 +16,13 @@ public class UnitManager : Singleton<UnitManager>
     public Unit[] units;
     public Unit[] hiddenUnits;
 
+	public Unit[] unitArray;
+
 	/* [PROTECTED && PRIVATE VARIABLE]		*/
 
-	private Dictionary<string, int> unitDictionary;
+	private Dictionary<string, int> _unitDictionary;
+
+	private List<Unit> _unitList;
 
 	private InGameManager _ingameManager;
 
@@ -31,7 +35,16 @@ public class UnitManager : Singleton<UnitManager>
 		int rank = GetPercent();
 		int division = Random.Range(0, 3);
 
-		Instantiate(units[division], _ingameManager.spawnTransform[index].position, Quaternion.identity);
+		string name = units[division].name;
+
+		if(CheckUnitCount(name) >= 2)
+		{
+			UnitCheck(name);
+		}
+
+		Unit newUnit = Instantiate(units[division], _ingameManager.spawnTransform[index].position, Quaternion.identity);
+		unitArray[index] = newUnit;
+		newUnit.unitPositionIndex = index;
 
 		//switch (rank)
 		//{
@@ -49,38 +62,58 @@ public class UnitManager : Singleton<UnitManager>
 		_ingameManager.isSpawned[index] = true;
 	}
 
-
 	public void AddUnit(Unit unit)
 	{
 		string unitName = unit.gameObject.name;
 
-		if (unitDictionary.ContainsKey(unitName) == false)
+		if (_unitDictionary.ContainsKey(unitName) == false)
 		{
-			unitDictionary.Add(unitName, 0);
+			_unitDictionary.Add(unitName, 0);
 		}
 
-		unitDictionary[unitName]++;
+		_unitDictionary[unitName]++;
 	}
 
 	public void SubUnit(Unit unit)
 	{
 		string unitName = unit.gameObject.name;
 
-		if (unitDictionary.ContainsKey(unitName) == false)
+		if (_unitDictionary.ContainsKey(unitName) == false)
 			return;
 
-		unitDictionary[unitName]--;
+		_unitDictionary[unitName]--;
 	}
 
 	public int CheckUnitCount(string name)
 	{
-		if (unitDictionary.ContainsKey(name) == false)
+		if (_unitDictionary.ContainsKey(name) == false)
 			return 0;
 
-		return unitDictionary[name];
+		return _unitDictionary[name];
 	}
 
 	/*----------------[PROTECTED && PRIVATE METHOD]----------------*/
+
+	private void UnitCheck(string unitName)
+	{
+		if (CheckUnitCount(unitName) < 2 || string.IsNullOrEmpty(unitName) == true)
+			return;
+
+		int len = _unitList.Count;
+		string upgradeUnitName = string.Empty;
+
+		for(int i = 0; i < len; i++)
+		{
+			Unit unit = _unitList[i];
+
+			if(string.Equals(unitName, unitName) == true && unit.gameObject.activeSelf == true)
+			{
+				upgradeUnitName = unit.name;
+			}
+		}
+
+		UnitCheck(upgradeUnitName);
+	}
 
 	private int RandomSpawnIndex(List<int> list_int)
 	{
@@ -127,12 +160,14 @@ public class UnitManager : Singleton<UnitManager>
 	{
 		base.Awake();
 
-		unitDictionary = new Dictionary<string, int>();
+		_unitDictionary = new Dictionary<string, int>();
 	}
 
 	private void Start()
 	{
 		if (_ingameManager == null)
 			_ingameManager = InGameManager.instance;
+
+		unitArray = new Unit[_ingameManager.indexLength];
 	}
 }
