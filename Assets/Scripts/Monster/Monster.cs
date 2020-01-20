@@ -27,6 +27,8 @@ public class Monster : MonoBehaviour
     private int _hp;
     private int _waypointIndex;
 
+	private bool _isDie;
+
 	public DataDefine.Attribute firstAttribute = DataDefine.Attribute.None;
 	public DataDefine.Attribute secondAttribute = DataDefine.Attribute.None;
 
@@ -36,8 +38,9 @@ public class Monster : MonoBehaviour
     {
 		DecreaseHP(damage);
 
-        if (_hp <= 0)
+        if (_hp <= 0 && _isDie == false)
         {
+			_isDie = true;
             Die();
         }
     }
@@ -83,6 +86,8 @@ public class Monster : MonoBehaviour
 
     protected virtual void Enable()
     {
+		_isDie = false;
+
 		if (_ingameManager == null)
 			_ingameManager = InGameManager.instance;
 
