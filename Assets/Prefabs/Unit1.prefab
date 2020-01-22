@@ -980,9 +980,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01ba099c598060c45bdd53ae5bfebb08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackSpeed: 0
-  power: 0
+  attackSpeed: 0.2
   attackRange: 0
+  power: 0
+  unitPositionIndex: 0
   firstAttribue: 8
   secondAttribue: 8
 --- !u!1 &7061943161466775804

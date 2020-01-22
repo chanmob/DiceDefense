@@ -62,7 +62,7 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
 
 		if(len == 0)
 		{
-			Bullet bulletPrefab = ResourceManager.instance.GetMonoBehavioursObject<Bullet>("Monster");
+			Bullet bulletPrefab = ResourceManager.instance.GetMonoBehavioursObject<Bullet>("Bullet");
 			Bullet bullet = Instantiate(bulletPrefab);
 			bullet.transform.SetParent(monsterPoolParent.transform);
 			bullet.gameObject.SetActive(false);
@@ -115,7 +115,7 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
 
 	private void MakeBulletPool(int count)
 	{
-		Bullet bulletPrefab = ResourceManager.instance.GetObject<Bullet>("");
+		Bullet bulletPrefab = ResourceManager.instance.GetObject<Bullet>("Bullet");
 
 		for(int i = 0; i < count; i++)
 		{

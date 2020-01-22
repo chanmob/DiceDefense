@@ -130,6 +130,6 @@ where T : Object
 
         InitLoadResourcesPath("Sprites", DataDefine.ResourceType.Sprite);
 		InitLoadResourcesPath("Monster", DataDefine.ResourceType.MonoBehaviour);
-		//InitLoadResourcesPath("Bullet", DataDefine.ResourceType.MonoBehaviour);
+		InitLoadResourcesPath("Bullet", DataDefine.ResourceType.MonoBehaviour);
 	}
 }

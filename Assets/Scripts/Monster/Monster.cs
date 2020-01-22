@@ -101,14 +101,17 @@ public class Monster : MonoBehaviour
 
 	protected virtual void Disable()
 	{
-		transform.position = _waypoint.position;
-		_ingameManager.monsterList.Remove(this);
-		_ingameManager.GetGold(20);
-	}
+        if (_isDie == false)
+            return;
 
-	protected virtual void Die()
+        transform.position = _waypoint.position;
+        _ingameManager.GetGold(20);
+    }
+
+    protected virtual void Die()
     {
-		_ingameManager.monsterList.Remove(this);
+        _ingameManager.monsterList.Remove(this);
+		_ingameManager.roundCheckMonster.Remove(this);
     }
 
 	private void Awake()

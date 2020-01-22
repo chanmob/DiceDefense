@@ -110,6 +110,8 @@ public class InGameManager : Singleton<InGameManager>
 			{
 				Monster monster = _objectpoolManager.GetMonster();
 				monster.gameObject.SetActive(true);
+                roundCheckMonster.Add(monster);
+                monsterList.Add(monster);
 				yield return new WaitForSeconds(0.2f);
 			}
 

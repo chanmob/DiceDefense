@@ -100,7 +100,7 @@ public class Unit : MonoBehaviour
 		if (_ingameManager == null)
 			_ingameManager = InGameManager.instance;
 
-		//InvokeRepeating("Attack", 0f, attackSpeed);
+		InvokeRepeating("Attack", 0f, attackSpeed);
 	}
 
 	private void Update()
