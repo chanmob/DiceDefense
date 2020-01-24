@@ -64,7 +64,7 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
 		{
 			Bullet bulletPrefab = ResourceManager.instance.GetMonoBehavioursObject<Bullet>("Bullet");
 			Bullet bullet = Instantiate(bulletPrefab);
-			bullet.transform.SetParent(monsterPoolParent.transform);
+			bullet.transform.SetParent(bulletPoolParent.transform);
 			bullet.gameObject.SetActive(false);
 
 			newBullet = bullet;
@@ -80,8 +80,15 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
 	public void ReturnBullet(Bullet bullet)
 	{
 		if (bullet.gameObject.activeSelf)
-			bullet.gameObject.SetActive(false);
-
+        {
+            Debug.Log("active");
+            bullet.gameObject.SetActive(false);
+        }
+        else
+        {
+            Debug.Log("not active");
+        }
+		
 		stack_Bullet.Push(bullet);
 	}
 
@@ -98,6 +105,7 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
 	private void Start()
 	{
 		MakeMonsterPool(10);
+        MakeBulletPool(10);
 	}
 
 	private void MakeMonsterPool(int count)
@@ -115,13 +123,13 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
 
 	private void MakeBulletPool(int count)
 	{
-		Bullet bulletPrefab = ResourceManager.instance.GetObject<Bullet>("Bullet");
+		Bullet bulletPrefab = ResourceManager.instance.GetMonoBehavioursObject<Bullet>("Bullet");
 
-		for(int i = 0; i < count; i++)
+        for (int i = 0; i < count; i++)
 		{
 			Bullet newBullet = Instantiate(bulletPrefab);
 			stack_Bullet.Push(newBullet);
-			newBullet.transform.SetParent(monsterPoolParent.transform);
+			newBullet.transform.SetParent(bulletPoolParent.transform);
 			newBullet.gameObject.SetActive(false);
 		}
 	}

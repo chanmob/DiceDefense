@@ -37,14 +37,20 @@ public class UnitManager : Singleton<UnitManager>
 
 		string name = units[division].name;
 
-		if(CheckUnitCount(name) >= 2)
+        Unit unitObject = Instantiate(units[division], _ingameManager.spawnTransform[index].position, Quaternion.identity);
+        AddUnit(unitObject);
+
+        if (CheckUnitCount(name) >= 2)
 		{
+            unitObject.gameObject.SetActive(false);
 			UnitCheck(name);
+            Debug.Log("Level Up");
 		}
 
-		Unit newUnit = Instantiate(units[division], _ingameManager.spawnTransform[index].position, Quaternion.identity);
-		unitArray[index] = newUnit;
-		newUnit.unitPositionIndex = index;
+		unitArray[index] = unitObject;
+        _unitList.Add(unitObject);
+        unitObject.unitPositionIndex = index;
+        unitObject.gameObject.SetActive(true);
 
 		//switch (rank)
 		//{
@@ -100,6 +106,7 @@ public class UnitManager : Singleton<UnitManager>
 			return;
 
 		int len = _unitList.Count;
+        bool upgraded = false;
 		string upgradeUnitName = string.Empty;
 
 		for(int i = 0; i < len; i++)
@@ -108,8 +115,19 @@ public class UnitManager : Singleton<UnitManager>
 
 			if(string.Equals(unitName, unitName) == true && unit.gameObject.activeSelf == true)
 			{
-				upgradeUnitName = unit.name;
-			}
+                if (upgraded)
+                {
+                    _unitList.Remove(unit);
+                    unit.gameObject.SetActive(false);
+                }
+                else
+                {
+                    GameObject upgradeUnit = unit.gameObject;
+                    //upgradeUnit.name = "Upgraded";
+                    upgradeUnitName = upgradeUnit.name;
+                    upgraded = true;
+                }
+            }
 		}
 
 		UnitCheck(upgradeUnitName);
@@ -161,6 +179,7 @@ public class UnitManager : Singleton<UnitManager>
 		base.Awake();
 
 		_unitDictionary = new Dictionary<string, int>();
+        _unitList = new List<Unit>();
 	}
 
 	private void Start()

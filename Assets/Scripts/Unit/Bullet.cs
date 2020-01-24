@@ -88,6 +88,6 @@ public class Bullet : MonoBehaviour
 
 			_targetMonster.Hit(power);
 			_objectpoolManager.ReturnBullet(this);
-		}
+        }
 	}
 }

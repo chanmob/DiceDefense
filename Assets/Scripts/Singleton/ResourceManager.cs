@@ -105,7 +105,7 @@ where T : Object
 		}
         else
         {
-            Debug.LogError("MonoBehaviour Prefab 존재하지 않음");
+            Debug.LogError(prefabName + "MonoBehaviour Prefab 존재하지 않음");
         }
 	}
 
