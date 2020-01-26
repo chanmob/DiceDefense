@@ -85,7 +85,7 @@ public class InGameManager : Singleton<InGameManager>
 
 		waveCoroutine = MonsterWaveCoroutine();
 		StartCoroutine(waveCoroutine);
-	}
+    }
 
 	private int RandomSpawnIndex(List<int> list_int)
 	{

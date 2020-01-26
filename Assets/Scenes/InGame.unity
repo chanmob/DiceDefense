@@ -4896,7 +4896,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad73db49364d6564689471e0ccb125f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _defaultShow: 0
+  _defaultShow: 1
   text_gold: {fileID: 676086637}
 --- !u!222 &994000148
 CanvasRenderer:
@@ -10129,7 +10129,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
-  aa: 0
   panel_MainInGame: {fileID: 0}
   panel_Upgrade: {fileID: 0}
   panel_Quest: {fileID: 0}
