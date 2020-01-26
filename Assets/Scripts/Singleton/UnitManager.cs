@@ -52,6 +52,31 @@ public class UnitManager : Singleton<UnitManager>
 		unitArray[index] = unitObject;
         unitObject.unitPositionIndex = index;
 
+        switch (division)
+        {
+            case 0:
+                if(_ingameManager.unitOneFirstAttribute != DataDefine.Attribute.None)
+                    unitObject.firstAttribue = _ingameManager.unitOneFirstAttribute;
+
+                if(_ingameManager.unitOneSecondAttribute != DataDefine.Attribute.None)
+                    unitObject.secondAttribue = _ingameManager.unitOneSecondAttribute;
+                break;
+            case 1:
+                if (_ingameManager.unitTwoFirstAttribute != DataDefine.Attribute.None)
+                    unitObject.firstAttribue = _ingameManager.unitTwoFirstAttribute;
+
+                if (_ingameManager.unitTwoSecondAttribute != DataDefine.Attribute.None)
+                    unitObject.secondAttribue = _ingameManager.unitTwoSecondAttribute;
+                break;
+            case 2:
+                if (_ingameManager.unitThreeFirstAttribute != DataDefine.Attribute.None)
+                    unitObject.firstAttribue = _ingameManager.unitThreeFirstAttribute;
+
+                if (_ingameManager.unitThreeSecondAttribute != DataDefine.Attribute.None)
+                    unitObject.secondAttribue = _ingameManager.unitThreeSecondAttribute;
+                break;
+        }
+
 		//switch (rank)
 		//{
 		//    case 0:
