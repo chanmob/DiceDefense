@@ -14,8 +14,6 @@ public class InGameUIManager : UIManager<InGameUIManager>
 {
 	/* [PUBLIC VARIABLE]					*/
 
-	public int aa;
-
 	[HideInInspector] public Panel_MainInGame panel_MainInGame;
     [HideInInspector] public Panel_Upgrade panel_Upgrade;
     [HideInInspector] public Panel_Quest panel_Quest;

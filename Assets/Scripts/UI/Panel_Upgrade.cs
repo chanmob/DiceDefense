@@ -18,10 +18,19 @@ public class Panel_Upgrade : UI_Base
 
     private InGameManager _ingameManager;
 
+    private Animator _animator;
+
     /*----------------[PUBLIC METHOD]------------------------------*/
 
-
     /*----------------[PROTECTED && PRIVATE METHOD]----------------*/
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        _animator = GetComponent<Animator>();
+    }
+
 
     protected override void Start()
     {
@@ -47,6 +56,9 @@ public class Panel_Upgrade : UI_Base
                 break;
             case "Button_Upgrade3":
                 _ingameManager.amount_Upgrade3++;
+                break;
+            case "Button_AnimationHide":
+                _animator.SetTrigger("Off");
                 break;
         }
     }

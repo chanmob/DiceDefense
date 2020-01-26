@@ -48,7 +48,7 @@ public class InGameManager : Singleton<InGameManager>
 	public void GetGold(int value)
 	{
 		gold += value;
-		InGameUIManager.instance.panel_MainInGame.text_gold.text = gold.ToString();
+		InGameUIManager.instance.panel_MainInGame.text_gold.text = "Gold : " + gold.ToString();
 	}
 
     public bool CheckGold(int cost)
@@ -118,6 +118,8 @@ public class InGameManager : Singleton<InGameManager>
 			yield return new WaitUntil(() => roundCheckMonster.Count <= 0);
 
 			round++;
-		}
+
+            Debug.Log("라운드 종료입니다!");
+        }
 	}
 }

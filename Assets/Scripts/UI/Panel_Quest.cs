@@ -16,9 +16,30 @@ public class Panel_Quest : UI_Base
 
     /* [PROTECTED && PRIVATE VARIABLE]		*/
 
+    private Animator _animator;
 
     /*----------------[PUBLIC METHOD]------------------------------*/
 
 
     /*----------------[PROTECTED && PRIVATE METHOD]----------------*/
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        _animator = GetComponent<Animator>();
+    }
+
+
+    protected override void OnClickButtons(string buttonName)
+    {
+        base.OnClickButtons(buttonName);
+
+        switch (buttonName)
+        {
+            case "Button_AnimationHide":
+                _animator.SetTrigger("Off");
+                break;
+        }
+    }
 }

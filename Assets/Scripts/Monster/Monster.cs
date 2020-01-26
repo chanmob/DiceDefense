@@ -16,8 +16,9 @@ public class Monster : MonoBehaviour
 
     public float speed;
 
-	/* [PROTECTED && PRIVATE VARIABLE]		*/
+    /* [PROTECTED && PRIVATE VARIABLE]		*/
 
+    private ObjectPoolManager _objectpoolManager;
 	private InGameManager _ingameManager;
 
     private Transform _waypoint;
@@ -91,6 +92,7 @@ public class Monster : MonoBehaviour
 		if (_ingameManager == null)
 			_ingameManager = InGameManager.instance;
 
+        SetPositionFirstWaypoint();
 		SetHP(_ingameManager.round * ((int)(_ingameManager.round * 0.1f) + 1) * 10);
 	}
 
@@ -112,6 +114,7 @@ public class Monster : MonoBehaviour
     {
         _ingameManager.monsterList.Remove(this);
 		_ingameManager.roundCheckMonster.Remove(this);
+        _objectpoolManager.ReturnMonster(this);
     }
 
 	private void Awake()
@@ -119,14 +122,22 @@ public class Monster : MonoBehaviour
 		_text_HP = GetComponentInChildren<Text>();
 	}
 
-	private void Start()
+    private void SetPositionFirstWaypoint()
     {
         _waypointIndex = 0;
         _waypoint = WayPointManager.instance.waypoints[_waypointIndex];
-		transform.position = _waypoint.position;
+        transform.position = _waypoint.position;
+    }
+
+	private void Start()
+    {
+        SetPositionFirstWaypoint();
 
 		if(_ingameManager == null)
 			_ingameManager = InGameManager.instance;
+
+        if (_objectpoolManager == null)
+            _objectpoolManager = ObjectPoolManager.instance;
     }
 
     private void FixedUpdate()

@@ -282,7 +282,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackSpeed: 0.2
   attackRange: 0
-  power: 0
+  power: 1
   unitPositionIndex: 0
   unitLevel: 1
   firstAttribue: 8
