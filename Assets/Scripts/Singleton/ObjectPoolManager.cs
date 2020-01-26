@@ -81,14 +81,9 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
 	{
 		if (bullet.gameObject.activeSelf)
         {
-            Debug.Log("active");
             bullet.gameObject.SetActive(false);
         }
-        else
-        {
-            Debug.Log("not active");
-        }
-		
+
 		stack_Bullet.Push(bullet);
 	}
 

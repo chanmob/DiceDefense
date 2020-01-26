@@ -2072,7 +2072,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7630393506064778059
 Transform:
   m_ObjectHideFlags: 0
@@ -2180,5 +2180,6 @@ MonoBehaviour:
   attackRange: 0
   power: 0
   unitPositionIndex: 0
+  unitLevel: 1
   firstAttribue: 8
   secondAttribue: 8

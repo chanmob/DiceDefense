@@ -38,19 +38,19 @@ public class UnitManager : Singleton<UnitManager>
 		string name = units[division].name;
 
         Unit unitObject = Instantiate(units[division], _ingameManager.spawnTransform[index].position, Quaternion.identity);
+        unitObject.name = units[division].name;
         AddUnit(unitObject);
+        _unitList.Add(unitObject);
 
         if (CheckUnitCount(name) >= 2)
 		{
-            unitObject.gameObject.SetActive(false);
-			UnitCheck(name);
+            UnitCheck(name);
+            _unitDictionary[name] = 0;
             Debug.Log("Level Up");
 		}
 
 		unitArray[index] = unitObject;
-        _unitList.Add(unitObject);
         unitObject.unitPositionIndex = index;
-        unitObject.gameObject.SetActive(true);
 
 		//switch (rank)
 		//{
@@ -84,7 +84,7 @@ public class UnitManager : Singleton<UnitManager>
 	{
 		string unitName = unit.gameObject.name;
 
-		if (_unitDictionary.ContainsKey(unitName) == false)
+        if (_unitDictionary.ContainsKey(unitName) == false)
 			return;
 
 		_unitDictionary[unitName]--;
@@ -112,20 +112,23 @@ public class UnitManager : Singleton<UnitManager>
 		for(int i = 0; i < len; i++)
 		{
 			Unit unit = _unitList[i];
+            string targetUnitName = unit.name;
 
-			if(string.Equals(unitName, unitName) == true && unit.gameObject.activeSelf == true)
+            if (string.Equals(unitName, targetUnitName) == true)
 			{
                 if (upgraded)
                 {
+                    GameObject unitObject = unit.gameObject;
+                    unitObject.SetActive(false);
                     _unitList.Remove(unit);
-                    unit.gameObject.SetActive(false);
                 }
                 else
                 {
-                    GameObject upgradeUnit = unit.gameObject;
-                    //upgradeUnit.name = "Upgraded";
-                    upgradeUnitName = upgradeUnit.name;
                     upgraded = true;
+                    unit.unitLevel++;
+                    GameObject upgradeUnit = unit.gameObject;
+                    upgradeUnit.name = unit.gameObject.name + "_" + unit.unitLevel;
+                    upgradeUnitName = upgradeUnit.name;
                 }
             }
 		}

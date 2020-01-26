@@ -18,6 +18,7 @@ public class Unit : MonoBehaviour
 
 	public int power;
 	public int unitPositionIndex;
+    public int unitLevel = 1;
 
     public DataDefine.Attribute firstAttribue = DataDefine.Attribute.None;
     public DataDefine.Attribute secondAttribue = DataDefine.Attribute.None;
