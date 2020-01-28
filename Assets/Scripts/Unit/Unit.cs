@@ -27,7 +27,8 @@ public class Unit : MonoBehaviour
     /* [PROTECTED && PRIVATE VARIABLE]		*/
 
     private Transform _diceCount;
-    
+    private Transform _diceAttribute;
+
     private Vector3? _clickPosition;
 	private Vector3 _diffMouseAndPosition;
     private Vector3 _unitPosition;
@@ -47,7 +48,7 @@ public class Unit : MonoBehaviour
     public void UnitLevelUp()
     {
         unitLevel++;
-
+         
         int len = _diceCount.childCount;
 
         for(int i = 0; i < len; i++)
@@ -167,6 +168,7 @@ public class Unit : MonoBehaviour
 
         _animator = GetComponent<Animator>();
         _diceCount = transform.Find("DiceCount");
+        _diceAttribute = transform.Find("Attribute");
 
 		InvokeRepeating("Attack", 0f, attackSpeed);
 
