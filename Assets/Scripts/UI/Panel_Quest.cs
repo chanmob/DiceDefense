@@ -40,6 +40,16 @@ public class Panel_Quest : UI_Base
             case "Button_AnimationHide":
                 _animator.SetTrigger("Off");
                 break;
+            case "Button_Quest1":
+                CreateQuestMonster(1);
+                break;
         }
+    }
+
+    private void CreateQuestMonster(int level)
+    {
+        QuestMonster questMonster = ResourceManager.instance.GetMonoBehavioursObject<QuestMonster>("QuestMonster");
+        Instantiate(questMonster);
+        questMonster.transform.SetParent(null);
     }
 }

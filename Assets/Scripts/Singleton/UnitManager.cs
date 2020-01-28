@@ -30,6 +30,10 @@ public class UnitManager : Singleton<UnitManager>
 
 	public void BuyUnit()
 	{
+        int len = _ingameManager.spawnIndex.Count;
+        if (len == 0)
+            return;
+
 		int index = RandomSpawnIndex(_ingameManager.spawnIndex);
 
 		int rank = GetPercent();

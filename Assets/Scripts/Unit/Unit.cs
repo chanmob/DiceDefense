@@ -107,6 +107,8 @@ public class Unit : MonoBehaviour
             if(string.Equals(gameObject.name, unitManager.unitList[unitIndex].name))
             {
                 unitManager.unitList[unitIndex].UnitLevelUp();
+                _ingameManager.isSpawned[unitPositionIndex] = false;
+                _ingameManager.spawnIndex.Add(unitPositionIndex);
                 gameObject.SetActive(false);
             }
             else
@@ -140,13 +142,18 @@ public class Unit : MonoBehaviour
                 if (_ingameManager.isSpawned[idx] == false)
                 {
                     transform.position = transformList[idx].transform.position;
+                    _ingameManager.isSpawned[unitPositionIndex] = false;
+                    _ingameManager.isSpawned[idx] = true;
+                    _ingameManager.spawnIndex.Add(unitPositionIndex);
+                    _ingameManager.spawnIndex.Remove(idx);
+
+                    unitPositionIndex = idx;
                 }
                 else
                 {
                     Unit temp = UnitManager.instance.unitArray[idx];
                     transform.position = transformList[idx].transform.position;
                     temp.transform.position = transformList[unitPositionIndex].transform.position;
-
                     temp.unitPositionIndex = unitPositionIndex;
                     unitPositionIndex = idx;
                 }
