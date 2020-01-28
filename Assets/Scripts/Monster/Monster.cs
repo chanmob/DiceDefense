@@ -22,11 +22,14 @@ public class Monster : MonoBehaviour
 	private InGameManager _ingameManager;
 
     private Transform _waypoint;
+    private Transform _shieldTransform;
 
     [SerializeField]private Text _text_HP;
 
-    private int _hp;
+    protected int _hp;
+    protected int _shield;
     private int _waypointIndex;
+    private int _startShieldAmount;
 
 	private bool _isDie;
 
@@ -94,6 +97,11 @@ public class Monster : MonoBehaviour
 
         SetPositionFirstWaypoint();
 		SetHP(_ingameManager.round * ((int)(_ingameManager.round * 0.1f) + 1) * 10);
+        if (_shield > 0)
+            _startShieldAmount = _shield;
+        else
+            _shieldTransform.gameObject.SetActive(false);
+
 	}
 
 	private void OnDisable()
@@ -120,6 +128,8 @@ public class Monster : MonoBehaviour
 	private void Awake()
 	{
 		_text_HP = GetComponentInChildren<Text>();
+
+        _shieldTransform = transform.Find("Shield");
 	}
 
     private void SetPositionFirstWaypoint()
@@ -164,6 +174,12 @@ public class Monster : MonoBehaviour
 
 	private void DecreaseHP(int damage)
 	{
+        if(_shield > 0)
+        {
+            _shield--;
+            _shieldTransform.localScale = new Vector3(1 + (_shield / _startShieldAmount) * 0.5f, 1 + (_shield / _startShieldAmount) * 0.5f, 1);
+        }
+
 		_hp -= damage;
 		_text_HP.text = _hp.ToString();
 	}

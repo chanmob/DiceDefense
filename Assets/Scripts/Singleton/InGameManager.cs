@@ -113,14 +113,25 @@ public class InGameManager : Singleton<InGameManager>
 		{
 			int waveCount = round;
 
-			for(int i = 0; i < waveCount; i++)
-			{
-				Monster monster = _objectpoolManager.GetMonster();
-				monster.gameObject.SetActive(true);
-                roundCheckMonster.Add(monster);
-                monsterList.Add(monster);
-				yield return new WaitForSeconds(0.2f);
-			}
+            if(waveCount % 10 == 0)
+            {
+                BossMonster bossMonster = ResourceManager.instance.GetMonoBehavioursObject<BossMonster>("BossMonster");
+                Instantiate(bossMonster);
+                bossMonster.transform.SetParent(null);
+                roundCheckMonster.Add(bossMonster);
+            }
+
+            else
+            {
+                for (int i = 0; i < waveCount; i++)
+                {
+                    Monster monster = _objectpoolManager.GetMonster();
+                    monster.gameObject.SetActive(true);
+                    roundCheckMonster.Add(monster);
+                    monsterList.Add(monster);
+                    yield return new WaitForSeconds(0.2f);
+                }
+            }			
 
 			yield return new WaitUntil(() => roundCheckMonster.Count <= 0);
 
