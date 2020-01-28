@@ -18,11 +18,11 @@ public class UnitManager : Singleton<UnitManager>
 
 	public Unit[] unitArray;
 
-	/* [PROTECTED && PRIVATE VARIABLE]		*/
+    public List<Unit> unitList;
 
-	private Dictionary<string, int> _unitDictionary;
+    /* [PROTECTED && PRIVATE VARIABLE]		*/
 
-	private List<Unit> _unitList;
+    private Dictionary<string, int> _unitDictionary;
 
 	private InGameManager _ingameManager;
 
@@ -39,15 +39,15 @@ public class UnitManager : Singleton<UnitManager>
 
         Unit unitObject = Instantiate(units[division], _ingameManager.spawnTransform[index].position, Quaternion.identity);
         unitObject.name = units[division].name;
-        AddUnit(unitObject);
-        _unitList.Add(unitObject);
+        //AddUnit(unitObject);
+        unitList.Add(unitObject);
 
-        if (CheckUnitCount(name) >= 2)
-		{
-            UnitCheck(name);
-            _unitDictionary[name] = 0;
-            Debug.Log("Level Up");
-		}
+  //      if (CheckUnitCount(name) >= 2)
+		//{
+  //          UnitCheck(name);
+  //          _unitDictionary[name] = 0;
+  //          Debug.Log("Level Up");
+		//}
 
 		unitArray[index] = unitObject;
         unitObject.unitPositionIndex = index;
@@ -93,73 +93,75 @@ public class UnitManager : Singleton<UnitManager>
 		_ingameManager.isSpawned[index] = true;
 	}
 
-	public void AddUnit(Unit unit)
-	{
-		string unitName = unit.gameObject.name;
+	//public void AddUnit(Unit unit)
+	//{
+	//	string unitName = unit.gameObject.name;
 
-		if (_unitDictionary.ContainsKey(unitName) == false)
-		{
-			_unitDictionary.Add(unitName, 0);
-		}
+	//	if (_unitDictionary.ContainsKey(unitName) == false)
+	//	{
+	//		_unitDictionary.Add(unitName, 0);
+	//	}
 
-		_unitDictionary[unitName]++;
-	}
+	//	_unitDictionary[unitName]++;
+	//}
 
-	public void SubUnit(Unit unit)
-	{
-		string unitName = unit.gameObject.name;
+	//public void SubUnit(Unit unit)
+	//{
+	//	string unitName = unit.gameObject.name;
 
-        if (_unitDictionary.ContainsKey(unitName) == false)
-			return;
+ //       if (_unitDictionary.ContainsKey(unitName) == false)
+	//		return;
 
-		_unitDictionary[unitName]--;
-	}
+	//	_unitDictionary[unitName]--;
+	//}
 
-	public int CheckUnitCount(string name)
-	{
-		if (_unitDictionary.ContainsKey(name) == false)
-			return 0;
+	//public int CheckUnitCount(string name)
+	//{
+	//	if (_unitDictionary.ContainsKey(name) == false)
+	//		return 0;
 
-		return _unitDictionary[name];
-	}
+	//	return _unitDictionary[name];
+	//}
 
 	/*----------------[PROTECTED && PRIVATE METHOD]----------------*/
 
-	private void UnitCheck(string unitName)
-	{
-		if (CheckUnitCount(unitName) < 2 || string.IsNullOrEmpty(unitName) == true)
-			return;
+	//private void UnitCheck(string unitName)
+	//{
+	//	if (CheckUnitCount(unitName) < 2 || string.IsNullOrEmpty(unitName) == true)
+	//		return;
 
-		int len = _unitList.Count;
-        bool upgraded = false;
-		string upgradeUnitName = string.Empty;
+	//	int len = unitList.Count;
+ //       bool upgraded = false;
+	//	string upgradeUnitName = string.Empty;
 
-		for(int i = 0; i < len; i++)
-		{
-			Unit unit = _unitList[i];
-            string targetUnitName = unit.name;
+	//	for(int i = 0; i < len; i++)
+	//	{
+	//		Unit unit = unitList[i];
+ //           string targetUnitName = unit.name;
 
-            if (string.Equals(unitName, targetUnitName) == true)
-			{
-                if (upgraded)
-                {
-                    GameObject unitObject = unit.gameObject;
-                    unitObject.SetActive(false);
-                    _unitList.Remove(unit);
-                }
-                else
-                {
-                    upgraded = true;
-                    unit.unitLevel++;
-                    GameObject upgradeUnit = unit.gameObject;
-                    upgradeUnit.name = unit.gameObject.name + "_" + unit.unitLevel;
-                    upgradeUnitName = upgradeUnit.name;
-                }
-            }
-		}
+ //           if (string.Equals(unitName, targetUnitName) == true)
+	//		{
+ //               if (upgraded)
+ //               {
+ //                   GameObject unitObject = unit.gameObject;
+ //                   unitObject.SetActive(false);
+ //                   unitList.Remove(unit);
+ //               }
+ //               else
+ //               {
+ //                   upgraded = true;
+ //                   unit.UnitLevelUp();
+ //                   //unit.unitLevel++;
+ //                   GameObject upgradeUnit = unit.gameObject;
+ //                   upgradeUnit.name = unit.gameObject.name + "_" + unit.unitLevel;
+ //                   upgradeUnitName = upgradeUnit.name;
+ //                   AddUnit(unit);
+ //               }
+ //           }
+	//	}
 
-		UnitCheck(upgradeUnitName);
-	}
+	//	UnitCheck(upgradeUnitName);
+	//}
 
 	private int RandomSpawnIndex(List<int> list_int)
 	{
@@ -207,7 +209,7 @@ public class UnitManager : Singleton<UnitManager>
 		base.Awake();
 
 		_unitDictionary = new Dictionary<string, int>();
-        _unitList = new List<Unit>();
+        unitList = new List<Unit>();
 	}
 
 	private void Start()

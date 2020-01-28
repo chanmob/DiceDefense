@@ -870,6 +870,7 @@ GameObject:
   - component: {fileID: 7061943161390157947}
   - component: {fileID: 794142758}
   - component: {fileID: 794142755}
+  - component: {fileID: 8164128664945591997}
   m_Layer: 0
   m_Name: Unit1
   m_TagString: Unit
@@ -984,9 +985,28 @@ MonoBehaviour:
   attackRange: 0
   power: 1
   unitPositionIndex: 0
-  unitLevel: 1
+  unitLevel: 0
   firstAttribue: 8
   secondAttribue: 8
+--- !u!95 &8164128664945591997
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7061943161390157948}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3a0d891635982104da19584cc37e38f3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7061943161466775804
 GameObject:
   m_ObjectHideFlags: 0

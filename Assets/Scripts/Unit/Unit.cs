@@ -18,7 +18,7 @@ public class Unit : MonoBehaviour
 
 	public int power;
 	public int unitPositionIndex;
-    public int unitLevel = 1;
+    public int unitLevel = 0;
 
     public DataDefine.Attribute firstAttribue = DataDefine.Attribute.None;
     public DataDefine.Attribute secondAttribue = DataDefine.Attribute.None;
@@ -26,11 +26,16 @@ public class Unit : MonoBehaviour
 
     /* [PROTECTED && PRIVATE VARIABLE]		*/
 
+    private Transform _diceCount;
+    
     private Vector3? _clickPosition;
-	private Vector3 diffMouseAndPosition;
+	private Vector3 _diffMouseAndPosition;
+    private Vector3 _unitPosition;
 
-	private ObjectPoolManager _objectpoolManager;
+    private ObjectPoolManager _objectpoolManager;
 	private InGameManager _ingameManager;
+
+    private Animator _animator;
 
     /*----------------[PUBLIC METHOD]------------------------------*/
 
@@ -39,58 +44,117 @@ public class Unit : MonoBehaviour
         _clickPosition = pos;
     }
 
-	/*----------------[PROTECTED && PRIVATE METHOD]----------------*/
+    public void UnitLevelUp()
+    {
+        unitLevel++;
 
-	private void OnMouseDown()
+        int len = _diceCount.childCount;
+
+        for(int i = 0; i < len; i++)
+        {
+            if (_diceCount.GetChild(i).gameObject.activeSelf == true)
+                _diceCount.GetChild(i).gameObject.SetActive(false);
+        }
+
+        _diceCount.GetChild(unitLevel).gameObject.SetActive(true);
+
+        power = power + unitLevel;
+        gameObject.name = gameObject.name + "_" + unitLevel;
+    }
+
+    /*----------------[PROTECTED && PRIVATE METHOD]----------------*/
+
+    private void OnDisable()
+    {
+        UnitManager.instance.unitList.Remove(this);
+        CancelInvoke();
+    }
+
+    private void OnMouseDown()
 	{
-		diffMouseAndPosition = transform.position - Input.mousePosition;	
+        _diffMouseAndPosition = transform.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);	
 	}
 
 	private void OnMouseDrag()
 	{
-		transform.position = Input.mousePosition + diffMouseAndPosition;
+		transform.position = _diffMouseAndPosition + Camera.main.ScreenToWorldPoint(Input.mousePosition);
 	}
 
 	private void OnMouseUp()
 	{
-		List<Transform> transformList = _ingameManager.spawnTransform;
+        UnitManager unitManager = UnitManager.instance;
+        int cnt = unitManager.unitList.Count;
+        int unitIndex = -1;
+        float unitDistance = Mathf.Infinity;
+        for (int i = 0; i < cnt; i++)
+        {
+            if (unitManager.unitList[i] == this)
+                continue;
 
-		int len = transformList.Count;
-		float distance = Mathf.Infinity;
-		int idx = -1;
+            Vector2 offset = unitManager.unitList[i].transform.position - transform.position;
+            float sqrDistance = offset.sqrMagnitude;
 
-		for (int i = 0; i < len; i++)
-		{
-			Vector2 offset = transformList[i].transform.position - transform.position;
-			float sqrDistance = offset.sqrMagnitude;
+            if(sqrDistance < unitDistance)
+            {
+                unitIndex = i;
+                unitDistance = sqrDistance;
+            }
+        }
 
-			if (sqrDistance < distance)
-			{
-				idx = i;
-				distance = sqrDistance;
-			}
-		}
+        if (unitIndex != -1 && unitDistance <= 0.25f)
+        {
+            if(string.Equals(gameObject.name, unitManager.unitList[unitIndex].name))
+            {
+                unitManager.unitList[unitIndex].UnitLevelUp();
+                gameObject.SetActive(false);
+            }
+            else
+            {
+                transform.position = _unitPosition;
+            }
+        }
 
-		if (idx != -1 && distance <= 1000)
-		{
-			if (_ingameManager.isSpawned[idx] == false)
-			{
-				transform.position = transformList[idx].transform.position;
-			}
-			else
-			{
-				Unit temp = UnitManager.instance.unitArray[idx];
-				transform.position = transformList[idx].transform.position;
-				temp.transform.position = transformList[unitPositionIndex].transform.position;
+        else
+        {
+            List<Transform> transformList = _ingameManager.spawnTransform;
 
-				temp.unitPositionIndex = unitPositionIndex;
-				unitPositionIndex = idx;
-			}
-		}
-		else
-		{
-			transform.position = _ingameManager.spawnTransform[unitPositionIndex].position;
-		}
+            int len = transformList.Count;
+            float distance = Mathf.Infinity;
+            int idx = -1;
+
+            for (int i = 0; i < len; i++)
+            {
+                Vector2 offset = transformList[i].transform.position - transform.position;
+                float sqrDistance = offset.sqrMagnitude;
+
+                if (sqrDistance < distance)
+                {
+                    idx = i;
+                    distance = sqrDistance;
+                }
+            }
+
+            if (idx != -1 && distance <= 0.25f)
+            {
+                if (_ingameManager.isSpawned[idx] == false)
+                {
+                    transform.position = transformList[idx].transform.position;
+                }
+                else
+                {
+                    Unit temp = UnitManager.instance.unitArray[idx];
+                    transform.position = transformList[idx].transform.position;
+                    temp.transform.position = transformList[unitPositionIndex].transform.position;
+
+                    temp.unitPositionIndex = unitPositionIndex;
+                    unitPositionIndex = idx;
+                }
+            }
+            else
+            {
+                transform.position = _unitPosition;
+            }
+        }
 	}
 
 	private void Start()
@@ -101,7 +165,12 @@ public class Unit : MonoBehaviour
 		if (_ingameManager == null)
 			_ingameManager = InGameManager.instance;
 
+        _animator = GetComponent<Animator>();
+        _diceCount = transform.Find("DiceCount");
+
 		InvokeRepeating("Attack", 0f, attackSpeed);
+
+        _unitPosition = transform.position;
 	}
 
 	private void Update()

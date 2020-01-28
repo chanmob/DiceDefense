@@ -170,6 +170,7 @@ GameObject:
   - component: {fileID: 8250760738014162779}
   - component: {fileID: 1171461770}
   - component: {fileID: 1171461771}
+  - component: {fileID: 7701401551049535222}
   m_Layer: 0
   m_Name: Unit3
   m_TagString: Unit
@@ -185,7 +186,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1033957696777708132}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.469, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children:
   - {fileID: 8365548643375327172}
@@ -284,9 +285,28 @@ MonoBehaviour:
   attackRange: 0
   power: 1
   unitPositionIndex: 0
-  unitLevel: 1
+  unitLevel: 0
   firstAttribue: 8
   secondAttribue: 8
+--- !u!95 &7701401551049535222
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1033957696777708132}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3a0d891635982104da19584cc37e38f3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1136365591252789191
 GameObject:
   m_ObjectHideFlags: 0
