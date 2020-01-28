@@ -107,7 +107,7 @@ public class Monster : MonoBehaviour
             return;
 
         transform.position = _waypoint.position;
-        _ingameManager.GetGold(20);
+        _ingameManager.GetGold(10);
     }
 
     protected virtual void Die()
