@@ -32,5 +32,6 @@ public class BossMonster : Monster
 
     protected override void Enable()
     {
+        _shield = 100;
     }
 }

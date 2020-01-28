@@ -63,6 +63,11 @@ public class Unit : MonoBehaviour
         gameObject.name = gameObject.name + "_" + unitLevel;
     }
 
+    public void SetPosition(Vector3 pos)
+    {
+        _unitPosition = pos;
+    }
+
     /*----------------[PROTECTED && PRIVATE METHOD]----------------*/
 
     private void OnDisable()
@@ -112,8 +117,15 @@ public class Unit : MonoBehaviour
                 gameObject.SetActive(false);
             }
             else
-            {
-                transform.position = _unitPosition;
+            {               
+                Unit temp = UnitManager.instance.unitList[unitIndex];
+                int idx = temp.unitPositionIndex;
+                transform.position = temp.transform.position;
+                temp.transform.position = _unitPosition;
+                temp.unitPositionIndex = unitPositionIndex;
+                unitPositionIndex = idx;
+                SetPosition(transform.position);
+                temp.SetPosition(temp.transform.position);
             }
         }
 
@@ -146,6 +158,7 @@ public class Unit : MonoBehaviour
                     _ingameManager.isSpawned[idx] = true;
                     _ingameManager.spawnIndex.Add(unitPositionIndex);
                     _ingameManager.spawnIndex.Remove(idx);
+                    SetPosition(transform.position);
 
                     unitPositionIndex = idx;
                 }
@@ -156,6 +169,8 @@ public class Unit : MonoBehaviour
                     temp.transform.position = transformList[unitPositionIndex].transform.position;
                     temp.unitPositionIndex = unitPositionIndex;
                     unitPositionIndex = idx;
+                    SetPosition(transform.position);
+                    temp.SetPosition(temp.transform.position);
                 }
             }
             else

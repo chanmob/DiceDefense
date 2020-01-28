@@ -119,6 +119,7 @@ public class InGameManager : Singleton<InGameManager>
                 Instantiate(bossMonster);
                 bossMonster.transform.SetParent(null);
                 roundCheckMonster.Add(bossMonster);
+                monsterList.Add(bossMonster);
             }
 
             else
@@ -136,6 +137,8 @@ public class InGameManager : Singleton<InGameManager>
 			yield return new WaitUntil(() => roundCheckMonster.Count <= 0);
 
 			round++;
+
+            yield return new WaitForSeconds(5f);
 
             Debug.Log("라운드 종료입니다!");
         }
