@@ -34,6 +34,10 @@ public class InGameManager : Singleton<InGameManager>
     public int amount_Upgrade2 = 0;
     public int amount_Upgrade3 = 0;
 
+    public int cost_Upgrade1 = 30;
+    public int cost_Upgrade2 = 30;
+    public int cost_Upgrade3 = 30;
+    
 	public int indexLength = 0;
 
     [HideInInspector] public DataDefine.Attribute unitOneFirstAttribute = DataDefine.Attribute.None;

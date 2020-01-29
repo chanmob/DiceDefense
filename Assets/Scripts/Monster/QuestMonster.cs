@@ -35,7 +35,7 @@ public class QuestMonster : Monster
             return;
         }
 
-        _hp = (int)Mathf.Pow(questIndex, 2) * 150;
+        SetHP((int)Mathf.Pow(questIndex, 2) * 150);
     }
 
     protected override void Disable()

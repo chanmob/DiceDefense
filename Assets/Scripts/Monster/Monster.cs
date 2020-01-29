@@ -116,7 +116,10 @@ public class Monster : MonoBehaviour
         SetPositionFirstWaypoint();
 
         if (_shield > 0)
+        {
             _startShieldAmount = _shield;
+            _shieldTransform.localScale = new Vector3(1 + (_shield / (float)_startShieldAmount) * 0.5f, 1 + (_shield / (float)_startShieldAmount) * 0.5f, 1);
+        }
         else
             _shieldTransform.gameObject.SetActive(false);
     }
@@ -208,7 +211,6 @@ public class Monster : MonoBehaviour
         if(_shield > 0)
         {
             _shield--;
-            Debug.Log("Shield : " + _shield + " / " + "Start : " + _startShieldAmount + " / Result : " + (_shield / (float)_startShieldAmount));
             _shieldTransform.localScale = new Vector3(1 + (_shield / (float)_startShieldAmount) * 0.5f, 1 + (_shield / (float)_startShieldAmount) * 0.5f, 1);
             return;
         }

@@ -48,8 +48,10 @@ public class Panel_Quest : UI_Base
 
     private void CreateQuestMonster(int level)
     {
-        QuestMonster questMonster = ResourceManager.instance.GetMonoBehavioursObject<QuestMonster>("QuestMonster");
-        Instantiate(questMonster);
+        QuestMonster questMonsterPrefab = ResourceManager.instance.GetMonoBehavioursObject<QuestMonster>("QuestMonster");
+        QuestMonster questMonster = Instantiate(questMonsterPrefab);
+        questMonster.questIndex = level;
         questMonster.transform.SetParent(null);
+        InGameManager.instance.monsterList.Add(questMonster);
     }
 }
