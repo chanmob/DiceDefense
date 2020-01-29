@@ -29,7 +29,6 @@ public class Bullet : MonoBehaviour
 	public void SetTarget(Monster monster)
 	{
 		_targetMonster = monster;
-        Debug.Log(_targetMonster.name);
 	}
 
 	public void SetAttribute(DataDefine.Attribute first = DataDefine.Attribute.None, DataDefine.Attribute second = DataDefine.Attribute.None)

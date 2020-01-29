@@ -24,7 +24,9 @@ public class BossMonster : Monster
 
     protected override void Die()
     {
-
+        _ingameManager.monsterList.Remove(this);
+        _ingameManager.roundCheckMonster.Remove(this);
+        gameObject.SetActive(false);
     }
 
     protected override void Disable()
