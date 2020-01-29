@@ -31,7 +31,7 @@ public class BossMonster : Monster
 
     protected override void Disable()
     {
-        _ingameManager.GetGold(_ingameManager.round * 100);
+        _ingameManager.GetGold(_ingameManager.round * 10);
     }
 
     protected override void Enable()

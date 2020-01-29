@@ -1222,11 +1222,14 @@ MonoBehaviour:
   isSpawned: 
   gameEnd: 0
   round: 0
-  gold: 0
+  gold: 30
   percent: 3c0000001e0000000a000000
   amount_Upgrade1: 0
   amount_Upgrade2: 0
   amount_Upgrade3: 0
+  cost_Upgrade1: 30
+  cost_Upgrade2: 30
+  cost_Upgrade3: 30
   indexLength: 0
   unitOneFirstAttribute: 8
   unitOneSecondAttribute: 8
@@ -5158,7 +5161,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 77.14286, y: -75}
+  m_AnchoredPosition: {x: 77.14282, y: -75}
   m_SizeDelta: {x: 125, y: 125}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &749364755
@@ -5523,6 +5526,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _defaultShow: 0
+  _text_LevelTexts: []
+  _text_CostTexts: []
 --- !u!95 &772639343
 Animator:
   serializedVersion: 3

@@ -54,6 +54,7 @@ public class Panel_Upgrade : UI_Base
             case "Button_Upgrade1":
                 if(_ingameManager.CheckGold(_ingameManager.cost_Upgrade1))
                 {
+                    _ingameManager.GetGold(_ingameManager.cost_Upgrade1);
                     _ingameManager.amount_Upgrade1++;
                     _ingameManager.cost_Upgrade1 += 30 * _ingameManager.amount_Upgrade1;
                     _text_LevelTexts[0].text = "Lv. " + _ingameManager.amount_Upgrade1;
@@ -63,6 +64,7 @@ public class Panel_Upgrade : UI_Base
             case "Button_Upgrade2":
                 if (_ingameManager.CheckGold(_ingameManager.cost_Upgrade2))
                 {
+                    _ingameManager.GetGold(_ingameManager.cost_Upgrade2);
                     _ingameManager.amount_Upgrade2++;
                     _ingameManager.cost_Upgrade2 += 30 * _ingameManager.amount_Upgrade2;
                     _text_LevelTexts[1].text = "Lv. " + _ingameManager.amount_Upgrade2;
@@ -72,6 +74,7 @@ public class Panel_Upgrade : UI_Base
             case "Button_Upgrade3":
                 if (_ingameManager.CheckGold(_ingameManager.cost_Upgrade3))
                 {
+                    _ingameManager.GetGold(_ingameManager.cost_Upgrade3);
                     _ingameManager.amount_Upgrade3++;
                     _ingameManager.cost_Upgrade3 += 30 * _ingameManager.amount_Upgrade3;
                     _text_LevelTexts[2].text = "Lv. " + _ingameManager.amount_Upgrade3;

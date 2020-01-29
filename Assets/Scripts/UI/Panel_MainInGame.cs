@@ -39,6 +39,8 @@ public class Panel_MainInGame : UI_Base
 		{
 			_unitManager = UnitManager.instance;
 		}
+
+        text_gold.text = "Gold : " + _ingameManager.gold.ToString();
     }
 
     protected override void OnClickButtons(string buttonName)
@@ -54,7 +56,11 @@ public class Panel_MainInGame : UI_Base
                 InGameUIManager.instance.panel_Quest.Show();
                 break;
             case "Button_BuyUnit":
-                _unitManager.BuyUnit();
+                if (_ingameManager.CheckGold(30))
+                {
+                    _ingameManager.GetGold(-30);
+                    _unitManager.BuyUnit();
+                }
                 break;
             case "Button_Setting":
                 InGameUIManager.instance.panel_Setting.Show();
