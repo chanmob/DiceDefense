@@ -121,8 +121,8 @@ public class InGameManager : Singleton<InGameManager>
 
             if(waveCount % 10 == 0)
             {
-                BossMonster bossMonster = ResourceManager.instance.GetMonoBehavioursObject<BossMonster>("BossMonster");
-                Instantiate(bossMonster);
+                BossMonster bossMonsterPrefab = ResourceManager.instance.GetMonoBehavioursObject<BossMonster>("BossMonster");
+                BossMonster bossMonster = Instantiate(bossMonsterPrefab);
                 bossMonster.transform.SetParent(null);
                 roundCheckMonster.Add(bossMonster);
                 monsterList.Add(bossMonster);

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1303038245588572643
+--- !u!1 &3191498980455272596
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4820165224523331848}
-  - component: {fileID: 457593645902951126}
+  - component: {fileID: 7089072420546647372}
+  - component: {fileID: 7664323511245521423}
   m_Layer: 0
   m_Name: Shield
   m_TagString: Untagged
@@ -17,13 +17,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4820165224523331848
+--- !u!4 &7089072420546647372
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1303038245588572643}
+  m_GameObject: {fileID: 3191498980455272596}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
@@ -31,13 +31,13 @@ Transform:
   m_Father: {fileID: 7331980173136931317}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &457593645902951126
+--- !u!212 &7664323511245521423
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1303038245588572643}
+  m_GameObject: {fileID: 3191498980455272596}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -69,7 +69,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: e522dab235f3d7c4c817e3c10707f02c, type: 3}
-  m_Color: {r: 0.38412246, g: 0.8748154, b: 0.9811321, a: 1}
+  m_Color: {r: 0.38431373, g: 0.8745098, b: 0.98039216, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -321,19 +321,19 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 1436adb4daba0ba41a0ba75c064828ba, type: 3}
     m_FontSize: 50
     m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 0
-    m_MaxSize: 100
+    m_BestFit: 1
+    m_MinSize: 10
+    m_MaxSize: 50
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 10
+  m_Text: 1000
 --- !u!1 &7331980173136931312
 GameObject:
   m_ObjectHideFlags: 0
@@ -345,7 +345,7 @@ GameObject:
   - component: {fileID: 7331980173136931317}
   - component: {fileID: 7331980173136931314}
   - component: {fileID: 559598286945669642}
-  - component: {fileID: 114406048849396746}
+  - component: {fileID: 114313220621004070}
   m_Layer: 0
   m_Name: BossMonster
   m_TagString: Monster
@@ -365,7 +365,7 @@ Transform:
   m_LocalScale: {x: 0.75, y: 0.75, z: 1}
   m_Children:
   - {fileID: 7331980171541717446}
-  - {fileID: 4820165224523331848}
+  - {fileID: 7089072420546647372}
   - {fileID: 7331980171582658575}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -444,7 +444,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.64, y: 0.64}
   m_EdgeRadius: 0
---- !u!114 &114406048849396746
+--- !u!114 &114313220621004070
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -457,6 +457,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
-  _text_HP: {fileID: 0}
   firstAttribute: 8
   secondAttribute: 8
+  _text_HP: {fileID: 0}

@@ -34,7 +34,7 @@ public class BossMonster : Monster
 
     protected override void Enable()
     {
+        SetHP((int)Mathf.Pow((_ingameManager.round / 10), 2) * 1000);
         _shield = 100;
-        _hp = (int)Mathf.Pow((_ingameManager.round / 10), 2) * 100;
     }
 }

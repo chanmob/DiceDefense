@@ -30,14 +30,14 @@ public class Monster : MonoBehaviour
 	protected InGameManager _ingameManager;
 
     private Transform _waypoint;
-    private Transform _shieldTransform;
+    protected Transform _shieldTransform;
 
     [SerializeField]private Text _text_HP;
 
     protected int _hp;
     protected int _shield;
+    protected int _startShieldAmount;
     private int _waypointIndex;
-    private int _startShieldAmount;
 
 	private bool _isDie;
 
@@ -97,24 +97,29 @@ public class Monster : MonoBehaviour
 
 	private void OnEnable()
     {
+        if (_ingameManager == null)
+            _ingameManager = InGameManager.instance;
+
         Enable();
+        PublicEnable();
     }
 
     protected virtual void Enable()
     {
-		_isDie = false;
+        SetHP(_ingameManager.round * ((int)(_ingameManager.round * 0.1f) + 1) * 10);
+	}
 
-		if (_ingameManager == null)
-			_ingameManager = InGameManager.instance;
+    private void PublicEnable()
+    {
+        _isDie = false;
 
         SetPositionFirstWaypoint();
-		SetHP(_ingameManager.round * ((int)(_ingameManager.round * 0.1f) + 1) * 10);
+
         if (_shield > 0)
             _startShieldAmount = _shield;
         else
             _shieldTransform.gameObject.SetActive(false);
-
-	}
+    }
 
 	private void OnDisable()
 	{
@@ -192,7 +197,7 @@ public class Monster : MonoBehaviour
         }
     }
 
-	private void SetHP(int hp)
+	protected void SetHP(int hp)
 	{
 		_hp = hp;
 		_text_HP.text = _hp.ToString();
@@ -203,7 +208,9 @@ public class Monster : MonoBehaviour
         if(_shield > 0)
         {
             _shield--;
-            _shieldTransform.localScale = new Vector3(1 + (_shield / _startShieldAmount) * 0.5f, 1 + (_shield / _startShieldAmount) * 0.5f, 1);
+            Debug.Log("Shield : " + _shield + " / " + "Start : " + _startShieldAmount + " / Result : " + (_shield / (float)_startShieldAmount));
+            _shieldTransform.localScale = new Vector3(1 + (_shield / (float)_startShieldAmount) * 0.5f, 1 + (_shield / (float)_startShieldAmount) * 0.5f, 1);
+            return;
         }
 
 		_hp -= damage;
