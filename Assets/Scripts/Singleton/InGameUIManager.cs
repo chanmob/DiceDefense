@@ -18,6 +18,7 @@ public class InGameUIManager : UIManager<InGameUIManager>
     [HideInInspector] public Panel_Upgrade panel_Upgrade;
     [HideInInspector] public Panel_Quest panel_Quest;
     [HideInInspector] public Panel_Setting panel_Setting;
+    [HideInInspector] public Panel_UnitAttribute panel_UnitAttribute;
 
 	/* [PROTECTED && PRIVATE VARIABLE]		*/
 
@@ -34,5 +35,6 @@ public class InGameUIManager : UIManager<InGameUIManager>
         GetUiInstance(out panel_Upgrade);
         GetUiInstance(out panel_Quest);
         GetUiInstance(out panel_Setting);
+        GetUiInstance(out panel_UnitAttribute);
 	}
 }

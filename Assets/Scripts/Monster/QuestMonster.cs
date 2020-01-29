@@ -13,6 +13,7 @@ public class QuestMonster : Monster
 {
     /* [PUBLIC VARIABLE]					*/
 
+    public int questIndex = -1;
 
     /* [PROTECTED && PRIVATE VARIABLE]		*/
 
@@ -28,9 +29,17 @@ public class QuestMonster : Monster
 
     protected override void Enable()
     {
+        if(questIndex == -1)
+        {
+            Debug.Log("퀘스트 몬스터 인덱스 에러");
+            return;
+        }
+
+        _hp = (int)Mathf.Pow(questIndex, 2) * 150;
     }
 
     protected override void Disable()
     {
+        _ingameManager.GetGold((int)Mathf.Pow(questIndex, 2) * 200);
     }
 }

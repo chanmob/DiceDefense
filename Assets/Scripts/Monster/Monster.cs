@@ -16,10 +16,18 @@ public class Monster : MonoBehaviour
 
     public float speed;
 
+    public DataDefine.Attribute firstAttribute = DataDefine.Attribute.None;
+    public DataDefine.Attribute secondAttribute = DataDefine.Attribute.None;
+
     /* [PROTECTED && PRIVATE VARIABLE]		*/
 
+    private SpriteRenderer _spriteRenderer;
+    private SpriteRenderer _edgeRenderer;
+
+    private Canvas _canvas;
+
     private ObjectPoolManager _objectpoolManager;
-	private InGameManager _ingameManager;
+	protected InGameManager _ingameManager;
 
     private Transform _waypoint;
     private Transform _shieldTransform;
@@ -33,12 +41,16 @@ public class Monster : MonoBehaviour
 
 	private bool _isDie;
 
-	public DataDefine.Attribute firstAttribute = DataDefine.Attribute.None;
-	public DataDefine.Attribute secondAttribute = DataDefine.Attribute.None;
+    /*----------------[PUBLIC METHOD]------------------------------*/
 
-	/*----------------[PUBLIC METHOD]------------------------------*/
+    public void SetSpriteOrder(int layer)
+    {
+        _spriteRenderer.sortingOrder = layer;
+        _edgeRenderer.sortingOrder = layer + 1;
+        _canvas.sortingOrder = layer + 2;
+    }
 
-	public void Hit(int damage)
+    public void Hit(int damage)
     {
 		DecreaseHP(damage);
 
@@ -128,6 +140,12 @@ public class Monster : MonoBehaviour
 	private void Awake()
 	{
 		_text_HP = GetComponentInChildren<Text>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _canvas = GetComponentInChildren<Canvas>();
+
+        Transform rainbow = transform.Find("RainBow");
+        if (rainbow != null)
+            _edgeRenderer = rainbow.GetComponent<SpriteRenderer>();        
 
         _shieldTransform = transform.Find("Shield");
 	}
@@ -152,6 +170,9 @@ public class Monster : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (_ingameManager.gameEnd == true)
+            return;
+
         transform.position = Vector2.MoveTowards(transform.position, _waypoint.position, speed * Time.deltaTime);        
 
         if(Vector2.Distance(transform.position, _waypoint.position) <= 0.025f)
@@ -162,6 +183,11 @@ public class Monster : MonoBehaviour
             {
                 _waypointIndex++;
                 _waypoint = _waypoint = WayPointManager.instance.waypoints[_waypointIndex];
+            }
+
+            else
+            {
+                _ingameManager.EndGame();
             }
         }
     }

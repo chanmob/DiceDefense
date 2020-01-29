@@ -23,6 +23,7 @@ public class InGameManager : Singleton<InGameManager>
 	[HideInInspector] public List<Transform> spawnTransform;
 
 	[HideInInspector] public bool[] isSpawned;
+    [HideInInspector] public bool gameEnd = false;
 
 	[HideInInspector] public int round;
 	[HideInInspector] public int gold;
@@ -61,6 +62,11 @@ public class InGameManager : Singleton<InGameManager>
     public bool CheckGold(int cost)
     {
         return cost <= gold;
+    }
+
+    public void EndGame()
+    {
+        gameEnd = true;
     }
 
 	/*----------------[PROTECTED && PRIVATE METHOD]----------------*/
@@ -127,10 +133,11 @@ public class InGameManager : Singleton<InGameManager>
                 for (int i = 0; i < waveCount; i++)
                 {
                     Monster monster = _objectpoolManager.GetMonster();
+                    monster.SetSpriteOrder(waveCount - i);
                     monster.gameObject.SetActive(true);
                     roundCheckMonster.Add(monster);
                     monsterList.Add(monster);
-                    yield return new WaitForSeconds(0.2f);
+                    yield return new WaitForSeconds(0.25f);
                 }
             }			
 

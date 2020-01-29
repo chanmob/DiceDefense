@@ -43,15 +43,7 @@ public class UnitManager : Singleton<UnitManager>
 
         Unit unitObject = Instantiate(units[division], _ingameManager.spawnTransform[index].position, Quaternion.identity);
         unitObject.name = units[division].name;
-        //AddUnit(unitObject);
         unitList.Add(unitObject);
-
-  //      if (CheckUnitCount(name) >= 2)
-		//{
-  //          UnitCheck(name);
-  //          _unitDictionary[name] = 0;
-  //          Debug.Log("Level Up");
-		//}
 
 		unitArray[index] = unitObject;
         unitObject.unitPositionIndex = index;
@@ -97,75 +89,7 @@ public class UnitManager : Singleton<UnitManager>
 		_ingameManager.isSpawned[index] = true;
 	}
 
-	//public void AddUnit(Unit unit)
-	//{
-	//	string unitName = unit.gameObject.name;
-
-	//	if (_unitDictionary.ContainsKey(unitName) == false)
-	//	{
-	//		_unitDictionary.Add(unitName, 0);
-	//	}
-
-	//	_unitDictionary[unitName]++;
-	//}
-
-	//public void SubUnit(Unit unit)
-	//{
-	//	string unitName = unit.gameObject.name;
-
- //       if (_unitDictionary.ContainsKey(unitName) == false)
-	//		return;
-
-	//	_unitDictionary[unitName]--;
-	//}
-
-	//public int CheckUnitCount(string name)
-	//{
-	//	if (_unitDictionary.ContainsKey(name) == false)
-	//		return 0;
-
-	//	return _unitDictionary[name];
-	//}
-
 	/*----------------[PROTECTED && PRIVATE METHOD]----------------*/
-
-	//private void UnitCheck(string unitName)
-	//{
-	//	if (CheckUnitCount(unitName) < 2 || string.IsNullOrEmpty(unitName) == true)
-	//		return;
-
-	//	int len = unitList.Count;
- //       bool upgraded = false;
-	//	string upgradeUnitName = string.Empty;
-
-	//	for(int i = 0; i < len; i++)
-	//	{
-	//		Unit unit = unitList[i];
- //           string targetUnitName = unit.name;
-
- //           if (string.Equals(unitName, targetUnitName) == true)
-	//		{
- //               if (upgraded)
- //               {
- //                   GameObject unitObject = unit.gameObject;
- //                   unitObject.SetActive(false);
- //                   unitList.Remove(unit);
- //               }
- //               else
- //               {
- //                   upgraded = true;
- //                   unit.UnitLevelUp();
- //                   //unit.unitLevel++;
- //                   GameObject upgradeUnit = unit.gameObject;
- //                   upgradeUnit.name = unit.gameObject.name + "_" + unit.unitLevel;
- //                   upgradeUnitName = upgradeUnit.name;
- //                   AddUnit(unit);
- //               }
- //           }
-	//	}
-
-	//	UnitCheck(upgradeUnitName);
-	//}
 
 	private int RandomSpawnIndex(List<int> list_int)
 	{
