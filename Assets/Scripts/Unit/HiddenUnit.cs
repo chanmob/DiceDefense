@@ -24,20 +24,9 @@ public class HiddenUnit : Unit
 
     protected override void OnStart()
     {
-        power = Random.Range(10, 30);
+        power = Random.Range(1, 35);
 
-        int randomAttackSpeed = Random.Range(0, 2);
-        switch (randomAttackSpeed)
-        {
-            case 0:
-                attackSpeed = 0.2f;
-                break;
-            case 1:
-                attackSpeed = 0.3f;
-                break;
-            case 2:
-                attackSpeed = 0.4f;
-                break;
-        }
+        int randomAttackSpeed = Random.Range(1, 7);
+        attackSpeed = randomAttackSpeed * 0.1f;
     }
 }

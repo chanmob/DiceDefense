@@ -14,6 +14,7 @@ public class UnitManager : Singleton<UnitManager>
     /* [PUBLIC VARIABLE]					*/
 
     public Unit[] units;
+    public Unit[] superUnits;
     public Unit[] hiddenUnits;
 
 	public Unit[] unitArray;
@@ -41,7 +42,22 @@ public class UnitManager : Singleton<UnitManager>
 
 		string name = units[division].name;
 
-        Unit unitObject = Instantiate(units[division], _ingameManager.spawnTransform[index].position, Quaternion.identity);
+        Unit unitObject = null;
+
+        switch (rank)
+        {
+            case 0:
+                unitObject = Instantiate(units[division], _ingameManager.spawnTransform[index].position, Quaternion.identity);
+                break;
+            case 1:
+                unitObject = Instantiate(superUnits[division], _ingameManager.spawnTransform[index].position, Quaternion.identity);
+                break;
+            case 2:
+                unitObject = Instantiate(hiddenUnits[division], _ingameManager.spawnTransform[index].position, Quaternion.identity);
+                break;
+        }
+
+        //Unit unitObject = Instantiate(units[division], _ingameManager.spawnTransform[index].position, Quaternion.identity);
         unitObject.name = units[division].name;
         unitList.Add(unitObject);
 
@@ -73,20 +89,7 @@ public class UnitManager : Singleton<UnitManager>
                 break;
         }
 
-		//switch (rank)
-		//{
-		//    case 0:
-		//        Instantiate(UnitManager.instance.units[division], spawnTransform[index].position, Quaternion.identity);
-		//        break;
-		//    case 1:
-		//        Instantiate(UnitManager.instance.units[division], spawnTransform[index].position, Quaternion.identity);
-		//        break;
-		//    case 2:
-		//        Instantiate(UnitManager.instance.hiddenUnits[division], spawnTransform[index].position, Quaternion.identity);
-		//        break;
-		//}
-
-		_ingameManager.isSpawned[index] = true;
+        _ingameManager.isSpawned[index] = true;
 	}
 
 	/*----------------[PROTECTED && PRIVATE METHOD]----------------*/
