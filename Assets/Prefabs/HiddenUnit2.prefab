@@ -1027,8 +1027,8 @@ GameObject:
   - component: {fileID: 7061943161390157946}
   - component: {fileID: 7061943161390157947}
   - component: {fileID: 794142758}
-  - component: {fileID: 794142755}
   - component: {fileID: 8164128664945591997}
+  - component: {fileID: 6467187382149617982}
   m_Layer: 0
   m_Name: HiddenUnit2
   m_TagString: Unit
@@ -1129,26 +1129,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.64, y: 0.64}
   m_EdgeRadius: 0
---- !u!114 &794142755
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7061943161390157948}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01ba099c598060c45bdd53ae5bfebb08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackSpeed: 0.5
-  attackRange: 0
-  power: 3
-  unitPositionIndex: 0
-  unitLevel: 0
-  firstAttribue: 8
-  secondAttribue: 8
-  UnitType: 1
 --- !u!95 &8164128664945591997
 Animator:
   serializedVersion: 3
@@ -1168,6 +1148,26 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6467187382149617982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7061943161390157948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7af15fd34bfb5b4499349497bfc6c068, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackSpeed: 0
+  attackRange: 0
+  power: 0
+  unitPositionIndex: 0
+  unitLevel: 0
+  firstAttribue: 8
+  secondAttribue: 8
+  UnitType: 1
 --- !u!1 &7061943161466775804
 GameObject:
   m_ObjectHideFlags: 0

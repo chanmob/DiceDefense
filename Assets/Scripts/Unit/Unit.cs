@@ -175,7 +175,7 @@ public class Unit : MonoBehaviour
         }
 	}
 
-	private void Start()
+	protected void Start()
 	{
 		if(_objectpoolManager == null)
 			_objectpoolManager = ObjectPoolManager.instance;
@@ -187,10 +187,17 @@ public class Unit : MonoBehaviour
         _diceCount = transform.Find("DiceCount");
         _diceAttribute = transform.Find("Attribute");
 
-		InvokeRepeating("Attack", 0f, attackSpeed);
-
         _unitPosition = transform.position;
+
+        OnStart();
+
+        InvokeRepeating("Attack", 0f, attackSpeed);
 	}
+
+    protected virtual void OnStart()
+    {
+
+    }
 
 	private GameObject FindMonster()
 	{
