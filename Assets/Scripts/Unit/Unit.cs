@@ -27,6 +27,8 @@ public class Unit : MonoBehaviour
 
     /* [PROTECTED && PRIVATE VARIABLE]		*/
 
+    private int _startPower;
+
     private Transform _diceCount;
     private Transform _diceAttribute;
 
@@ -54,7 +56,8 @@ public class Unit : MonoBehaviour
 
         _diceCount.GetChild(unitLevel).gameObject.SetActive(true);
 
-        power = power + unitLevel;
+        power = _startPower + (int)Mathf.Pow(unitLevel, 2) * 2 + 1;
+        //power = power + unitLevel;
         gameObject.name = gameObject.name + "_" + unitLevel;
     }
 
@@ -191,6 +194,7 @@ public class Unit : MonoBehaviour
 
         OnStart();
 
+        _startPower = power;
         InvokeRepeating("Attack", 0f, attackSpeed);
 	}
 
@@ -233,7 +237,20 @@ public class Unit : MonoBehaviour
 
 		Bullet bullet = _objectpoolManager.GetBullet();
 		bullet.transform.position = transform.position;
-		bullet.power = power;
+
+        switch (UnitType)
+        {
+            case DataDefine.UnitType.Unit1:
+                bullet.power = power + _ingameManager.amount_Upgrade1;
+                break;
+            case DataDefine.UnitType.Unit2:
+                bullet.power = power + _ingameManager.amount_Upgrade2;
+                break;
+            case DataDefine.UnitType.Unit3:
+                bullet.power = power + _ingameManager.amount_Upgrade3;
+                break;
+        }
+        //bullet.power = power;
 		bullet.SetTarget(targetMonster);
 		bullet.gameObject.SetActive(true);
 	}
