@@ -58,7 +58,7 @@ public class UnitManager : Singleton<UnitManager>
         }
 
         //Unit unitObject = Instantiate(units[division], _ingameManager.spawnTransform[index].position, Quaternion.identity);
-        unitObject.name = units[division].name;
+        //unitObject.name = units[division].name;
         unitList.Add(unitObject);
 
 		unitArray[index] = unitObject;
@@ -129,6 +129,7 @@ public class UnitManager : Singleton<UnitManager>
 			if (ran <= 0)
 			{
 				returnValue = i;
+                break;
 			}
 		}
 

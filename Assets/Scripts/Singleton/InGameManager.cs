@@ -121,9 +121,10 @@ public class InGameManager : Singleton<InGameManager>
 
 		while (true)
 		{
-			int waveCount = round;
+            yield return StartCoroutine(WaitWaveCoroutine(5));
+            InGameUIManager.instance.panel_MainInGame.text_time.text = round.ToString();
 
-            if(waveCount % 10 == 0)
+            if(round % 10 == 0)
             {
                 BossMonster bossMonsterPrefab = ResourceManager.instance.GetMonoBehavioursObject<BossMonster>("BossMonster");
                 BossMonster bossMonster = Instantiate(bossMonsterPrefab);
@@ -134,10 +135,10 @@ public class InGameManager : Singleton<InGameManager>
 
             else
             {
-                for (int i = 0; i < waveCount; i++)
+                for (int i = 0; i < round; i++)
                 {
                     Monster monster = _objectpoolManager.GetMonster();
-                    monster.SetSpriteOrder(waveCount - i);
+                    monster.SetSpriteOrder(round - i);
                     monster.gameObject.SetActive(true);
                     roundCheckMonster.Add(monster);
                     monsterList.Add(monster);
@@ -148,10 +149,25 @@ public class InGameManager : Singleton<InGameManager>
 			yield return new WaitUntil(() => roundCheckMonster.Count <= 0);
 
 			round++;
-
-            yield return new WaitForSeconds(5f);
-
-            Debug.Log("라운드 종료입니다!");
         }
 	}
+
+    private IEnumerator WaitWaveCoroutine(int time)
+    {
+        UnityEngine.UI.Image timeImage = InGameUIManager.instance.panel_MainInGame.image_timeCheck;
+        UnityEngine.UI.Text timeText = InGameUIManager.instance.panel_MainInGame.text_time;
+        timeImage.fillAmount = 1;
+        timeText.text = time.ToString();
+
+        float checkTime = time;
+
+        while(timeImage.fillAmount > 0)
+        {
+            timeImage.fillAmount -= Time.deltaTime / time;
+            checkTime -= Time.deltaTime;
+            timeText.text = ((int)checkTime).ToString();
+
+            yield return null;
+        }
+    }
 }

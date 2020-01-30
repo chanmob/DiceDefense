@@ -15290,7 +15290,14 @@ MonoBehaviour:
   - {fileID: 794142755, guid: 7d88a28ce4412c440b0c77459f224b79, type: 3}
   - {fileID: 848188202, guid: a142d0639fa892f4f94e05f735d51119, type: 3}
   - {fileID: 1171461771, guid: bfac8ecd2e6d5cb4a92b745755105667, type: 3}
-  hiddenUnits: []
+  superUnits:
+  - {fileID: 819923187995953128, guid: 09e108f2d1ae16c408029f05bd68fcf3, type: 3}
+  - {fileID: 819923187995953128, guid: f235629c6335e154c847cc42cf4a77f1, type: 3}
+  - {fileID: 819923187995953128, guid: e80500d4bc81a8649ad5839822eb3141, type: 3}
+  hiddenUnits:
+  - {fileID: 4353877045312657435, guid: 210bff845b32f5b4bb5fabfbf7c90482, type: 3}
+  - {fileID: 6467187382149617982, guid: 50c9bfb698b846847927393fdfe15da4, type: 3}
+  - {fileID: 5490325465864411188, guid: 13f07781db9d3334ea78efd06c3dc187, type: 3}
   unitArray: []
   unitList: []
 --- !u!4 &2095862498

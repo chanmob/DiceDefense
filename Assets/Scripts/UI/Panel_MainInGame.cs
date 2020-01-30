@@ -15,6 +15,8 @@ public class Panel_MainInGame : UI_Base
 	/* [PUBLIC VARIABLE]					*/
 
 	public Text text_gold;
+    public Text text_time;
+    public Image image_timeCheck;
 
     /* [PROTECTED && PRIVATE VARIABLE]		*/
 
