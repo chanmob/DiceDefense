@@ -31,7 +31,16 @@ public static class DataDefine
 		Resource,
 		MonoBehaviour,
 		Sprite,
+        None
 	}
+
+    public enum UnitType
+    {
+        Unit1,
+        Unit2,
+        Unit3,
+        None
+    }
 
 
 	/* [PROTECTED && PRIVATE VARIABLE]		*/

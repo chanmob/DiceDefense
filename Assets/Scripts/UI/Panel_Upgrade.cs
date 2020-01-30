@@ -56,7 +56,7 @@ public class Panel_Upgrade : UI_Base
                 {
                     _ingameManager.GetGold(_ingameManager.cost_Upgrade1);
                     _ingameManager.amount_Upgrade1++;
-                    _ingameManager.cost_Upgrade1 += 30 * _ingameManager.amount_Upgrade1;
+                    _ingameManager.cost_Upgrade1 += 28 * _ingameManager.amount_Upgrade1;
                     _text_LevelTexts[0].text = "Lv. " + _ingameManager.amount_Upgrade1;
                     _text_CostTexts[0].text = _ingameManager.cost_Upgrade1.ToString();
                 }
@@ -76,7 +76,7 @@ public class Panel_Upgrade : UI_Base
                 {
                     _ingameManager.GetGold(_ingameManager.cost_Upgrade3);
                     _ingameManager.amount_Upgrade3++;
-                    _ingameManager.cost_Upgrade3 += 30 * _ingameManager.amount_Upgrade3;
+                    _ingameManager.cost_Upgrade3 += 32 * _ingameManager.amount_Upgrade3;
                     _text_LevelTexts[2].text = "Lv. " + _ingameManager.amount_Upgrade3;
                     _text_CostTexts[2].text = _ingameManager.cost_Upgrade3.ToString();
                 }

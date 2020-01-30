@@ -361,13 +361,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01ba099c598060c45bdd53ae5bfebb08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackSpeed: 0.2
+  attackSpeed: 0.5
   attackRange: 0
-  power: 1
+  power: 7
   unitPositionIndex: 0
   unitLevel: 0
   firstAttribue: 8
   secondAttribue: 8
+  UnitType: 2
 --- !u!95 &7701401551049535222
 Animator:
   serializedVersion: 3

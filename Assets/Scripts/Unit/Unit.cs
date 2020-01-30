@@ -23,13 +23,13 @@ public class Unit : MonoBehaviour
     public DataDefine.Attribute firstAttribue = DataDefine.Attribute.None;
     public DataDefine.Attribute secondAttribue = DataDefine.Attribute.None;
 
+    public DataDefine.UnitType UnitType = DataDefine.UnitType.None;
 
     /* [PROTECTED && PRIVATE VARIABLE]		*/
 
     private Transform _diceCount;
     private Transform _diceAttribute;
 
-    private Vector3? _clickPosition;
 	private Vector3 _diffMouseAndPosition;
     private Vector3 _unitPosition;
 
@@ -39,11 +39,6 @@ public class Unit : MonoBehaviour
     private Animator _animator;
 
     /*----------------[PUBLIC METHOD]------------------------------*/
-
-    public void MoveToClickPosition(Vector3 pos)
-    {
-        _clickPosition = pos;
-    }
 
     public void UnitLevelUp()
     {
@@ -196,20 +191,6 @@ public class Unit : MonoBehaviour
 
         _unitPosition = transform.position;
 	}
-
-	private void Update()
-    {
-        if(_clickPosition != null)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, (Vector2)_clickPosition, 2 * Time.deltaTime);
-
-            if(Vector2.Distance(transform.position, (Vector2)_clickPosition) <= 0.025f)
-            {
-                transform.position = (Vector2)_clickPosition;
-                _clickPosition = null;
-            }
-        }
-    }
 
 	private GameObject FindMonster()
 	{
