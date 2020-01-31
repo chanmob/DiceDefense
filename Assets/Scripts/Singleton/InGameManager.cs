@@ -8,6 +8,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class InGameManager : Singleton<InGameManager>
 {
@@ -71,6 +72,8 @@ public class InGameManager : Singleton<InGameManager>
     public void EndGame()
     {
         gameEnd = true;
+
+        InGameUIManager.instance.panel_Result.transform.DOScale(1, 1).SetEase(Ease.OutBack);
     }
 
 	/*----------------[PROTECTED && PRIVATE METHOD]----------------*/
@@ -119,9 +122,10 @@ public class InGameManager : Singleton<InGameManager>
 	{
 		round = 1;
 
-		while (true)
+        while (true)
 		{
             yield return StartCoroutine(WaitWaveCoroutine(5));
+
             InGameUIManager.instance.panel_MainInGame.text_time.text = round.ToString();
 
             if(round % 10 == 0)
