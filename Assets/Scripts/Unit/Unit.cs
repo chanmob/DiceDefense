@@ -105,7 +105,7 @@ public class Unit : MonoBehaviour
             }
         }
 
-        if (unitIndex != -1 && unitDistance <= 0.15f)
+        if (unitIndex != -1 && unitDistance <= 0.15f && unitLevel < 5)
         {
             if(string.Equals(gameObject.name, unitManager.unitList[unitIndex].name))
             {
