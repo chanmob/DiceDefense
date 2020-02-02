@@ -8,7 +8,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
 
 public class InGameManager : Singleton<InGameManager>
 {
@@ -73,7 +72,7 @@ public class InGameManager : Singleton<InGameManager>
     {
         gameEnd = true;
 
-        InGameUIManager.instance.panel_Result.transform.DOScale(1, 1).SetEase(Ease.OutBack);
+        //InGameUIManager.instance.panel_Result.ShowResult();
     }
 
 	/*----------------[PROTECTED && PRIVATE METHOD]----------------*/

@@ -9,6 +9,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class Panel_Result : UI_Base
 {
@@ -22,12 +23,18 @@ public class Panel_Result : UI_Base
 
     /*----------------[PUBLIC METHOD]------------------------------*/
 
-    public void RoundTextCounting(int round, bool renewal = false)
+    public void ShowResult(int round, bool renewal = false)
     {
-        StartCount(_text_Round, 0, round, 1, renewal);
+        Show();
+        transform.DOScale(1, 1).SetEase(Ease.OutBack).OnComplete(() => RoundTextCounting(round, renewal));
     }
 
     /*----------------[PROTECTED && PRIVATE METHOD]----------------*/
+
+    private void RoundTextCounting(int round, bool renewal = false)
+    {
+        StartCount(_text_Round, 0, round, 1, renewal);
+    }
 
     private void StartCount(Text text, float min, float max, float time, bool renewal)
     {
