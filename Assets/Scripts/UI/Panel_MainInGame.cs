@@ -20,6 +20,8 @@ public class Panel_MainInGame : UI_Base
 
     /* [PROTECTED && PRIVATE VARIABLE]		*/
 
+    [SerializeField] private Text _text_Speed;
+
     private InGameManager _ingameManager;
 	private UnitManager _unitManager;
 
@@ -68,6 +70,28 @@ public class Panel_MainInGame : UI_Base
                 InGameUIManager.instance.panel_Setting.Show();
                 break;
             case "Button_GameSpeed":
+                SetGameSpeed();
+                break;
+        }
+    }
+
+    private void SetGameSpeed()
+    {
+        int speed = (int)Time.timeScale;
+
+        switch (speed)
+        {
+            case 1:
+                Time.timeScale = 2;
+                _text_Speed.text = "x2.0"; 
+                break;
+            case 2:
+                Time.timeScale = 4;
+                _text_Speed.text = "x4.0";
+                break;
+            case 4:
+                Time.timeScale = 1;
+                _text_Speed.text = "x1.0";
                 break;
         }
     }

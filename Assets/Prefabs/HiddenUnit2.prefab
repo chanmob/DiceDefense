@@ -1160,6 +1160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7af15fd34bfb5b4499349497bfc6c068, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unitName: Hidden_Knight
   attackSpeed: 0
   attackRange: 0
   power: 0

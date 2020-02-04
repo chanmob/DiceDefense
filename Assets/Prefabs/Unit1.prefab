@@ -1140,6 +1140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01ba099c598060c45bdd53ae5bfebb08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unitName: Normal_Undead
   attackSpeed: 0.5
   attackRange: 0
   power: 3

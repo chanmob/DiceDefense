@@ -13,6 +13,8 @@ public class Unit : MonoBehaviour
 {
     /* [PUBLIC VARIABLE]					*/
 
+    public string unitName;
+
     public float attackSpeed;
 	public float attackRange;
 
@@ -86,96 +88,107 @@ public class Unit : MonoBehaviour
 
 	private void OnMouseUp()
 	{
-        UnitManager unitManager = UnitManager.instance;
-        int cnt = unitManager.unitList.Count;
-        int unitIndex = -1;
-        float unitDistance = Mathf.Infinity;
-        for (int i = 0; i < cnt; i++)
+        Vector2 mouseOffset = _unitPosition - transform.position;
+        float mouseDistance = mouseOffset.sqrMagnitude;
+
+        if(mouseDistance <= 0.1f)
         {
-            if (unitManager.unitList[i] == this)
-                continue;
-
-            Vector2 offset = unitManager.unitList[i].transform.position - transform.position;
-            float sqrDistance = offset.sqrMagnitude;
-
-            if(sqrDistance < unitDistance)
-            {
-                unitIndex = i;
-                unitDistance = sqrDistance;
-            }
-        }
-
-        if (unitIndex != -1 && unitDistance <= 0.15f && unitLevel < 5)
-        {
-            if(string.Equals(gameObject.name, unitManager.unitList[unitIndex].name))
-            {
-                unitManager.unitList[unitIndex].UnitLevelUp();
-                _ingameManager.isSpawned[unitPositionIndex] = false;
-                _ingameManager.spawnIndex.Add(unitPositionIndex);
-                gameObject.SetActive(false);
-            }
-            else
-            {               
-                Unit temp = UnitManager.instance.unitList[unitIndex];
-                int idx = temp.unitPositionIndex;
-                transform.position = temp.transform.position;
-                temp.transform.position = _unitPosition;
-                temp.unitPositionIndex = unitPositionIndex;
-                unitPositionIndex = idx;
-                SetPosition(transform.position);
-                temp.SetPosition(temp.transform.position);
-            }
+            Debug.Log("유닛 정보 표시");
         }
 
         else
         {
-            List<Transform> transformList = _ingameManager.spawnTransform;
-
-            int len = transformList.Count;
-            float distance = Mathf.Infinity;
-            int idx = -1;
-
-            for (int i = 0; i < len; i++)
+            UnitManager unitManager = UnitManager.instance;
+            int cnt = unitManager.unitList.Count;
+            int unitIndex = -1;
+            float unitDistance = Mathf.Infinity;
+            for (int i = 0; i < cnt; i++)
             {
-                Vector2 offset = transformList[i].transform.position - transform.position;
+                if (unitManager.unitList[i] == this)
+                    continue;
+
+                Vector2 offset = unitManager.unitList[i].transform.position - transform.position;
                 float sqrDistance = offset.sqrMagnitude;
 
-                if (sqrDistance < distance)
+                if (sqrDistance < unitDistance)
                 {
-                    idx = i;
-                    distance = sqrDistance;
+                    unitIndex = i;
+                    unitDistance = sqrDistance;
                 }
             }
 
-            if (idx != -1 && distance <= 0.25f)
+            if (unitIndex != -1 && unitDistance <= 0.15f && unitLevel < 5)
             {
-                if (_ingameManager.isSpawned[idx] == false)
+                if (string.Equals(gameObject.name, unitManager.unitList[unitIndex].name))
                 {
-                    transform.position = transformList[idx].transform.position;
+                    unitManager.unitList[unitIndex].UnitLevelUp();
                     _ingameManager.isSpawned[unitPositionIndex] = false;
-                    _ingameManager.isSpawned[idx] = true;
                     _ingameManager.spawnIndex.Add(unitPositionIndex);
-                    _ingameManager.spawnIndex.Remove(idx);
-                    SetPosition(transform.position);
-
-                    unitPositionIndex = idx;
+                    gameObject.SetActive(false);
                 }
                 else
                 {
-                    Unit temp = UnitManager.instance.unitArray[idx];
-                    transform.position = transformList[idx].transform.position;
-                    temp.transform.position = transformList[unitPositionIndex].transform.position;
+                    Unit temp = UnitManager.instance.unitList[unitIndex];
+                    int idx = temp.unitPositionIndex;
+                    transform.position = temp.transform.position;
+                    temp.transform.position = _unitPosition;
                     temp.unitPositionIndex = unitPositionIndex;
                     unitPositionIndex = idx;
                     SetPosition(transform.position);
                     temp.SetPosition(temp.transform.position);
                 }
             }
+
             else
             {
-                transform.position = _unitPosition;
+                List<Transform> transformList = _ingameManager.spawnTransform;
+
+                int len = transformList.Count;
+                float distance = Mathf.Infinity;
+                int idx = -1;
+
+                for (int i = 0; i < len; i++)
+                {
+                    Vector2 offset = transformList[i].transform.position - transform.position;
+                    float sqrDistance = offset.sqrMagnitude;
+
+                    if (sqrDistance < distance)
+                    {
+                        idx = i;
+                        distance = sqrDistance;
+                    }
+                }
+
+                if (idx != -1 && distance <= 0.25f)
+                {
+                    if (_ingameManager.isSpawned[idx] == false)
+                    {
+                        transform.position = transformList[idx].transform.position;
+                        _ingameManager.isSpawned[unitPositionIndex] = false;
+                        _ingameManager.isSpawned[idx] = true;
+                        _ingameManager.spawnIndex.Add(unitPositionIndex);
+                        _ingameManager.spawnIndex.Remove(idx);
+                        SetPosition(transform.position);
+
+                        unitPositionIndex = idx;
+                    }
+                    else
+                    {
+                        Unit temp = UnitManager.instance.unitArray[idx];
+                        transform.position = transformList[idx].transform.position;
+                        temp.transform.position = transformList[unitPositionIndex].transform.position;
+                        temp.unitPositionIndex = unitPositionIndex;
+                        unitPositionIndex = idx;
+                        SetPosition(transform.position);
+                        temp.SetPosition(temp.transform.position);
+                    }
+                }
+                else
+                {
+                    transform.position = _unitPosition;
+                }
             }
-        }
+        }        
 	}
 
 	protected void Start()

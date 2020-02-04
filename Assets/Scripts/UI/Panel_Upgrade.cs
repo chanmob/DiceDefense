@@ -16,7 +16,6 @@ public class Panel_Upgrade : UI_Base
 
     /* [PROTECTED && PRIVATE VARIABLE]		*/
 
-    [SerializeField] private Text[] _text_LevelTexts;
     [SerializeField] private Text[] _text_CostTexts;
 
     private InGameManager _ingameManager;
@@ -43,6 +42,10 @@ public class Panel_Upgrade : UI_Base
         {
             _ingameManager = InGameManager.instance;
         }
+
+        _text_CostTexts[0].text = "Lv. " + _ingameManager.amount_Upgrade1 + " : " + _ingameManager.cost_Upgrade1.ToString();
+        _text_CostTexts[1].text = "Lv. " + _ingameManager.amount_Upgrade2 + " : " + _ingameManager.cost_Upgrade2.ToString();
+        _text_CostTexts[2].text = "Lv. " + _ingameManager.amount_Upgrade3 + " : " + _ingameManager.cost_Upgrade3.ToString();
     }
 
     protected override void OnClickButtons(string buttonName)
@@ -57,8 +60,7 @@ public class Panel_Upgrade : UI_Base
                     _ingameManager.GetGold(_ingameManager.cost_Upgrade1);
                     _ingameManager.amount_Upgrade1++;
                     _ingameManager.cost_Upgrade1 += 28 * _ingameManager.amount_Upgrade1;
-                    _text_LevelTexts[0].text = "Lv. " + _ingameManager.amount_Upgrade1;
-                    _text_CostTexts[0].text = _ingameManager.cost_Upgrade1.ToString();
+                    _text_CostTexts[0].text = "Lv. " + _ingameManager.amount_Upgrade1 + " : " + _ingameManager.cost_Upgrade1.ToString();
                 }
                 break;
             case "Button_Upgrade2":
@@ -67,8 +69,7 @@ public class Panel_Upgrade : UI_Base
                     _ingameManager.GetGold(_ingameManager.cost_Upgrade2);
                     _ingameManager.amount_Upgrade2++;
                     _ingameManager.cost_Upgrade2 += 30 * _ingameManager.amount_Upgrade2;
-                    _text_LevelTexts[1].text = "Lv. " + _ingameManager.amount_Upgrade2;
-                    _text_CostTexts[1].text = _ingameManager.cost_Upgrade2.ToString();
+                    _text_CostTexts[1].text = "Lv. " + _ingameManager.amount_Upgrade2 + " : " + _ingameManager.cost_Upgrade2.ToString();
                 }
                 break;
             case "Button_Upgrade3":
@@ -77,8 +78,7 @@ public class Panel_Upgrade : UI_Base
                     _ingameManager.GetGold(_ingameManager.cost_Upgrade3);
                     _ingameManager.amount_Upgrade3++;
                     _ingameManager.cost_Upgrade3 += 32 * _ingameManager.amount_Upgrade3;
-                    _text_LevelTexts[2].text = "Lv. " + _ingameManager.amount_Upgrade3;
-                    _text_CostTexts[2].text = _ingameManager.cost_Upgrade3.ToString();
+                    _text_CostTexts[2].text = "Lv. " + _ingameManager.amount_Upgrade3 + " : " + _ingameManager.cost_Upgrade3.ToString();
                 }
                 break;
             case "Button_AnimationHide":
