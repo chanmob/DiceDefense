@@ -1,7 +1,7 @@
 ﻿/*
   ============================================
 	Author	: ChanMob
-	Time 	: 2020-02-04 오후 4:29:26
+	Time 	: 2020-02-04 오후 4:58:50
   ============================================
 */
 
@@ -9,7 +9,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Panel_HowToPlay : UI_Base
+public class SoundManager : Singleton<SoundManager>
 {
     /* [PUBLIC VARIABLE]					*/
 
