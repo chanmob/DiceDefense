@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Panel_UnitInfo : UI_Base
+public class Popup_UnitInfo : UI_Base
 {
     /* [PUBLIC VARIABLE]					*/
 
