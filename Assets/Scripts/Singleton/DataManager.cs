@@ -14,9 +14,16 @@ public class DataManager : Singleton<DataManager>
 {
     /* [PUBLIC VARIABLE]					*/
 
+    public enum SaveDataType
+    {
+        Round,
+        Sound
+    }
+
     /* [PROTECTED && PRIVATE VARIABLE]		*/
 
     private const string roundSaveName = "BestRound";
+    private const string soundSaveName = "SoundOnOff";
 
     /*----------------[PUBLIC METHOD]------------------------------*/
 
@@ -28,9 +35,17 @@ public class DataManager : Singleton<DataManager>
         return ObscuredPrefs.GetInt(roundSaveName) < round;
     }
 
-    public void SaveBestRound(int round)
+    public void SaveIntData(SaveDataType type, int value)
     {
-        ObscuredPrefs.SetInt(roundSaveName, round);
+        switch (type)
+        {
+            case SaveDataType.Round:
+                ObscuredPrefs.SetInt(roundSaveName, value);
+                break;
+            case SaveDataType.Sound:
+                ObscuredPrefs.SetInt(soundSaveName, value);
+                break;
+        }
     }
 
     /*----------------[PROTECTED && PRIVATE METHOD]----------------*/
