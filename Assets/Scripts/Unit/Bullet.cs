@@ -67,26 +67,48 @@ public class Bullet : MonoBehaviour
 	{
 		if(collision.gameObject == _targetMonster.gameObject)
 		{
+            float firstAttributeMulti = 1f;
+            float secondAttributeMulti = 1f;
+
 			if (_firstAttribute != DataDefine.Attribute.None)
 			{
 				switch (_firstAttribute)
 				{
 					case DataDefine.Attribute.Air:
+                        firstAttributeMulti = _targetMonster.CheckFirstAttribute(DataDefine.Attribute.Lava, DataDefine.Attribute.Fire);
 						break;
 					case DataDefine.Attribute.Fire:
-						break;
+                        firstAttributeMulti = _targetMonster.CheckFirstAttribute(DataDefine.Attribute.Air, DataDefine.Attribute.Ice);
+                        break;
 					case DataDefine.Attribute.Ice:
-						break;
+                        firstAttributeMulti = _targetMonster.CheckFirstAttribute(DataDefine.Attribute.Fire, DataDefine.Attribute.Lava);
+                        break;
 					case DataDefine.Attribute.Lava:
-						break;
+                        firstAttributeMulti = _targetMonster.CheckFirstAttribute(DataDefine.Attribute.Ice, DataDefine.Attribute.Air);
+                        break;
 				}			
 			}
 			if (_secondAttribute != DataDefine.Attribute.None)
 			{
-
+                switch (_secondAttribute)
+                {
+                    case DataDefine.Attribute.Mystery:
+                        secondAttributeMulti = _targetMonster.CheckSecondAttribute(DataDefine.Attribute.Water, DataDefine.Attribute.Nature);
+                        break;
+                    case DataDefine.Attribute.Nature:
+                        secondAttributeMulti = _targetMonster.CheckSecondAttribute(DataDefine.Attribute.Mystery, DataDefine.Attribute.Storm);
+                        break;
+                    case DataDefine.Attribute.Storm:
+                        secondAttributeMulti = _targetMonster.CheckSecondAttribute(DataDefine.Attribute.Nature, DataDefine.Attribute.Water);
+                        break;
+                    case DataDefine.Attribute.Water:
+                        secondAttributeMulti = _targetMonster.CheckSecondAttribute(DataDefine.Attribute.Storm, DataDefine.Attribute.Mystery);
+                        break;
+                }
 			}
 
-			_targetMonster.Hit(power);
+            power = (int)(power * firstAttributeMulti * secondAttributeMulti);
+            _targetMonster.Hit(power);
 			_objectpoolManager.ReturnBullet(this);
         }
 	}

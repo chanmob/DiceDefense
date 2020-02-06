@@ -61,6 +61,16 @@ public class Unit : MonoBehaviour
         power = _startPower + (int)Mathf.Pow(unitLevel, 2) * 2 + 1;
         //power = power + unitLevel;
         gameObject.name = gameObject.name + "_" + unitLevel;
+
+        if(firstAttribue == DataDefine.Attribute.None && unitLevel >= 2)
+        {
+
+        }
+
+        if(secondAttribue == DataDefine.Attribute.None && unitLevel >= 3)
+        {
+
+        }
     }
 
     public void SetPosition(Vector3 pos)
@@ -263,6 +273,8 @@ public class Unit : MonoBehaviour
                 bullet.power = power + _ingameManager.amount_Upgrade3;
                 break;
         }
+
+        bullet.SetAttribute(firstAttribue, secondAttribue);
         //bullet.power = power;
 		bullet.SetTarget(targetMonster);
 		bullet.gameObject.SetActive(true);

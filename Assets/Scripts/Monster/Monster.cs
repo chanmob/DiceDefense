@@ -69,11 +69,11 @@ public class Monster : MonoBehaviour
 		}
 		else if(firstAttribute == weakness)
 		{
-			return 0.5f;
+            return 0.5f;
 		}
 		else
 		{
-			return 1;
+            return 1;
 		}
 	}
 
