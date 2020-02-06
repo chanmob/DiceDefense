@@ -25,7 +25,9 @@ public class Unit : MonoBehaviour
     public DataDefine.Attribute firstAttribue = DataDefine.Attribute.None;
     public DataDefine.Attribute secondAttribue = DataDefine.Attribute.None;
 
-    public DataDefine.UnitType UnitType = DataDefine.UnitType.None;
+    public DataDefine.UnitType unitType = DataDefine.UnitType.None;
+
+    public DataDefine.UnitRanking unitRanking = DataDefine.UnitRanking.None;
 
     /* [PROTECTED && PRIVATE VARIABLE]		*/
 
@@ -64,12 +66,14 @@ public class Unit : MonoBehaviour
 
         if(firstAttribue == DataDefine.Attribute.None && unitLevel >= 2)
         {
-
+            InGameUIManager.instance.panel_UnitAttribute.isSecondAttribute = false;
+            InGameUIManager.instance.panel_UnitAttribute.Show();
         }
 
         if(secondAttribue == DataDefine.Attribute.None && unitLevel >= 3)
         {
-
+            InGameUIManager.instance.panel_UnitAttribute.isSecondAttribute = true;
+            InGameUIManager.instance.panel_UnitAttribute.Show();
         }
     }
 
@@ -104,6 +108,7 @@ public class Unit : MonoBehaviour
         if(mouseDistance <= 0.1f)
         {
             Debug.Log("유닛 정보 표시");
+            transform.position = _unitPosition;
         }
 
         else
@@ -261,7 +266,7 @@ public class Unit : MonoBehaviour
 		Bullet bullet = _objectpoolManager.GetBullet();
 		bullet.transform.position = transform.position;
 
-        switch (UnitType)
+        switch (unitType)
         {
             case DataDefine.UnitType.Unit1:
                 bullet.power = power + _ingameManager.amount_Upgrade1;

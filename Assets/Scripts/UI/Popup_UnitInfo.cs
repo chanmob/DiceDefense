@@ -28,36 +28,19 @@ public class Popup_UnitInfo : UI_Base
 
     public void ShowUnitInfo(Unit unit)
     {
-        switch (unit.unitName)
+        switch (unit.unitRanking)
         {
-            case "Normal_Undead":
-                _image_UnitImage.sprite = ResourceManager.instance.GetObject<Sprite>("Head_NormalUndead");
+            case DataDefine.UnitRanking.Normal:
+                _text_UnitName.text = "일반 유닛";
+                SetUnitSprite(unit.unitType, false);
                 break;
-            case "Super_Undead":
-                _image_UnitImage.sprite = ResourceManager.instance.GetObject<Sprite>("Head_NormalUndead");
+            case DataDefine.UnitRanking.Super:
+                _text_UnitName.text = "슈퍼 유닛";
+                SetUnitSprite(unit.unitType, false);
                 break;
-            case "Hidden_Undead":
-                _image_UnitImage.sprite = ResourceManager.instance.GetObject<Sprite>("Head_HiddenUndead");
-                break;
-
-            case "Normal_Knight":
-                _image_UnitImage.sprite = ResourceManager.instance.GetObject<Sprite>("Head_NormalKnight");
-                break;
-            case "Super_Knight":
-                _image_UnitImage.sprite = ResourceManager.instance.GetObject<Sprite>("Head_NormalKnight");
-                break;
-            case "Hidden_Knight":
-                _image_UnitImage.sprite = ResourceManager.instance.GetObject<Sprite>("Head_HiddenKnight");
-                break;
-
-            case "Normal_Rouge":
-                _image_UnitImage.sprite = ResourceManager.instance.GetObject<Sprite>("Head_NormalRouge");
-                break;
-            case "Super_Rouge":
-                _image_UnitImage.sprite = ResourceManager.instance.GetObject<Sprite>("Head_NormalRouge");
-                break;
-            case "Hidden_Rouge":
-                _image_UnitImage.sprite = ResourceManager.instance.GetObject<Sprite>("Head_HiddenRouge");
+            case DataDefine.UnitRanking.Hidden:
+                _text_UnitName.text = "히든 유닛";
+                SetUnitSprite(unit.unitType, true);
                 break;
         }
         
@@ -70,5 +53,37 @@ public class Popup_UnitInfo : UI_Base
 
     /*----------------[PROTECTED && PRIVATE METHOD]----------------*/
 
-
+    private void SetUnitSprite(DataDefine.UnitType type, bool hidden)
+    {
+        if (hidden)
+        {
+            switch (type)
+            {
+                case DataDefine.UnitType.Unit1:
+                    _image_UnitImage.sprite = ResourceManager.instance.GetObject<Sprite>("Head_HiddenUndead");
+                    break;
+                case DataDefine.UnitType.Unit2:
+                    _image_UnitImage.sprite = ResourceManager.instance.GetObject<Sprite>("Head_HiddenKnight");
+                    break;
+                case DataDefine.UnitType.Unit3:
+                    _image_UnitImage.sprite = ResourceManager.instance.GetObject<Sprite>("Head_HiddenRouge");
+                    break;
+            }
+        }
+        else
+        {
+            switch (type)
+            {
+                case DataDefine.UnitType.Unit1:
+                    _image_UnitImage.sprite = ResourceManager.instance.GetObject<Sprite>("Head_NormalUndead");
+                    break;
+                case DataDefine.UnitType.Unit2:
+                    _image_UnitImage.sprite = ResourceManager.instance.GetObject<Sprite>("Head_NormalKnight");
+                    break;
+                case DataDefine.UnitType.Unit3:
+                    _image_UnitImage.sprite = ResourceManager.instance.GetObject<Sprite>("Head_NormalRouge");
+                    break;
+            }
+        }
+    }
 }

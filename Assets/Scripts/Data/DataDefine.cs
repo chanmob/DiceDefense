@@ -42,6 +42,13 @@ public static class DataDefine
         None
     }
 
+    public enum UnitRanking
+    {
+        Normal,
+        Super,
+        Hidden,
+        None
+    }
 
 	/* [PROTECTED && PRIVATE VARIABLE]		*/
 

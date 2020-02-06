@@ -1168,7 +1168,8 @@ MonoBehaviour:
   unitLevel: 0
   firstAttribue: 8
   secondAttribue: 8
-  UnitType: 1
+  unitType: 1
+  unitRanking: 2
 --- !u!1 &7061943161466775804
 GameObject:
   m_ObjectHideFlags: 0

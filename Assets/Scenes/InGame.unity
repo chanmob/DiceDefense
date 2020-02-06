@@ -390,7 +390,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 900, y: -400}
+  m_AnchoredPosition: {x: 750, y: -400}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &40700084
@@ -1287,7 +1287,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: "\uC18D\uC131 4"
 --- !u!222 &101295797
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1446,7 +1446,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 540, y: -400}
+  m_AnchoredPosition: {x: 450, y: -400}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &109696624
@@ -1882,6 +1882,8 @@ MonoBehaviour:
   _defaultShow: 0
   unitIndex: -1
   isSecondAttribute: 0
+  _firstAttribute: {fileID: 1050495579}
+  _secondAttribute: {fileID: 1379456833}
 --- !u!1 &188837525
 GameObject:
   m_ObjectHideFlags: 0
@@ -2422,7 +2424,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: "\uC18D\uC131 2"
 --- !u!222 &236156520
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5158,7 +5160,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: "\uC18D\uC131 1"
 --- !u!222 &544450207
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5675,7 +5677,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: "\uC18D\uC131 3"
 --- !u!222 &617496863
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6430,7 +6432,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 180, y: -400}
+  m_AnchoredPosition: {x: 150, y: -400}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &747019714
@@ -7183,7 +7185,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: "\uC18D\uC131 3"
 --- !u!222 &816057446
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11707,7 +11709,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: "\uC18D\uC131 1"
 --- !u!222 &1406570805
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -15349,7 +15351,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1803529905
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15367,7 +15369,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1050, y: -540}
+  m_AnchoredPosition: {x: 1050, y: -400}
   m_SizeDelta: {x: 300, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1803529906
@@ -16186,7 +16188,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: "\uC18D\uC131 2"
 --- !u!222 &1909641086
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -16441,7 +16443,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: "\uC18D\uC131 4"
 --- !u!222 &1929815095
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -17301,6 +17303,7 @@ MonoBehaviour:
   panel_Quest: {fileID: 0}
   panel_Setting: {fileID: 0}
   panel_UnitAttribute: {fileID: 0}
+  popup_UnitInfo: {fileID: 0}
   panel_Result: {fileID: 0}
 --- !u!1 &2051565197
 GameObject:

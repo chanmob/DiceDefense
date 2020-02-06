@@ -1148,7 +1148,8 @@ MonoBehaviour:
   unitLevel: 0
   firstAttribue: 8
   secondAttribue: 8
-  UnitType: 0
+  unitType: 0
+  unitRanking: 0
 --- !u!95 &8164128664945591997
 Animator:
   serializedVersion: 3
