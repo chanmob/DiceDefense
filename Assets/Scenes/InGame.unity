@@ -1567,9 +1567,9 @@ MonoBehaviour:
   amount_Upgrade1: 0
   amount_Upgrade2: 0
   amount_Upgrade3: 0
-  cost_Upgrade1: 30
+  cost_Upgrade1: 28
   cost_Upgrade2: 30
-  cost_Upgrade3: 30
+  cost_Upgrade3: 32
   indexLength: 0
   unitOneFirstAttribute: 8
   unitOneSecondAttribute: 8

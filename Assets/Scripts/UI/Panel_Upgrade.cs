@@ -54,28 +54,28 @@ public class Panel_Upgrade : UI_Base
 
         switch (buttonName)
         {
-            case "Button_Upgrade1":
+            case "Button_UpgradeUnit1":
                 if(_ingameManager.CheckGold(_ingameManager.cost_Upgrade1))
                 {
-                    _ingameManager.GetGold(_ingameManager.cost_Upgrade1);
+                    _ingameManager.GetGold(-_ingameManager.cost_Upgrade1);
                     _ingameManager.amount_Upgrade1++;
                     _ingameManager.cost_Upgrade1 += 28 * _ingameManager.amount_Upgrade1;
                     _text_CostTexts[0].text = "Lv. " + _ingameManager.amount_Upgrade1 + " : " + _ingameManager.cost_Upgrade1.ToString();
                 }
                 break;
-            case "Button_Upgrade2":
+            case "Button_UpgradeUnit2":
                 if (_ingameManager.CheckGold(_ingameManager.cost_Upgrade2))
                 {
-                    _ingameManager.GetGold(_ingameManager.cost_Upgrade2);
+                    _ingameManager.GetGold(-_ingameManager.cost_Upgrade2);
                     _ingameManager.amount_Upgrade2++;
                     _ingameManager.cost_Upgrade2 += 30 * _ingameManager.amount_Upgrade2;
                     _text_CostTexts[1].text = "Lv. " + _ingameManager.amount_Upgrade2 + " : " + _ingameManager.cost_Upgrade2.ToString();
                 }
                 break;
-            case "Button_Upgrade3":
+            case "Button_UpgradeUnit3":
                 if (_ingameManager.CheckGold(_ingameManager.cost_Upgrade3))
                 {
-                    _ingameManager.GetGold(_ingameManager.cost_Upgrade3);
+                    _ingameManager.GetGold(-_ingameManager.cost_Upgrade3);
                     _ingameManager.amount_Upgrade3++;
                     _ingameManager.cost_Upgrade3 += 32 * _ingameManager.amount_Upgrade3;
                     _text_CostTexts[2].text = "Lv. " + _ingameManager.amount_Upgrade3 + " : " + _ingameManager.cost_Upgrade3.ToString();
