@@ -40,15 +40,23 @@ public class Panel_UnitAttribute : UI_Base
         if (isSecondAttribute)
         {
             int len = _secondAttribute.transform.childCount;
-            int randomIdx = Random.Range(0, len);
+            for (int i = 0; i < len; i++)
+            {
+                _secondAttribute.transform.GetChild(i).gameObject.SetActive(true);
+            }
 
+            int randomIdx = Random.Range(0, len);
             _secondAttribute.transform.GetChild(randomIdx).gameObject.SetActive(false);
         }
         else
         {
             int len = _firstAttribute.transform.childCount;
-            int randomIdx = Random.Range(0, len);
+            for(int i = 0; i < len; i++)
+            {
+                _firstAttribute.transform.GetChild(i).gameObject.SetActive(true);
+            }
 
+            int randomIdx = Random.Range(0, len);
             _firstAttribute.transform.GetChild(randomIdx).gameObject.SetActive(false);
         }
     }
@@ -139,5 +147,7 @@ public class Panel_UnitAttribute : UI_Base
                 }
                 break;
         }
+
+        Hide();
     }
 }
