@@ -50,6 +50,7 @@ public class UnitManager : Singleton<UnitManager>
             if(unitList[i].unitType == type)
             {
                 unitList[i].firstAttribue = attribute;
+                unitList[i].SetFirstAttribute();
             }
         }
     }
@@ -75,6 +76,7 @@ public class UnitManager : Singleton<UnitManager>
             if (unitList[i].unitType == type)
             {
                 unitList[i].secondAttribue = attribute;
+                unitList[i].SetSecondAttribute();
             }
         }
     }

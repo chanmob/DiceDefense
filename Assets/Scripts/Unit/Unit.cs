@@ -21,6 +21,8 @@ public class Unit : MonoBehaviour
 	public int power;
 	public int unitPositionIndex;
     public int unitLevel = 0;
+    [HideInInspector] public int startPower;
+
 
     public DataDefine.Attribute firstAttribue = DataDefine.Attribute.None;
     public DataDefine.Attribute secondAttribue = DataDefine.Attribute.None;
@@ -30,8 +32,6 @@ public class Unit : MonoBehaviour
     public DataDefine.UnitRanking unitRanking = DataDefine.UnitRanking.None;
 
     /* [PROTECTED && PRIVATE VARIABLE]		*/
-
-    private int _startPower;
 
     private Transform _diceCount;
     private Transform _diceAttribute;
@@ -46,7 +46,7 @@ public class Unit : MonoBehaviour
 
     /*----------------[PUBLIC METHOD]------------------------------*/
 
-    public void UnitLevelUp()
+    public void UnitLevelUp(Unit fusionUnit)
     {
         unitLevel++;
          
@@ -60,26 +60,68 @@ public class Unit : MonoBehaviour
 
         _diceCount.GetChild(unitLevel).gameObject.SetActive(true);
 
-        power = _startPower + (int)Mathf.Pow(unitLevel, 2) * 2 + 1;
-        //power = power + unitLevel;
+        UnitFusion(fusionUnit);
+        //power = _startPower + (int)Mathf.Pow(unitLevel, 2) * 2 + 1;
         gameObject.name = gameObject.name + "_" + unitLevel;
 
         if(firstAttribue == DataDefine.Attribute.None && unitLevel >= 2)
         {
-            InGameUIManager.instance.panel_UnitAttribute.isSecondAttribute = false;
-            InGameUIManager.instance.panel_UnitAttribute.Show();
+            SetAttribute(true);
         }
 
         if(secondAttribue == DataDefine.Attribute.None && unitLevel >= 3)
         {
-            InGameUIManager.instance.panel_UnitAttribute.isSecondAttribute = true;
-            InGameUIManager.instance.panel_UnitAttribute.Show();
+            SetAttribute(false);
         }
+
+        _animator.SetTrigger("SizeUp");
     }
 
     public void SetPosition(Vector3 pos)
     {
         _unitPosition = pos;
+    }
+
+    public void SetFirstAttribute()
+    {
+        Color attributeColor = Color.red;
+
+        switch (firstAttribue)
+        {
+            case DataDefine.Attribute.Air:
+                break;
+            case DataDefine.Attribute.Fire:
+                break;
+            case DataDefine.Attribute.Ice:
+                break;
+            case DataDefine.Attribute.Lava:
+                break;
+        }
+
+        SpriteRenderer sprite = transform.Find("Attribute").GetChild(0).GetComponent<SpriteRenderer>();
+        sprite.color = attributeColor;
+        sprite.gameObject.SetActive(true);
+    }
+
+    public void SetSecondAttribute()
+    {
+        Color attributeColor = Color.blue;
+
+        switch (secondAttribue)
+        {
+            case DataDefine.Attribute.Mystery:
+                break;
+            case DataDefine.Attribute.Nature:
+                break;
+            case DataDefine.Attribute.Storm:
+                break;
+            case DataDefine.Attribute.Water:
+                break;
+        }
+
+        SpriteRenderer sprite = transform.Find("Attribute").GetChild(1).GetComponent<SpriteRenderer>();
+        sprite.color = attributeColor;
+        sprite.gameObject.SetActive(true);
     }
 
     /*----------------[PROTECTED && PRIVATE METHOD]----------------*/
@@ -107,7 +149,6 @@ public class Unit : MonoBehaviour
 
         if(mouseDistance <= 0.1f)
         {
-            Debug.Log("유닛 정보 표시");
             transform.position = _unitPosition;
             InGameUIManager.instance.popup_UnitInfo.ShowUnitInfo(this);
         }
@@ -137,7 +178,7 @@ public class Unit : MonoBehaviour
             {
                 if (string.Equals(gameObject.name, unitManager.unitList[unitIndex].name))
                 {
-                    unitManager.unitList[unitIndex].UnitLevelUp();
+                    unitManager.unitList[unitIndex].UnitLevelUp(this);
                     _ingameManager.isSpawned[unitPositionIndex] = false;
                     _ingameManager.spawnIndex.Add(unitPositionIndex);
                     gameObject.SetActive(false);
@@ -223,13 +264,45 @@ public class Unit : MonoBehaviour
 
         OnStart();
 
-        _startPower = power;
+        startPower = power;
         InvokeRepeating("Attack", 0f, attackSpeed);
 	}
 
     protected virtual void OnStart()
     {
 
+    }
+
+    protected virtual void UnitFusion(Unit unit)
+    {
+        power = startPower + (int)Mathf.Pow(unitLevel, 2) * 2 + 1;
+    }
+
+    private void SetAttribute(bool first)
+    {
+        switch (unitType)
+        {
+            case DataDefine.UnitType.Unit1:
+                InGameUIManager.instance.panel_UnitAttribute.unitIndex = 0;
+                break;
+            case DataDefine.UnitType.Unit2:
+                InGameUIManager.instance.panel_UnitAttribute.unitIndex = 1;
+                break;
+            case DataDefine.UnitType.Unit3:
+                InGameUIManager.instance.panel_UnitAttribute.unitIndex = 2;
+                break;
+        }
+
+        if (first)
+        {
+            InGameUIManager.instance.panel_UnitAttribute.isSecondAttribute = false;
+        }
+        else
+        {
+            InGameUIManager.instance.panel_UnitAttribute.isSecondAttribute = true;
+        }
+
+        InGameUIManager.instance.panel_UnitAttribute.Show();
     }
 
 	private GameObject FindMonster()
