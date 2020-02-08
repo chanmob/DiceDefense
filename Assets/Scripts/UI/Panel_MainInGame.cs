@@ -72,6 +72,9 @@ public class Panel_MainInGame : UI_Base
             case "Button_GameSpeed":
                 SetGameSpeed();
                 break;
+            case "Button_AutoLevelUp":
+                UnitManager.instance.AutoUnitLevelUp();
+                break;
         }
     }
 

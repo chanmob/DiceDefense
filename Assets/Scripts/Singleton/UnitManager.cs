@@ -29,6 +29,10 @@ public class UnitManager : Singleton<UnitManager>
 
     /*----------------[PUBLIC METHOD]------------------------------*/
 
+    public void AutoUnitLevelUp()
+    {
+    }
+
     public void SetUnitFirstAttribute(DataDefine.UnitType type, DataDefine.Attribute attribute)
     {
         switch (type)

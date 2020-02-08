@@ -124,6 +124,13 @@ public class Unit : MonoBehaviour
         sprite.gameObject.SetActive(true);
     }
 
+    public void UnitFusion()
+    {
+        _ingameManager.isSpawned[unitPositionIndex] = false;
+        _ingameManager.spawnIndex.Add(unitPositionIndex);
+        gameObject.SetActive(false);
+    }
+
     /*----------------[PROTECTED && PRIVATE METHOD]----------------*/
 
     private void OnDisable()
