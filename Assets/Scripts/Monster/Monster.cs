@@ -195,6 +195,7 @@ public class Monster : MonoBehaviour
 
             else
             {
+                Debug.Log("게임 종료");
                 _ingameManager.EndGame();
             }
         }

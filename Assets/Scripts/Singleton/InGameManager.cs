@@ -70,8 +70,10 @@ public class InGameManager : Singleton<InGameManager>
 
     public void EndGame()
     {
-        gameEnd = true;
+        if (gameEnd)
+            return;
 
+        gameEnd = true;
         //InGameUIManager.instance.panel_Result.ShowResult();
     }
 
