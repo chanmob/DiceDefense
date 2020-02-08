@@ -27,9 +27,59 @@ public class UnitManager : Singleton<UnitManager>
 
 	private InGameManager _ingameManager;
 
-	/*----------------[PUBLIC METHOD]------------------------------*/
+    /*----------------[PUBLIC METHOD]------------------------------*/
 
-	public void BuyUnit()
+    public void SetUnitFirstAttribute(DataDefine.UnitType type, DataDefine.Attribute attribute)
+    {
+        switch (type)
+        {
+            case DataDefine.UnitType.Unit1:
+                _ingameManager.unitOneFirstAttribute = attribute;
+                break;
+            case DataDefine.UnitType.Unit2:
+                _ingameManager.unitTwoFirstAttribute = attribute;
+                break;
+            case DataDefine.UnitType.Unit3:
+                _ingameManager.unitThreeFirstAttribute = attribute;
+                break;
+        }
+
+        int len = unitList.Count;
+        for (int i = 0; i < len; i++)
+        {
+            if(unitList[i].unitType == type)
+            {
+                unitList[i].firstAttribue = attribute;
+            }
+        }
+    }
+
+    public void SetUnitSecondAttribute(DataDefine.UnitType type, DataDefine.Attribute attribute)
+    {
+        switch (type)
+        {
+            case DataDefine.UnitType.Unit1:
+                _ingameManager.unitOneSecondAttribute = attribute;
+                break;
+            case DataDefine.UnitType.Unit2:
+                _ingameManager.unitTwoSecondAttribute = attribute;
+                break;
+            case DataDefine.UnitType.Unit3:
+                _ingameManager.unitThreeSecondAttribute = attribute;
+                break;
+        }
+
+        int len = unitList.Count;
+        for (int i = 0; i < len; i++)
+        {
+            if (unitList[i].unitType == type)
+            {
+                unitList[i].secondAttribue = attribute;
+            }
+        }
+    }
+
+    public void BuyUnit()
 	{
         int len = _ingameManager.spawnIndex.Count;
         if (len == 0)

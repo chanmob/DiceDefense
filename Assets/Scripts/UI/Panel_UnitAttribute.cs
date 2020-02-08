@@ -21,15 +21,22 @@ public class Panel_UnitAttribute : UI_Base
     [SerializeField] private GameObject _firstAttribute;
     [SerializeField] private GameObject _secondAttribute;
 
-    private InGameManager _ingameManager;
+    private UnitManager _unitManager;
 
     /*----------------[PUBLIC METHOD]------------------------------*/
 
+    public void ShowForSetAttribute(int index)
+    {
+        unitIndex = index;
+        Show();
+    }
 
     /*----------------[PROTECTED && PRIVATE METHOD]----------------*/
 
     private void OnEnable()
     {
+        Time.timeScale = 0;
+
         if (isSecondAttribute)
         {
             int len = _secondAttribute.transform.childCount;
@@ -46,12 +53,18 @@ public class Panel_UnitAttribute : UI_Base
         }
     }
 
+    private void OnDisable()
+    {
+        unitIndex = -1;
+        Time.timeScale = 1;
+    }
+
     protected override void Start()
     {
         base.Start();
 
-        if (_ingameManager == null)
-            _ingameManager = InGameManager.instance;
+        if (_unitManager == null)
+            _unitManager = UnitManager.instance;
     }
 
     protected override void OnClickButtons(string buttonName)
@@ -60,7 +73,30 @@ public class Panel_UnitAttribute : UI_Base
 
         switch (buttonName)
         {
-            case "SetAttribute":
+            case "Button_FirstAttribute1":
+                SetUnitAttribute(DataDefine.Attribute.Air);
+                break;
+            case "Button_FirstAttribute2":
+                SetUnitAttribute(DataDefine.Attribute.Fire);
+                break;
+            case "Button_FirstAttribute3":
+                SetUnitAttribute(DataDefine.Attribute.Ice);
+                break;
+            case "Button_FirstAttribute4":
+                SetUnitAttribute(DataDefine.Attribute.Lava);
+                break;
+
+            case "Button_SecondAttribute1":
+                SetUnitAttribute(DataDefine.Attribute.Mystery);
+                break;
+            case "Button_SecondAttribute2":
+                SetUnitAttribute(DataDefine.Attribute.Nature);
+                break;
+            case "Button_SecondAttribute3":
+                SetUnitAttribute(DataDefine.Attribute.Storm);
+                break;
+            case "Button_SecondAttribute4":
+                SetUnitAttribute(DataDefine.Attribute.Water);
                 break;
         }
     }
@@ -75,31 +111,31 @@ public class Panel_UnitAttribute : UI_Base
             case 0:
                 if (isSecondAttribute)
                 {
-                    _ingameManager.unitOneSecondAttribute = attribute;
+                    _unitManager.SetUnitSecondAttribute(DataDefine.UnitType.Unit1, attribute);
                 }
                 else
                 {
-                    _ingameManager.unitOneFirstAttribute = attribute;
+                    _unitManager.SetUnitFirstAttribute(DataDefine.UnitType.Unit1, attribute);
                 }
                 break;
             case 1:
                 if (isSecondAttribute)
                 {
-                    _ingameManager.unitTwoSecondAttribute = attribute;
+                    _unitManager.SetUnitSecondAttribute(DataDefine.UnitType.Unit2, attribute);
                 }
                 else
                 {
-                    _ingameManager.unitTwoFirstAttribute = attribute;
+                    _unitManager.SetUnitFirstAttribute(DataDefine.UnitType.Unit2, attribute);
                 }
                 break;
             case 2:
                 if (isSecondAttribute)
                 {
-                    _ingameManager.unitThreeSecondAttribute = attribute;
+                    _unitManager.SetUnitSecondAttribute(DataDefine.UnitType.Unit3, attribute);
                 }
                 else
                 {
-                    _ingameManager.unitThreeFirstAttribute = attribute;
+                    _unitManager.SetUnitFirstAttribute(DataDefine.UnitType.Unit3, attribute);
                 }
                 break;
         }

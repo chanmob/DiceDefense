@@ -9,6 +9,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class Popup_UnitInfo : UI_Base
 {
@@ -44,11 +45,25 @@ public class Popup_UnitInfo : UI_Base
                 break;
         }
         
-        _text_Level.text = unit.unitLevel.ToString();
-        _text_Power.text = unit.power.ToString();
-        _text_Speed.text = unit.attackSpeed.ToString();
+        _text_Level.text = "레벨 : " + (unit.unitLevel + 1).ToString();
+
+        switch (unit.unitType)
+        {
+            case DataDefine.UnitType.Unit1:
+                _text_Power.text = "공격력 : " + (unit.power + InGameManager.instance.amount_Upgrade1).ToString() + "(" + unit.power + "+" + InGameManager.instance.amount_Upgrade1 + ")";
+                break;
+            case DataDefine.UnitType.Unit2:
+                _text_Power.text = "공격력 : " + (unit.power + InGameManager.instance.amount_Upgrade2).ToString() + "(" + unit.power + "+" + InGameManager.instance.amount_Upgrade2 + ")";
+                break;
+            case DataDefine.UnitType.Unit3:
+                _text_Power.text = "공격력 : " + (unit.power + InGameManager.instance.amount_Upgrade3).ToString() + "(" + unit.power + "+" + InGameManager.instance.amount_Upgrade3 + ")";
+                break;
+        }
+
+        _text_Speed.text = "공격속도 : " + unit.attackSpeed.ToString();
 
         Show();
+        transform.DOScale(1, 0.25f).SetEase(Ease.OutBack);
     }
 
     /*----------------[PROTECTED && PRIVATE METHOD]----------------*/
@@ -84,6 +99,16 @@ public class Popup_UnitInfo : UI_Base
                     _image_UnitImage.sprite = ResourceManager.instance.GetObject<Sprite>("Head_NormalRouge");
                     break;
             }
+        }
+    }
+
+    protected override void OnClickButtons(string buttonName)
+    {
+        switch (buttonName)
+        {
+            case "Button_Hide":
+                transform.DOScale(0, 0.25f).SetEase(Ease.InQuad).OnComplete(() => Hide());
+                break;
         }
     }
 }

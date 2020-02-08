@@ -81,6 +81,8 @@ public class InGameManager : Singleton<InGameManager>
 	{
 		base.Awake();
 
+        Time.timeScale = 1;
+
 		monsterList = new List<Monster>();
 		spawnIndex = new List<int>();
 		spawnTransform = new List<Transform>();

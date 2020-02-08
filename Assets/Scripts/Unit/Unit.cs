@@ -109,6 +109,7 @@ public class Unit : MonoBehaviour
         {
             Debug.Log("유닛 정보 표시");
             transform.position = _unitPosition;
+            InGameUIManager.instance.popup_UnitInfo.ShowUnitInfo(this);
         }
 
         else
