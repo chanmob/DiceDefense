@@ -31,6 +31,55 @@ public class UnitManager : Singleton<UnitManager>
 
     public void AutoUnitLevelUp()
     {
+        int len = unitList.Count;
+
+        HashSet<int> idxSet = new HashSet<int>();
+
+        List<Unit> levelup = new List<Unit>();
+
+        string unitName = string.Empty;
+
+        for (int i = 0; i < len - 1; i++)
+        {
+            if (idxSet.Contains(i) == true)
+                continue;
+
+            unitName = unitList[i].name;
+
+            for(int j = i + 1; j < len; j++)
+            {
+                if(string.Equals(unitName, unitList[j].name) == true)
+                {
+                    idxSet.Add(j);
+                    levelup.Add(unitList[i]);
+                    levelup.Add(unitList[j]);
+                    break;
+                }
+            }
+        }
+
+        int levelupLen = levelup.Count;
+
+        for(int i = 0; i < levelupLen; i++)
+        {
+            if(i % 2 != 0)
+            {
+                HiddenUnit hidden = levelup[i] as HiddenUnit;
+
+                if (hidden == null)
+                {
+                    levelup[i].UnitLevelUp(levelup[i - 1]);
+                }
+                else
+                {
+                    hidden.UnitLevelUp(levelup[i - 1]);
+                }
+            }
+            else
+            {
+                levelup[i].UnitFusion();
+            }
+        }
     }
 
     public void SetUnitFirstAttribute(DataDefine.UnitType type, DataDefine.Attribute attribute)
