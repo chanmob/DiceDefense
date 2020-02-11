@@ -641,7 +641,7 @@ GameObject:
   - component: {fileID: 386379047}
   - component: {fileID: 386379046}
   m_Layer: 5
-  m_Name: Button_SFX
+  m_Name: Button_Sound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1658,7 +1658,7 @@ GameObject:
   - component: {fileID: 1441869336}
   - component: {fileID: 1441869335}
   m_Layer: 5
-  m_Name: Button_BGM
+  m_Name: Button_Store
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

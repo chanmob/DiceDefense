@@ -82,7 +82,6 @@ public class InGameManager : Singleton<InGameManager>
 	protected override void Awake()
 	{
 		base.Awake();
-        gold = 3000;
 
         Time.timeScale = 1;
 
