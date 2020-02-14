@@ -74,17 +74,17 @@ public class Bullet : MonoBehaviour
 			{
 				switch (_firstAttribute)
 				{
-					case DataDefine.Attribute.Air:
-                        firstAttributeMulti = _targetMonster.CheckFirstAttribute(DataDefine.Attribute.Lava, DataDefine.Attribute.Fire);
+					case DataDefine.Attribute.Cloud:
+                        firstAttributeMulti = _targetMonster.CheckFirstAttribute(DataDefine.Attribute.Fire, DataDefine.Attribute.Mountain);
 						break;
 					case DataDefine.Attribute.Fire:
-                        firstAttributeMulti = _targetMonster.CheckFirstAttribute(DataDefine.Attribute.Air, DataDefine.Attribute.Ice);
+                        firstAttributeMulti = _targetMonster.CheckFirstAttribute(DataDefine.Attribute.Water, DataDefine.Attribute.Cloud);
                         break;
-					case DataDefine.Attribute.Ice:
-                        firstAttributeMulti = _targetMonster.CheckFirstAttribute(DataDefine.Attribute.Fire, DataDefine.Attribute.Lava);
+					case DataDefine.Attribute.Water:
+                        firstAttributeMulti = _targetMonster.CheckFirstAttribute(DataDefine.Attribute.Mountain, DataDefine.Attribute.Fire);
                         break;
-					case DataDefine.Attribute.Lava:
-                        firstAttributeMulti = _targetMonster.CheckFirstAttribute(DataDefine.Attribute.Ice, DataDefine.Attribute.Air);
+					case DataDefine.Attribute.Mountain:
+                        firstAttributeMulti = _targetMonster.CheckFirstAttribute(DataDefine.Attribute.Cloud, DataDefine.Attribute.Water);
                         break;
 				}			
 			}
@@ -92,17 +92,17 @@ public class Bullet : MonoBehaviour
 			{
                 switch (_secondAttribute)
                 {
-                    case DataDefine.Attribute.Mystery:
-                        secondAttributeMulti = _targetMonster.CheckSecondAttribute(DataDefine.Attribute.Water, DataDefine.Attribute.Nature);
+                    case DataDefine.Attribute.Second1:
+                        secondAttributeMulti = _targetMonster.CheckSecondAttribute(DataDefine.Attribute.Second2, DataDefine.Attribute.Second4);
                         break;
-                    case DataDefine.Attribute.Nature:
-                        secondAttributeMulti = _targetMonster.CheckSecondAttribute(DataDefine.Attribute.Mystery, DataDefine.Attribute.Storm);
+                    case DataDefine.Attribute.Second2:
+                        secondAttributeMulti = _targetMonster.CheckSecondAttribute(DataDefine.Attribute.Second3, DataDefine.Attribute.Second1);
                         break;
-                    case DataDefine.Attribute.Storm:
-                        secondAttributeMulti = _targetMonster.CheckSecondAttribute(DataDefine.Attribute.Nature, DataDefine.Attribute.Water);
+                    case DataDefine.Attribute.Second3:
+                        secondAttributeMulti = _targetMonster.CheckSecondAttribute(DataDefine.Attribute.Second4, DataDefine.Attribute.Second2);
                         break;
-                    case DataDefine.Attribute.Water:
-                        secondAttributeMulti = _targetMonster.CheckSecondAttribute(DataDefine.Attribute.Storm, DataDefine.Attribute.Mystery);
+                    case DataDefine.Attribute.Second4:
+                        secondAttributeMulti = _targetMonster.CheckSecondAttribute(DataDefine.Attribute.Second1, DataDefine.Attribute.Second3);
                         break;
                 }
 			}

@@ -84,17 +84,21 @@ public class Unit : MonoBehaviour
 
     public void SetFirstAttribute()
     {
-        Color attributeColor = Color.red;
+        Color attributeColor = Color.white;
 
         switch (firstAttribue)
         {
-            case DataDefine.Attribute.Air:
+            case DataDefine.Attribute.Cloud:
+                attributeColor = new Color32(165, 233, 255, 255);
                 break;
             case DataDefine.Attribute.Fire:
+                attributeColor = new Color32(255, 29, 35, 255);
                 break;
-            case DataDefine.Attribute.Ice:
+            case DataDefine.Attribute.Water:
+                attributeColor = new Color32(63, 106, 191, 255);
                 break;
-            case DataDefine.Attribute.Lava:
+            case DataDefine.Attribute.Mountain:
+                attributeColor = new Color32(140, 106, 42, 255);
                 break;
         }
 
@@ -109,13 +113,13 @@ public class Unit : MonoBehaviour
 
         switch (secondAttribue)
         {
-            case DataDefine.Attribute.Mystery:
+            case DataDefine.Attribute.Second1:
                 break;
-            case DataDefine.Attribute.Nature:
+            case DataDefine.Attribute.Second2:
                 break;
-            case DataDefine.Attribute.Storm:
+            case DataDefine.Attribute.Second3:
                 break;
-            case DataDefine.Attribute.Water:
+            case DataDefine.Attribute.Second4:
                 break;
         }
 

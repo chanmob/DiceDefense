@@ -82,29 +82,29 @@ public class Panel_UnitAttribute : UI_Base
         switch (buttonName)
         {
             case "Button_FirstAttribute1":
-                SetUnitAttribute(DataDefine.Attribute.Air);
+                SetUnitAttribute(DataDefine.Attribute.Cloud);
                 break;
             case "Button_FirstAttribute2":
                 SetUnitAttribute(DataDefine.Attribute.Fire);
                 break;
             case "Button_FirstAttribute3":
-                SetUnitAttribute(DataDefine.Attribute.Ice);
+                SetUnitAttribute(DataDefine.Attribute.Water);
                 break;
             case "Button_FirstAttribute4":
-                SetUnitAttribute(DataDefine.Attribute.Lava);
+                SetUnitAttribute(DataDefine.Attribute.Mountain);
                 break;
 
             case "Button_SecondAttribute1":
-                SetUnitAttribute(DataDefine.Attribute.Mystery);
+                SetUnitAttribute(DataDefine.Attribute.Second1);
                 break;
             case "Button_SecondAttribute2":
-                SetUnitAttribute(DataDefine.Attribute.Nature);
+                SetUnitAttribute(DataDefine.Attribute.Second2);
                 break;
             case "Button_SecondAttribute3":
-                SetUnitAttribute(DataDefine.Attribute.Storm);
+                SetUnitAttribute(DataDefine.Attribute.Second3);
                 break;
             case "Button_SecondAttribute4":
-                SetUnitAttribute(DataDefine.Attribute.Water);
+                SetUnitAttribute(DataDefine.Attribute.Second4);
                 break;
         }
     }

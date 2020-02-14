@@ -17,12 +17,12 @@ public static class DataDefine
     {
         Fire,
         Water,
-        Air,
-        Nature,
-        Storm,
-        Ice,
-        Lava,
-        Mystery,
+        Cloud,
+        Mountain,
+        Second1,
+        Second2,
+        Second3,
+        Second4,
         None
     }
 

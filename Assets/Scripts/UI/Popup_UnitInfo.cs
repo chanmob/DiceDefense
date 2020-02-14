@@ -24,6 +24,7 @@ public class Popup_UnitInfo : UI_Base
     [SerializeField] private Text _text_Level;
     [SerializeField] private Text _text_Power;
     [SerializeField] private Text _text_Speed;
+    [SerializeField] private Text _text_Attribute;
 
     /*----------------[PUBLIC METHOD]------------------------------*/
 
@@ -61,6 +62,8 @@ public class Popup_UnitInfo : UI_Base
         }
 
         _text_Speed.text = "공격속도 : " + unit.attackSpeed.ToString();
+
+        SetAttributeText(unit.firstAttribue, unit.secondAttribue);
 
         Show();
         transform.DOScale(1, 0.25f).SetEase(Ease.OutBack);
@@ -110,5 +113,51 @@ public class Popup_UnitInfo : UI_Base
                 transform.DOScale(0, 0.25f).SetEase(Ease.InQuad).OnComplete(() => Hide());
                 break;
         }
+    }
+
+    private void SetAttributeText(DataDefine.Attribute first, DataDefine.Attribute second)
+    {
+        string firstAttribute = "없음";
+        string secondAttribute = "없음";
+        
+        switch (first)
+        {
+            case DataDefine.Attribute.Cloud:
+                firstAttribute = "바람";
+                break;
+
+            case DataDefine.Attribute.Fire:
+                firstAttribute = "불";
+                break;
+
+            case DataDefine.Attribute.Water:
+                firstAttribute = "물";
+                break;
+
+            case DataDefine.Attribute.Mountain:
+                firstAttribute = "대지";
+                break;
+        }
+
+        switch (second)
+        {
+            case DataDefine.Attribute.Second1:
+                secondAttribute = "미정1";
+                break;
+
+            case DataDefine.Attribute.Second2:
+                secondAttribute = "미정2";
+                break;
+
+            case DataDefine.Attribute.Second3:
+                secondAttribute = "미정3";
+                break;
+
+            case DataDefine.Attribute.Second4:
+                secondAttribute = "미정4";
+                break;
+        }
+
+        _text_Attribute.text = string.Format("속성 : {0} / {1}", firstAttribute, secondAttribute);
     }
 }
