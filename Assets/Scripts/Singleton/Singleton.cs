@@ -39,6 +39,11 @@ public class Singleton<T> : MonoBehaviour where T : Singleton<T>
         }
     }
 
+    protected virtual void OnAwake()
+    {
+
+    }
+
     protected virtual void Awake()
     {   
         if (_instance != null)
@@ -48,6 +53,8 @@ public class Singleton<T> : MonoBehaviour where T : Singleton<T>
 
         if (dontDestroyOnLoad)
             DontDestroyOnLoad(this);
+
+        OnAwake();
     }
 
     protected virtual void OnDestroy()
