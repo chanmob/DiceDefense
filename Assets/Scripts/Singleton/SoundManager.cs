@@ -56,10 +56,15 @@ public class SoundManager : Singleton<SoundManager>
         if (AudioListener.volume == 1)
         {
             AudioListener.volume = 0;
+            DataManager.instance.SaveIntData(DataManager.SaveDataType.Sound, 1);
         }
         else
         {
             AudioListener.volume = 1;
+            DataManager.instance.SaveIntData(DataManager.SaveDataType.Sound, 0);
+
+            if (_bgm_AudioSource.clip != null)
+                _bgm_AudioSource.Play();
         }
     }
 
@@ -89,6 +94,17 @@ public class SoundManager : Singleton<SoundManager>
         _sfx_AudioSource = transform.Find("SFXAudio").GetComponent<AudioSource>();
 
         InitClips();
+
+        int checkSoundOnOff = DataManager.instance.GetIntData(DataManager.SaveDataType.Sound);
+
+        if(checkSoundOnOff == 0)
+        {
+            AudioListener.volume = 1;
+        }
+        else
+        {
+            AudioListener.volume = 0;
+        }
     }
 
     private void InitClips()

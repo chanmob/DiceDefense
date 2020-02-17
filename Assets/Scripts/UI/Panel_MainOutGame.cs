@@ -8,6 +8,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Panel_MainOutGame : UI_Base
 {
@@ -16,11 +17,28 @@ public class Panel_MainOutGame : UI_Base
 
     /* [PROTECTED && PRIVATE VARIABLE]		*/
 
+    [SerializeField] private Image[] _image_Sound = new Image[2];
 
     /*----------------[PUBLIC METHOD]------------------------------*/
 
 
     /*----------------[PROTECTED && PRIVATE METHOD]----------------*/
+
+    protected override void Start()
+    {
+        base.Start();
+
+        if (AudioListener.volume == 1)
+        {
+            _image_Sound[1].gameObject.SetActive(false);
+            _image_Sound[0].gameObject.SetActive(true);
+        }
+        else
+        {
+            _image_Sound[0].gameObject.SetActive(false);
+            _image_Sound[1].gameObject.SetActive(true);
+        }
+    }
 
     protected override void OnClickButtons(string buttonName)
     {
@@ -42,6 +60,17 @@ public class Panel_MainOutGame : UI_Base
                 break;
             case "Button_Sound":
                 SoundManager.instance.VolumeOnOff();
+
+                if(AudioListener.volume == 1)
+                {
+                    _image_Sound[1].gameObject.SetActive(false);
+                    _image_Sound[0].gameObject.SetActive(true);
+                }
+                else
+                {
+                    _image_Sound[0].gameObject.SetActive(false);
+                    _image_Sound[1].gameObject.SetActive(true);
+                }
                 break;
             case "Button_Ranking":
                 break;

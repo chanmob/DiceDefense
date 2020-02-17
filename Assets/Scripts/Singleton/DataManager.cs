@@ -48,5 +48,34 @@ public class DataManager : Singleton<DataManager>
         }
     }
 
+    public int GetIntData(SaveDataType type)
+    {
+        if (CheckData(type) == false)
+            return 0;
+
+        switch (type)
+        {
+            case SaveDataType.Round:
+                return ObscuredPrefs.GetInt(roundSaveName);
+            case SaveDataType.Sound:
+                return ObscuredPrefs.GetInt(soundSaveName);
+            default:
+                return 0;
+        }
+    }
+
     /*----------------[PROTECTED && PRIVATE METHOD]----------------*/
+
+    private bool CheckData(SaveDataType type)
+    {
+        switch (type)
+        {
+            case SaveDataType.Round:
+                return ObscuredPrefs.HasKey(roundSaveName);
+            case SaveDataType.Sound:
+                return ObscuredPrefs.HasKey(soundSaveName);
+            default:
+                return false;
+        }
+    }
 }

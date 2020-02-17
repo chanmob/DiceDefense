@@ -1016,6 +1016,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _defaultShow: 1
+  _image_Sound:
+  - {fileID: 1164971879}
+  - {fileID: 633562026}
 --- !u!222 &574622597
 CanvasRenderer:
   m_ObjectHideFlags: 0
