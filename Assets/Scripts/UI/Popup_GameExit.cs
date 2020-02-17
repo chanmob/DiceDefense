@@ -30,8 +30,10 @@ public class Popup_GameExit : UI_Base
         switch (buttonName)
         {
             case "Button_Yes":
+                Application.Quit();
                 break;
             case "Button_No":
+                Hide();
                 break;
         }
     }

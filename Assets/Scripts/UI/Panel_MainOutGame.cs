@@ -37,7 +37,16 @@ public class Panel_MainOutGame : UI_Base
             case "Button_Exit":
                 OutGameUIManager.instance.popup_GameExit.Show();
                 break;
-
+            case "Button_Store":
+                Application.OpenURL("");
+                break;
+            case "Button_Sound":
+                SoundManager.instance.VolumeOnOff();
+                break;
+            case "Button_Ranking":
+                break;
+            case "Button_Archieve":
+                break;
         }
     }
 }

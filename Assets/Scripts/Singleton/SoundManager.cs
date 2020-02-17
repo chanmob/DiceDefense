@@ -41,13 +41,16 @@ public class SoundManager : Singleton<SoundManager>
         }
     }
 
-    public void VolumeOnOff(bool on)
+    public void VolumeOnOff()
     {
-        if(on)
-            AudioListener.volume = 1;
-
-        else
+        if (AudioListener.volume == 1)
+        {
             AudioListener.volume = 0;
+        }
+        else
+        {
+            AudioListener.volume = 1;
+        }
     }
 
     public void SetVoulme(AudioType type, float volume)
