@@ -9,7 +9,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CLanguageManager : Singleton<CLanguageManager>
+public class LanguageManager : Singleton<LanguageManager>
 {
 	/* [PUBLIC VARIABLE]					*/
 
@@ -18,11 +18,7 @@ public class CLanguageManager : Singleton<CLanguageManager>
 	/* [PROTECTED && PRIVATE VARIABLE]		*/
 
 	private readonly string[] ResourcePaths = new string[] {
-		"DataTables/CleanOceanMatch3_DialogLanguage",
-		"DataTables/CleanOceanMatch3_DialogNameLanguage",
-		"DataTables/CleanOceanMatch3_LanguageTable",
-		"DataTables/CleanOceanMatch3_QuestTitleLanguage",
-		"DataTables/CleanOceanMatch3_TutorialLanguage"
+		"DataTables/LanguageTable",
 	};
 
 	private const string Key = "Key";

@@ -25,10 +25,20 @@ public class SoundManager : Singleton<SoundManager>
     private AudioSource _bgm_AudioSource;
     private AudioSource _sfx_AudioSource;
 
+    private Dictionary<string, AudioClip> _clips = new Dictionary<string, AudioClip>();
+
     /*----------------[PUBLIC METHOD]------------------------------*/
 
-    public void PlaySound(AudioType type, AudioClip clip)
+    public void PlaySound(AudioType type, string clipName)
     {
+        if (_clips.ContainsKey(clipName) == false)
+        {
+            Debug.Log("오디오 클립 존재하지 않음");
+            return;
+        }
+
+        AudioClip clip = _clips[clipName];
+
         switch (type)
         {
             case AudioType.BGM:
@@ -73,11 +83,23 @@ public class SoundManager : Singleton<SoundManager>
 
     /*----------------[PROTECTED && PRIVATE METHOD]----------------*/
 
-    protected override void Awake()
+    protected override void OnAwake()
     {
-        base.Awake();
-
         _bgm_AudioSource = transform.Find("BGMAudio").GetComponent<AudioSource>();
         _sfx_AudioSource = transform.Find("SFXAudio").GetComponent<AudioSource>();
+
+        InitClips();
+    }
+
+    private void InitClips()
+    {
+        AudioClip[] clips = Resources.LoadAll<AudioClip>("Sounds");
+
+        int len = clips.Length;
+        for (int i = 0; i < len; i++)
+        {
+            AudioClip clip = clips[i];
+            _clips.Add(clip.name, clip);
+        }
     }
 }

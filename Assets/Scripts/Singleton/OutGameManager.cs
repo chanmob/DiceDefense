@@ -22,5 +22,8 @@ public class OutGameManager : Singleton<OutGameManager>
 
     /*----------------[PROTECTED && PRIVATE METHOD]----------------*/
 
-
+    private void Start()
+    {
+        SoundManager.instance.PlaySound(SoundManager.AudioType.BGM, "BGM_OutGame");
+    }
 }
