@@ -108,32 +108,6 @@ public class UnitManager : Singleton<UnitManager>
         }
     }
 
-    public void SetUnitSecondAttribute(DataDefine.UnitType type, DataDefine.Attribute attribute)
-    {
-        switch (type)
-        {
-            case DataDefine.UnitType.Unit1:
-                _ingameManager.unitOneSecondAttribute = attribute;
-                break;
-            case DataDefine.UnitType.Unit2:
-                _ingameManager.unitTwoSecondAttribute = attribute;
-                break;
-            case DataDefine.UnitType.Unit3:
-                _ingameManager.unitThreeSecondAttribute = attribute;
-                break;
-        }
-
-        int len = unitList.Count;
-        for (int i = 0; i < len; i++)
-        {
-            if (unitList[i].unitType == type)
-            {
-                unitList[i].secondAttribue = attribute;
-                unitList[i].SetSecondAttribute();
-            }
-        }
-    }
-
     public void BuyUnit()
 	{
         int len = _ingameManager.spawnIndex.Count;
@@ -177,12 +151,6 @@ public class UnitManager : Singleton<UnitManager>
                     unitObject.firstAttribue = _ingameManager.unitOneFirstAttribute;
                     unitObject.SetFirstAttribute();
                 }
-
-                if (_ingameManager.unitOneSecondAttribute != DataDefine.Attribute.None)
-                {
-                    unitObject.secondAttribue = _ingameManager.unitOneSecondAttribute;
-                    unitObject.SetSecondAttribute();
-                }
                 break;
             case 1:
                 if (_ingameManager.unitTwoFirstAttribute != DataDefine.Attribute.None)
@@ -190,24 +158,12 @@ public class UnitManager : Singleton<UnitManager>
                     unitObject.firstAttribue = _ingameManager.unitTwoFirstAttribute;
                     unitObject.SetFirstAttribute();
                 }
-
-                if (_ingameManager.unitTwoSecondAttribute != DataDefine.Attribute.None)
-                {
-                    unitObject.secondAttribue = _ingameManager.unitTwoSecondAttribute;
-                    unitObject.SetSecondAttribute();
-                }
                 break;
             case 2:
                 if (_ingameManager.unitThreeFirstAttribute != DataDefine.Attribute.None)
                 {
                     unitObject.firstAttribue = _ingameManager.unitThreeFirstAttribute;
                     unitObject.SetFirstAttribute();
-                }
-
-                if (_ingameManager.unitThreeSecondAttribute != DataDefine.Attribute.None)
-                {
-                    unitObject.secondAttribue = _ingameManager.unitThreeSecondAttribute;
-                    unitObject.SetSecondAttribute();
                 }
                 break;
         }

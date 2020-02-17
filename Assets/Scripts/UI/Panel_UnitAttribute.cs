@@ -14,7 +14,6 @@ public class Panel_UnitAttribute : UI_Base
     /* [PUBLIC VARIABLE]					*/
 
     [HideInInspector] public int unitIndex = -1;
-    [HideInInspector] public bool isSecondAttribute = false;
 
     /* [PROTECTED && PRIVATE VARIABLE]		*/
 
@@ -37,28 +36,14 @@ public class Panel_UnitAttribute : UI_Base
     {
         Time.timeScale = 0;
 
-        if (isSecondAttribute)
+        int len = _firstAttribute.transform.childCount;
+        for (int i = 0; i < len; i++)
         {
-            int len = _secondAttribute.transform.childCount;
-            for (int i = 0; i < len; i++)
-            {
-                _secondAttribute.transform.GetChild(i).gameObject.SetActive(true);
-            }
-
-            int randomIdx = Random.Range(0, len);
-            _secondAttribute.transform.GetChild(randomIdx).gameObject.SetActive(false);
+            _firstAttribute.transform.GetChild(i).gameObject.SetActive(true);
         }
-        else
-        {
-            int len = _firstAttribute.transform.childCount;
-            for(int i = 0; i < len; i++)
-            {
-                _firstAttribute.transform.GetChild(i).gameObject.SetActive(true);
-            }
 
-            int randomIdx = Random.Range(0, len);
-            _firstAttribute.transform.GetChild(randomIdx).gameObject.SetActive(false);
-        }
+        int randomIdx = Random.Range(0, len);
+        _firstAttribute.transform.GetChild(randomIdx).gameObject.SetActive(false);
     }
 
     private void OnDisable()
@@ -117,34 +102,13 @@ public class Panel_UnitAttribute : UI_Base
                 Debug.LogError("Unit Index Error");
                 break;
             case 0:
-                if (isSecondAttribute)
-                {
-                    _unitManager.SetUnitSecondAttribute(DataDefine.UnitType.Unit1, attribute);
-                }
-                else
-                {
-                    _unitManager.SetUnitFirstAttribute(DataDefine.UnitType.Unit1, attribute);
-                }
+                _unitManager.SetUnitFirstAttribute(DataDefine.UnitType.Unit1, attribute);
                 break;
             case 1:
-                if (isSecondAttribute)
-                {
-                    _unitManager.SetUnitSecondAttribute(DataDefine.UnitType.Unit2, attribute);
-                }
-                else
-                {
-                    _unitManager.SetUnitFirstAttribute(DataDefine.UnitType.Unit2, attribute);
-                }
+                _unitManager.SetUnitFirstAttribute(DataDefine.UnitType.Unit2, attribute);
                 break;
             case 2:
-                if (isSecondAttribute)
-                {
-                    _unitManager.SetUnitSecondAttribute(DataDefine.UnitType.Unit3, attribute);
-                }
-                else
-                {
-                    _unitManager.SetUnitFirstAttribute(DataDefine.UnitType.Unit3, attribute);
-                }
+                _unitManager.SetUnitFirstAttribute(DataDefine.UnitType.Unit3, attribute);
                 break;
         }
 

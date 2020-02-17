@@ -17,7 +17,6 @@ public class Monster : MonoBehaviour
     public float speed;
 
     public DataDefine.Attribute firstAttribute = DataDefine.Attribute.None;
-    public DataDefine.Attribute secondAttribute = DataDefine.Attribute.None;
 
     /* [PROTECTED && PRIVATE VARIABLE]		*/
 
@@ -74,22 +73,6 @@ public class Monster : MonoBehaviour
 		else
 		{
             return 1;
-		}
-	}
-
-	public float CheckSecondAttribute(DataDefine.Attribute strength, DataDefine.Attribute weakness)
-	{
-		if (secondAttribute == strength)
-		{
-			return 2;
-		}
-		else if (secondAttribute == weakness)
-		{
-			return 0.5f;
-		}
-		else
-		{
-			return 1;
 		}
 	}
 

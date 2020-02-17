@@ -22,7 +22,6 @@ public class Bullet : MonoBehaviour
 	private ObjectPoolManager _objectpoolManager;
 
 	private DataDefine.Attribute _firstAttribute = DataDefine.Attribute.None;
-	private DataDefine.Attribute _secondAttribute = DataDefine.Attribute.None;
 
 	/*----------------[PUBLIC METHOD]------------------------------*/
 
@@ -31,10 +30,9 @@ public class Bullet : MonoBehaviour
 		_targetMonster = monster;
 	}
 
-	public void SetAttribute(DataDefine.Attribute first = DataDefine.Attribute.None, DataDefine.Attribute second = DataDefine.Attribute.None)
+	public void SetAttribute(DataDefine.Attribute first = DataDefine.Attribute.None)
 	{
 		_firstAttribute = first;
-		_secondAttribute = second;
 	}
 
 	/*----------------[PROTECTED && PRIVATE METHOD]----------------*/
@@ -68,7 +66,6 @@ public class Bullet : MonoBehaviour
 		if(collision.gameObject == _targetMonster.gameObject)
 		{
             float firstAttributeMulti = 1f;
-            float secondAttributeMulti = 1f;
 
 			if (_firstAttribute != DataDefine.Attribute.None)
 			{
@@ -88,26 +85,8 @@ public class Bullet : MonoBehaviour
                         break;
 				}			
 			}
-			if (_secondAttribute != DataDefine.Attribute.None)
-			{
-                switch (_secondAttribute)
-                {
-                    case DataDefine.Attribute.Second1:
-                        secondAttributeMulti = _targetMonster.CheckSecondAttribute(DataDefine.Attribute.Second2, DataDefine.Attribute.Second4);
-                        break;
-                    case DataDefine.Attribute.Second2:
-                        secondAttributeMulti = _targetMonster.CheckSecondAttribute(DataDefine.Attribute.Second3, DataDefine.Attribute.Second1);
-                        break;
-                    case DataDefine.Attribute.Second3:
-                        secondAttributeMulti = _targetMonster.CheckSecondAttribute(DataDefine.Attribute.Second4, DataDefine.Attribute.Second2);
-                        break;
-                    case DataDefine.Attribute.Second4:
-                        secondAttributeMulti = _targetMonster.CheckSecondAttribute(DataDefine.Attribute.Second1, DataDefine.Attribute.Second3);
-                        break;
-                }
-			}
 
-            power = (int)(power * firstAttributeMulti * secondAttributeMulti);
+            power = (int)(power * firstAttributeMulti);
             _targetMonster.Hit(power);
 			_objectpoolManager.ReturnBullet(this);
         }

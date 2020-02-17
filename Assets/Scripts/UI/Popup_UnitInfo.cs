@@ -63,7 +63,7 @@ public class Popup_UnitInfo : UI_Base
 
         _text_Speed.text = "공격속도 : " + unit.attackSpeed.ToString();
 
-        SetAttributeText(unit.firstAttribue, unit.secondAttribue);
+        SetAttributeText(unit.firstAttribue);
 
         Show();
         transform.DOScale(1, 0.25f).SetEase(Ease.OutBack);
@@ -115,7 +115,7 @@ public class Popup_UnitInfo : UI_Base
         }
     }
 
-    private void SetAttributeText(DataDefine.Attribute first, DataDefine.Attribute second)
+    private void SetAttributeText(DataDefine.Attribute first)
     {
         string firstAttribute = "없음";
         string secondAttribute = "없음";
@@ -139,24 +139,24 @@ public class Popup_UnitInfo : UI_Base
                 break;
         }
 
-        switch (second)
-        {
-            case DataDefine.Attribute.Second1:
-                secondAttribute = "미정1";
-                break;
+        //switch (second)
+        //{
+        //    case DataDefine.Attribute.Second1:
+        //        secondAttribute = "미정1";
+        //        break;
 
-            case DataDefine.Attribute.Second2:
-                secondAttribute = "미정2";
-                break;
+        //    case DataDefine.Attribute.Second2:
+        //        secondAttribute = "미정2";
+        //        break;
 
-            case DataDefine.Attribute.Second3:
-                secondAttribute = "미정3";
-                break;
+        //    case DataDefine.Attribute.Second3:
+        //        secondAttribute = "미정3";
+        //        break;
 
-            case DataDefine.Attribute.Second4:
-                secondAttribute = "미정4";
-                break;
-        }
+        //    case DataDefine.Attribute.Second4:
+        //        secondAttribute = "미정4";
+        //        break;
+        //}
 
         _text_Attribute.text = string.Format("속성 : {0} / {1}", firstAttribute, secondAttribute);
     }

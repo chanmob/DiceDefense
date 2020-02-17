@@ -25,7 +25,7 @@ public class Unit : MonoBehaviour
 
 
     public DataDefine.Attribute firstAttribue = DataDefine.Attribute.None;
-    public DataDefine.Attribute secondAttribue = DataDefine.Attribute.None;
+    //public DataDefine.Attribute secondAttribue = DataDefine.Attribute.None;
 
     public DataDefine.UnitType unitType = DataDefine.UnitType.None;
 
@@ -61,17 +61,11 @@ public class Unit : MonoBehaviour
         _diceCount.GetChild(unitLevel).gameObject.SetActive(true);
 
         UnitFusion(fusionUnit);
-        //power = _startPower + (int)Mathf.Pow(unitLevel, 2) * 2 + 1;
         gameObject.name = gameObject.name + "_" + unitLevel;
 
-        if(firstAttribue == DataDefine.Attribute.None && unitLevel >= 2)
+        if(firstAttribue == DataDefine.Attribute.None && unitLevel >= 3)
         {
-            SetAttribute(true);
-        }
-
-        if(secondAttribue == DataDefine.Attribute.None && unitLevel >= 3)
-        {
-            SetAttribute(false);
+            SetAttribute();
         }
 
         _animator.SetTrigger("SizeUp");
@@ -103,27 +97,6 @@ public class Unit : MonoBehaviour
         }
 
         SpriteRenderer sprite = transform.Find("Attribute").GetChild(0).GetComponent<SpriteRenderer>();
-        sprite.color = attributeColor;
-        sprite.gameObject.SetActive(true);
-    }
-
-    public void SetSecondAttribute()
-    {
-        Color attributeColor = Color.blue;
-
-        switch (secondAttribue)
-        {
-            case DataDefine.Attribute.Second1:
-                break;
-            case DataDefine.Attribute.Second2:
-                break;
-            case DataDefine.Attribute.Second3:
-                break;
-            case DataDefine.Attribute.Second4:
-                break;
-        }
-
-        SpriteRenderer sprite = transform.Find("Attribute").GetChild(1).GetComponent<SpriteRenderer>();
         sprite.color = attributeColor;
         sprite.gameObject.SetActive(true);
     }
@@ -289,7 +262,7 @@ public class Unit : MonoBehaviour
         power = startPower + (int)Mathf.Pow(unitLevel, 2) * 2 + 1;
     }
 
-    private void SetAttribute(bool first)
+    private void SetAttribute()
     {
         switch (unitType)
         {
@@ -302,15 +275,6 @@ public class Unit : MonoBehaviour
             case DataDefine.UnitType.Unit3:
                 InGameUIManager.instance.panel_UnitAttribute.unitIndex = 2;
                 break;
-        }
-
-        if (first)
-        {
-            InGameUIManager.instance.panel_UnitAttribute.isSecondAttribute = false;
-        }
-        else
-        {
-            InGameUIManager.instance.panel_UnitAttribute.isSecondAttribute = true;
         }
 
         InGameUIManager.instance.panel_UnitAttribute.Show();
@@ -364,7 +328,7 @@ public class Unit : MonoBehaviour
                 break;
         }
 
-        bullet.SetAttribute(firstAttribue, secondAttribue);
+        bullet.SetAttribute(firstAttribue);
         //bullet.power = power;
 		bullet.SetTarget(targetMonster);
 		bullet.gameObject.SetActive(true);
