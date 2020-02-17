@@ -63,7 +63,7 @@ public class Unit : MonoBehaviour
         UnitFusion(fusionUnit);
         gameObject.name = gameObject.name + "_" + unitLevel;
 
-        if(firstAttribue == DataDefine.Attribute.None && unitLevel >= 3)
+        if(firstAttribue == DataDefine.Attribute.None && unitLevel >= 4)
         {
             SetAttribute();
         }
@@ -319,12 +319,15 @@ public class Unit : MonoBehaviour
         {
             case DataDefine.UnitType.Unit1:
                 bullet.power = power + _ingameManager.amount_Upgrade1;
+                SoundManager.instance.PlaySound(SoundManager.AudioType.SFX, "AttackSFX1");
                 break;
             case DataDefine.UnitType.Unit2:
                 bullet.power = power + _ingameManager.amount_Upgrade2;
+                SoundManager.instance.PlaySound(SoundManager.AudioType.SFX, "AttackSFX2");
                 break;
             case DataDefine.UnitType.Unit3:
                 bullet.power = power + _ingameManager.amount_Upgrade3;
+                SoundManager.instance.PlaySound(SoundManager.AudioType.SFX, "AttackSFX3");
                 break;
         }
 

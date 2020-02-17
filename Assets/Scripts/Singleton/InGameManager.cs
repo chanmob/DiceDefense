@@ -106,6 +106,8 @@ public class InGameManager : Singleton<InGameManager>
 		if (_objectpoolManager == null)
 			_objectpoolManager = ObjectPoolManager.instance;
 
+        SoundManager.instance.PlaySound(SoundManager.AudioType.BGM, "BGM_InGame");
+
 		waveCoroutine = MonsterWaveCoroutine();
 		StartCoroutine(waveCoroutine);
     }

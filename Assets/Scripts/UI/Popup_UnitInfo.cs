@@ -118,7 +118,6 @@ public class Popup_UnitInfo : UI_Base
     private void SetAttributeText(DataDefine.Attribute first)
     {
         string firstAttribute = "없음";
-        string secondAttribute = "없음";
         
         switch (first)
         {
@@ -139,25 +138,6 @@ public class Popup_UnitInfo : UI_Base
                 break;
         }
 
-        //switch (second)
-        //{
-        //    case DataDefine.Attribute.Second1:
-        //        secondAttribute = "미정1";
-        //        break;
-
-        //    case DataDefine.Attribute.Second2:
-        //        secondAttribute = "미정2";
-        //        break;
-
-        //    case DataDefine.Attribute.Second3:
-        //        secondAttribute = "미정3";
-        //        break;
-
-        //    case DataDefine.Attribute.Second4:
-        //        secondAttribute = "미정4";
-        //        break;
-        //}
-
-        _text_Attribute.text = string.Format("속성 : {0} / {1}", firstAttribute, secondAttribute);
+        _text_Attribute.text = string.Format("속성 : {0}", firstAttribute);
     }
 }

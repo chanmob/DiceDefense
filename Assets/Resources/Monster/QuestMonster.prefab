@@ -456,8 +456,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd873b0c79e2a47498583540ff37d900, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  speed: 1.75
   firstAttribute: 8
-  secondAttribute: 8
   _text_HP: {fileID: 0}
   questIndex: -1

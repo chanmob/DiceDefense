@@ -1881,7 +1881,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _defaultShow: 0
   unitIndex: -1
-  isSecondAttribute: 0
   _firstAttribute: {fileID: 1050495579}
   _secondAttribute: {fileID: 1379456833}
 --- !u!1 &188837525
@@ -11279,7 +11278,7 @@ MonoBehaviour:
   _text_Level: {fileID: 408461946}
   _text_Power: {fileID: 96456164}
   _text_Speed: {fileID: 836493685}
-  _text_Attribute: {fileID: 0}
+  _text_Attribute: {fileID: 802330684}
 --- !u!222 &1343569978
 CanvasRenderer:
   m_ObjectHideFlags: 0
