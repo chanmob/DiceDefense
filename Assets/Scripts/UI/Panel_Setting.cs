@@ -16,6 +16,8 @@ public class Panel_Setting : UI_Base
 
     /* [PROTECTED && PRIVATE VARIABLE]		*/
 
+    [SerializeField] private Image[] _image_Sound = new Image[2];
+
     private Animator _animator;
 
     /*----------------[PUBLIC METHOD]------------------------------*/
@@ -36,6 +38,29 @@ public class Panel_Setting : UI_Base
 
         switch (buttonName)
         {
+            case "Button_Sound":
+                SoundManager.instance.VolumeOnOff();
+
+                if (AudioListener.volume == 1)
+                {
+                    _image_Sound[1].gameObject.SetActive(false);
+                    _image_Sound[0].gameObject.SetActive(true);
+                }
+                else
+                {
+                    _image_Sound[0].gameObject.SetActive(false);
+                    _image_Sound[1].gameObject.SetActive(true);
+                }
+                break;
+            case "Button_Retry":
+                SceneControl.instance.SceneLoad("InGame");
+                break;
+            case "Button_Main":
+                SceneControl.instance.SceneLoad("OutGame");
+                break;
+            case "Button_Exit":
+                InGameUIManager.instance.popup_GameExit.Open();
+                break;
             case "Button_AnimationHide":
                 _animator.SetTrigger("Off");
                 break;

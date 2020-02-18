@@ -53,7 +53,7 @@ public class Panel_MainOutGame : UI_Base
                 OutGameUIManager.instance.panel_HowToPlay.Show();
                 break;
             case "Button_Exit":
-                OutGameUIManager.instance.popup_GameExit.Show();
+                OutGameUIManager.instance.popup_GameExit.Open();
                 break;
             case "Button_Store":
                 Application.OpenURL("");

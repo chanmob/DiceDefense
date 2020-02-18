@@ -18,7 +18,6 @@ public class Panel_UnitAttribute : UI_Base
     /* [PROTECTED && PRIVATE VARIABLE]		*/
 
     [SerializeField] private GameObject _firstAttribute;
-    [SerializeField] private GameObject _secondAttribute;
 
     private UnitManager _unitManager;
 
@@ -77,19 +76,6 @@ public class Panel_UnitAttribute : UI_Base
                 break;
             case "Button_FirstAttribute4":
                 SetUnitAttribute(DataDefine.Attribute.Mountain);
-                break;
-
-            case "Button_SecondAttribute1":
-                SetUnitAttribute(DataDefine.Attribute.Second1);
-                break;
-            case "Button_SecondAttribute2":
-                SetUnitAttribute(DataDefine.Attribute.Second2);
-                break;
-            case "Button_SecondAttribute3":
-                SetUnitAttribute(DataDefine.Attribute.Second3);
-                break;
-            case "Button_SecondAttribute4":
-                SetUnitAttribute(DataDefine.Attribute.Second4);
                 break;
         }
     }

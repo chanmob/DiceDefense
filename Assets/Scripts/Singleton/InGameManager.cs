@@ -41,11 +41,8 @@ public class InGameManager : Singleton<InGameManager>
 	public int indexLength = 0;
 
     [HideInInspector] public DataDefine.Attribute unitOneFirstAttribute = DataDefine.Attribute.None;
-    [HideInInspector] public DataDefine.Attribute unitOneSecondAttribute = DataDefine.Attribute.None;
     [HideInInspector] public DataDefine.Attribute unitTwoFirstAttribute = DataDefine.Attribute.None;
-    [HideInInspector] public DataDefine.Attribute unitTwoSecondAttribute = DataDefine.Attribute.None;
     [HideInInspector] public DataDefine.Attribute unitThreeFirstAttribute = DataDefine.Attribute.None;
-    [HideInInspector] public DataDefine.Attribute unitThreeSecondAttribute = DataDefine.Attribute.None;
 
     /* [PROTECTED && PRIVATE VARIABLE]		*/
 
@@ -60,8 +57,10 @@ public class InGameManager : Singleton<InGameManager>
 	public void GetGold(int value)
 	{
 		gold += value;
-		InGameUIManager.instance.panel_MainInGame.text_gold.text = "Gold : " + gold.ToString();
-	}
+		//InGameUIManager.instance.panel_MainInGame.text_gold.text = "Gold : " + gold.ToString();
+ 
+        InGameUIManager.instance.panel_MainInGame.text_gold.text = LanguageManager.instance.GetCurrentLanguageText("Text_Gold") + " : " + gold.ToString();
+    }
 
     public bool CheckGold(int cost)
     {

@@ -21,6 +21,7 @@ public class InGameUIManager : UIManager<InGameUIManager>
     [HideInInspector] public Panel_UnitAttribute panel_UnitAttribute;
     [HideInInspector] public Popup_UnitInfo popup_UnitInfo;
     [HideInInspector] public Panel_Result panel_Result;
+    [HideInInspector] public Popup_GameExit popup_GameExit;
 
 	/* [PROTECTED && PRIVATE VARIABLE]		*/
 
@@ -40,5 +41,6 @@ public class InGameUIManager : UIManager<InGameUIManager>
         GetUiInstance(out panel_UnitAttribute);
         GetUiInstance(out popup_UnitInfo);
         GetUiInstance(out panel_Result);
+        GetUiInstance(out popup_GameExit);
 	}
 }
