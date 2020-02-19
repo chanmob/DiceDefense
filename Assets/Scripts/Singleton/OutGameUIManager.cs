@@ -16,6 +16,7 @@ public class OutGameUIManager : UIManager<OutGameUIManager>
     [HideInInspector] public Panel_MainOutGame panel_MainOutGame;
     [HideInInspector] public Panel_HowToPlay panel_HowToPlay;
     [HideInInspector] public Popup_GameExit popup_GameExit;
+    [HideInInspector] public Popup_Language popup_Language;
 
     /* [PROTECTED && PRIVATE VARIABLE]		*/
 
@@ -32,5 +33,6 @@ public class OutGameUIManager : UIManager<OutGameUIManager>
         GetUiInstance(out panel_MainOutGame);
         GetUiInstance(out panel_HowToPlay);
         GetUiInstance(out popup_GameExit);
+        GetUiInstance(out popup_Language);
     }
 }

@@ -72,6 +72,9 @@ public class Panel_MainOutGame : UI_Base
                     _image_Sound[1].gameObject.SetActive(true);
                 }
                 break;
+            case "Button_Language":
+                OutGameUIManager.instance.popup_Language.Open();
+                break;
             case "Button_Ranking":
                 break;
             case "Button_Archieve":

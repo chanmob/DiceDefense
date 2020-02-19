@@ -1,7 +1,7 @@
 ﻿/*
   ============================================
-	Author	: KJH
-	Time 	: 2019-12-23 오후 4:14:56
+	Author	: ChanMob
+	Time 	: 2019-02-19 오후 2:51:56
   ============================================
 */
 
@@ -10,14 +10,13 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
 
-public class CTSVReader
+public class CSVReader
 {
 	/* [PUBLIC VARIABLE]					*/
 
 
 	/* [PROTECTED && PRIVATE VARIABLE]		*/
 
-	private static string SPLIT_PATTERN_TAB = @"^\t+";
 	private static string SPLIT_LINE = @"\r\n|\n\r|\n|\r";
 
 	private static char[] TRIMS = { '\"' };
@@ -31,12 +30,12 @@ public class CTSVReader
 		string[] lines = Regex.Split(csv, SPLIT_LINE);
 		if (lines.Length <= 1) return list;
 
-		string[] headers = lines[0].Split('\t');
+		string[] headers = lines[0].Split(',');
 
 		int linesLen = lines.Length;
 		for (var i = 1; i < linesLen; i++)
 		{
-			string[] values = lines[i].Split('\t');
+			string[] values = lines[i].Split(',');
 			if (values.Length == 0 || values[0] == "") continue;
 
 			Dictionary<string, object> dict = new Dictionary<string, object>();

@@ -18,7 +18,7 @@ public class LanguageManager : Singleton<LanguageManager>
 	/* [PROTECTED && PRIVATE VARIABLE]		*/
 
 	private readonly string[] ResourcePaths = new string[] {
-		"DataTables/LanguageTable",
+        "DataTables/LanguageTable",
 	};
 
 	private const string Key = "Key";
@@ -97,7 +97,7 @@ public class LanguageManager : Singleton<LanguageManager>
 		// 0 |	id,		Korean,		 English
 		//		Text_Accept, 확인,		Accept
 
-		List<Dictionary<string, object>> table = CTSVReader.Read(merge);
+		List<Dictionary<string, object>> table = CSVReader.Read(merge);
 		if (table.Count == 0) return dict;
 
 		int count = table.Count;
@@ -152,8 +152,12 @@ public class LanguageManager : Singleton<LanguageManager>
 
 	private void LoadLanguage()
 	{
-		//SystemLanguage currentLanguage = GameDataManager.Instance.userInfo.language;
-		//_currentLangData = GetLanguageData(currentLanguage.ToString());
-		//SetLangauge(currentLanguage);
+        SystemLanguage currentLanguage = SystemLanguage.English;
+
+        if (Application.systemLanguage == SystemLanguage.Korean)
+            currentLanguage = SystemLanguage.Korean;
+
+        _currentLangData = GetLanguageData(currentLanguage.ToString());
+		SetLangauge(currentLanguage);
 	}
 }
