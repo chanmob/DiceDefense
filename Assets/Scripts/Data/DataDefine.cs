@@ -15,8 +15,8 @@ public static class DataDefine
 
     public enum Attribute
     {
-        Fire,
-        Water,
+        Infernal,
+        Ocean,
         Cloud,
         Mountain,
         Second1,

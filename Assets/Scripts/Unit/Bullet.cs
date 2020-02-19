@@ -72,16 +72,16 @@ public class Bullet : MonoBehaviour
 				switch (_firstAttribute)
 				{
 					case DataDefine.Attribute.Cloud:
-                        firstAttributeMulti = _targetMonster.CheckFirstAttribute(DataDefine.Attribute.Fire, DataDefine.Attribute.Mountain);
+                        firstAttributeMulti = _targetMonster.CheckFirstAttribute(DataDefine.Attribute.Infernal, DataDefine.Attribute.Mountain);
 						break;
-					case DataDefine.Attribute.Fire:
-                        firstAttributeMulti = _targetMonster.CheckFirstAttribute(DataDefine.Attribute.Water, DataDefine.Attribute.Cloud);
+					case DataDefine.Attribute.Infernal:
+                        firstAttributeMulti = _targetMonster.CheckFirstAttribute(DataDefine.Attribute.Ocean, DataDefine.Attribute.Cloud);
                         break;
-					case DataDefine.Attribute.Water:
-                        firstAttributeMulti = _targetMonster.CheckFirstAttribute(DataDefine.Attribute.Mountain, DataDefine.Attribute.Fire);
+					case DataDefine.Attribute.Ocean:
+                        firstAttributeMulti = _targetMonster.CheckFirstAttribute(DataDefine.Attribute.Mountain, DataDefine.Attribute.Infernal);
                         break;
 					case DataDefine.Attribute.Mountain:
-                        firstAttributeMulti = _targetMonster.CheckFirstAttribute(DataDefine.Attribute.Cloud, DataDefine.Attribute.Water);
+                        firstAttributeMulti = _targetMonster.CheckFirstAttribute(DataDefine.Attribute.Cloud, DataDefine.Attribute.Ocean);
                         break;
 				}			
 			}

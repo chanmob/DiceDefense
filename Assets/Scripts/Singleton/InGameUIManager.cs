@@ -22,6 +22,7 @@ public class InGameUIManager : UIManager<InGameUIManager>
     [HideInInspector] public Popup_UnitInfo popup_UnitInfo;
     [HideInInspector] public Panel_Result panel_Result;
     [HideInInspector] public Popup_GameExit popup_GameExit;
+    [HideInInspector] public Popup_Language popup_Language;
 
 	/* [PROTECTED && PRIVATE VARIABLE]		*/
 
@@ -42,5 +43,6 @@ public class InGameUIManager : UIManager<InGameUIManager>
         GetUiInstance(out popup_UnitInfo);
         GetUiInstance(out panel_Result);
         GetUiInstance(out popup_GameExit);
-	}
+        GetUiInstance(out popup_Language);
+    }
 }

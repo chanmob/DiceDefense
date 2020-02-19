@@ -51,12 +51,12 @@ public class Panel_Result : UI_Base
         while (min < max)
         {
             min += offset * Time.deltaTime;
-            text.text = "이번 웨이브 : " + ((int)min).ToString();
+            text.text = LanguageManager.instance.GetCurrentLanguageText("Text_CurrenWave") + " : " + ((int)min).ToString();
             yield return null;
         }
 
         min = max;
-        text.text = "이번 웨이브 : " + ((int)min).ToString();
+        text.text = LanguageManager.instance.GetCurrentLanguageText("Text_CurrenWave") + " : " + ((int)min).ToString();
     }
 
     private IEnumerator CountingBestRoundCoroutine(Text text, float min, float max, float time)
@@ -68,12 +68,12 @@ public class Panel_Result : UI_Base
         while (min < max)
         {
             min += offset * Time.deltaTime;
-            text.text = "최고 웨이브 : " + ((int)min).ToString();
+            text.text = LanguageManager.instance.GetCurrentLanguageText("Text_BestWave") + " : " + ((int)min).ToString();
             yield return null;
         }
 
         min = max;
-        text.text = "최고 웨이브 : " + ((int)min).ToString();
+        text.text = LanguageManager.instance.GetCurrentLanguageText("Text_BestWave") + " : " + ((int)min).ToString();
     }
 
     protected override void OnClickButtons(string buttonName)
@@ -85,8 +85,10 @@ public class Panel_Result : UI_Base
             case "Button_Continue":
                 break;
             case "Button_RePlay":
+                SceneControl.instance.SceneLoad("InGame");
                 break;
             case "Button_Exit":
+                SceneControl.instance.SceneLoad("OutGame");
                 break;
         }
     }

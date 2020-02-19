@@ -1,7 +1,7 @@
 ﻿/*
   ============================================
 	Author	: ChanMob
-	Time 	: 2020-02-04 오후 4:32:08
+	Time 	: 2020-02-18 오후 5:40:16
   ============================================
 */
 
@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class Popup_GameExit : UI_Base
+public class Popup_Language : UI_Base
 {
     /* [PUBLIC VARIABLE]					*/
 
@@ -22,7 +22,6 @@ public class Popup_GameExit : UI_Base
 
     public void Open()
     {
-        Time.timeScale = 0;
         Show();
         transform.DOScale(1, 0.25f).SetEase(Ease.OutBack);
     }
@@ -31,11 +30,7 @@ public class Popup_GameExit : UI_Base
 
     private void Close()
     {
-        transform.DOScale(0, 0.25f).SetEase(Ease.InQuad).OnComplete(() => 
-        {
-            Hide();
-            Time.timeScale = 1;
-        });
+        transform.DOScale(0, 0.25f).SetEase(Ease.InQuad).OnComplete(() => Hide());
     }
 
     protected override void OnClickButtons(string buttonName)
@@ -44,10 +39,13 @@ public class Popup_GameExit : UI_Base
 
         switch (buttonName)
         {
-            case "Button_Yes":
-                Application.Quit();
+            case "Button_Korean":
+                LanguageManager.instance.SetLangauge(SystemLanguage.Korean);
                 break;
-            case "Button_No":
+            case "Button_English":
+                LanguageManager.instance.SetLangauge(SystemLanguage.English);
+                break;
+            case "Button_Close":
                 Close();
                 break;
         }

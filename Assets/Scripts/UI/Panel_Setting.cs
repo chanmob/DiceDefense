@@ -52,14 +52,13 @@ public class Panel_Setting : UI_Base
                     _image_Sound[1].gameObject.SetActive(true);
                 }
                 break;
+            case "Button_Language":
+                break;
             case "Button_Retry":
                 SceneControl.instance.SceneLoad("InGame");
                 break;
             case "Button_Main":
                 SceneControl.instance.SceneLoad("OutGame");
-                break;
-            case "Button_Exit":
-                InGameUIManager.instance.popup_GameExit.Open();
                 break;
             case "Button_AnimationHide":
                 _animator.SetTrigger("Off");

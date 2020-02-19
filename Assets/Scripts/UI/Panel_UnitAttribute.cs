@@ -69,10 +69,10 @@ public class Panel_UnitAttribute : UI_Base
                 SetUnitAttribute(DataDefine.Attribute.Cloud);
                 break;
             case "Button_FirstAttribute2":
-                SetUnitAttribute(DataDefine.Attribute.Fire);
+                SetUnitAttribute(DataDefine.Attribute.Infernal);
                 break;
             case "Button_FirstAttribute3":
-                SetUnitAttribute(DataDefine.Attribute.Water);
+                SetUnitAttribute(DataDefine.Attribute.Ocean);
                 break;
             case "Button_FirstAttribute4":
                 SetUnitAttribute(DataDefine.Attribute.Mountain);

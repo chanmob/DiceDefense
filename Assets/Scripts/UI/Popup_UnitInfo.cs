@@ -33,15 +33,15 @@ public class Popup_UnitInfo : UI_Base
         switch (unit.unitRanking)
         {
             case DataDefine.UnitRanking.Normal:
-                _text_UnitName.text = "일반 유닛";
+                _text_UnitName.text = LanguageManager.instance.GetCurrentLanguageText("Text_UnitName_Normal");
                 SetUnitSprite(unit.unitType, false);
                 break;
             case DataDefine.UnitRanking.Super:
-                _text_UnitName.text = "슈퍼 유닛";
+                _text_UnitName.text = LanguageManager.instance.GetCurrentLanguageText("Text_UnitName_Super");
                 SetUnitSprite(unit.unitType, false);
                 break;
             case DataDefine.UnitRanking.Hidden:
-                _text_UnitName.text = "히든 유닛";
+                _text_UnitName.text = LanguageManager.instance.GetCurrentLanguageText("Text_UnitName_Hidden");
                 SetUnitSprite(unit.unitType, true);
                 break;
         }
@@ -51,17 +51,23 @@ public class Popup_UnitInfo : UI_Base
         switch (unit.unitType)
         {
             case DataDefine.UnitType.Unit1:
-                _text_Power.text = "공격력 : " + (unit.power + InGameManager.instance.amount_Upgrade1).ToString() + "(" + unit.power + "+" + InGameManager.instance.amount_Upgrade1 + ")";
+                _text_Power.text = LanguageManager.instance.GetCurrentLanguageText("Text_Power") + 
+                    " : " + (unit.power + InGameManager.instance.amount_Upgrade1).ToString() + 
+                    "(" + unit.power + "+" + InGameManager.instance.amount_Upgrade1 + ")";
                 break;
             case DataDefine.UnitType.Unit2:
-                _text_Power.text = "공격력 : " + (unit.power + InGameManager.instance.amount_Upgrade2).ToString() + "(" + unit.power + "+" + InGameManager.instance.amount_Upgrade2 + ")";
+                _text_Power.text = LanguageManager.instance.GetCurrentLanguageText("Text_Power") + 
+                    " : " + (unit.power + InGameManager.instance.amount_Upgrade2).ToString() + 
+                    "(" + unit.power + "+" + InGameManager.instance.amount_Upgrade2 + ")";
                 break;
             case DataDefine.UnitType.Unit3:
-                _text_Power.text = "공격력 : " + (unit.power + InGameManager.instance.amount_Upgrade3).ToString() + "(" + unit.power + "+" + InGameManager.instance.amount_Upgrade3 + ")";
+                _text_Power.text = LanguageManager.instance.GetCurrentLanguageText("Text_Power") + 
+                    " : " + (unit.power + InGameManager.instance.amount_Upgrade3).ToString() + 
+                    "(" + unit.power + "+" + InGameManager.instance.amount_Upgrade3 + ")";
                 break;
         }
 
-        _text_Speed.text = "공격속도 : " + unit.attackSpeed.ToString();
+        _text_Speed.text = LanguageManager.instance.GetCurrentLanguageText("Text_Speed") + " : " + unit.attackSpeed.ToString();
 
         SetAttributeText(unit.firstAttribue);
 
@@ -122,22 +128,22 @@ public class Popup_UnitInfo : UI_Base
         switch (first)
         {
             case DataDefine.Attribute.Cloud:
-                firstAttribute = "바람";
+                firstAttribute = LanguageManager.instance.GetCurrentLanguageText("Text_Attribute1");
                 break;
 
-            case DataDefine.Attribute.Fire:
-                firstAttribute = "불";
+            case DataDefine.Attribute.Infernal:
+                firstAttribute = LanguageManager.instance.GetCurrentLanguageText("Text_Attribute2");
                 break;
 
-            case DataDefine.Attribute.Water:
-                firstAttribute = "물";
+            case DataDefine.Attribute.Ocean:
+                firstAttribute = LanguageManager.instance.GetCurrentLanguageText("Text_Attribute3");
                 break;
 
             case DataDefine.Attribute.Mountain:
-                firstAttribute = "대지";
+                firstAttribute = LanguageManager.instance.GetCurrentLanguageText("Text_Attribute4");
                 break;
         }
 
-        _text_Attribute.text = string.Format("속성 : {0}", firstAttribute);
+        _text_Attribute.text = string.Format(LanguageManager.instance.GetCurrentLanguageText("Text_Attribute") + " : {0}", firstAttribute);
     }
 }

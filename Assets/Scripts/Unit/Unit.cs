@@ -85,10 +85,10 @@ public class Unit : MonoBehaviour
             case DataDefine.Attribute.Cloud:
                 attributeColor = new Color32(165, 233, 255, 255);
                 break;
-            case DataDefine.Attribute.Fire:
+            case DataDefine.Attribute.Infernal:
                 attributeColor = new Color32(255, 29, 35, 255);
                 break;
-            case DataDefine.Attribute.Water:
+            case DataDefine.Attribute.Ocean:
                 attributeColor = new Color32(63, 106, 191, 255);
                 break;
             case DataDefine.Attribute.Mountain:
