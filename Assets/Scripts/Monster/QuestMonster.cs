@@ -14,7 +14,7 @@ public class QuestMonster : Monster
     /* [PUBLIC VARIABLE]					*/
 
     public int questIndex = -1;
-
+    
     /* [PROTECTED && PRIVATE VARIABLE]		*/
 
 
@@ -36,6 +36,8 @@ public class QuestMonster : Monster
         }
 
         SetHP((int)Mathf.Pow(questIndex, 2) * 150);
+        speed += 0.15f * (questIndex % 2);
+        _shield = questIndex >= 2 ? 50 * questIndex : 0;
     }
 
     protected override void Disable()

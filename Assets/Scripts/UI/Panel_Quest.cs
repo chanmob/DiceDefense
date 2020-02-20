@@ -41,7 +41,22 @@ public class Panel_Quest : UI_Base
                 _animator.SetTrigger("Off");
                 break;
             case "Button_Quest1":
+                CreateQuestMonster(0);
+                break;
+            case "Button_Quest2":
                 CreateQuestMonster(1);
+                break;
+            case "Button_Quest3":
+                CreateQuestMonster(2);
+                break;
+            case "Button_Quest4":
+                CreateQuestMonster(3);
+                break;
+            case "Button_Quest5":
+                CreateQuestMonster(4);
+                break;
+            case "Button_Quest6":
+                CreateQuestMonster(5);
                 break;
         }
     }

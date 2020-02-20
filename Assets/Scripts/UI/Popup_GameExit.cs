@@ -17,6 +17,7 @@ public class Popup_GameExit : UI_Base
 
     /* [PROTECTED && PRIVATE VARIABLE]		*/
 
+    [SerializeField] private GameObject _childPanel;
 
     /*----------------[PUBLIC METHOD]------------------------------*/
 
@@ -24,14 +25,14 @@ public class Popup_GameExit : UI_Base
     {
         Time.timeScale = 0;
         Show();
-        transform.DOScale(1, 0.25f).SetEase(Ease.OutBack);
+        _childPanel.transform.DOScale(1, 0.25f).SetEase(Ease.OutBack);
     }
 
     /*----------------[PROTECTED && PRIVATE METHOD]----------------*/
 
     private void Close()
     {
-        transform.DOScale(0, 0.25f).SetEase(Ease.InQuad).OnComplete(() => 
+        _childPanel.transform.DOScale(0, 0.25f).SetEase(Ease.InQuad).OnComplete(() => 
         {
             Hide();
             Time.timeScale = 1;

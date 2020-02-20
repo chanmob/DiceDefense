@@ -123,19 +123,20 @@ public class UnitManager : Singleton<UnitManager>
 
         Unit unitObject = null;
 
-        switch (rank)
-        {
-            case 0:
-                unitObject = Instantiate(units[division], _ingameManager.spawnTransform[index].position, Quaternion.identity);
-                break;
-            case 1:
-                unitObject = Instantiate(superUnits[division], _ingameManager.spawnTransform[index].position, Quaternion.identity);
-                break;
-            case 2:
-                unitObject = Instantiate(hiddenUnits[division], _ingameManager.spawnTransform[index].position, Quaternion.identity);
-                break;
-        }
+        //switch (rank)
+        //{
+        //    case 0:
+        //        unitObject = Instantiate(units[division], _ingameManager.spawnTransform[index].position, Quaternion.identity);
+        //        break;
+        //    case 1:
+        //        unitObject = Instantiate(superUnits[division], _ingameManager.spawnTransform[index].position, Quaternion.identity);
+        //        break;
+        //    case 2:
+        //        unitObject = Instantiate(hiddenUnits[division], _ingameManager.spawnTransform[index].position, Quaternion.identity);
+        //        break;
+        //}
 
+        unitObject = Instantiate(units[0], _ingameManager.spawnTransform[index].position, Quaternion.identity);
         //Unit unitObject = Instantiate(units[division], _ingameManager.spawnTransform[index].position, Quaternion.identity);
         //unitObject.name = units[division].name;
         unitList.Add(unitObject);

@@ -17,20 +17,21 @@ public class Popup_Language : UI_Base
 
     /* [PROTECTED && PRIVATE VARIABLE]		*/
 
+    [SerializeField] private GameObject _childPanel;
 
     /*----------------[PUBLIC METHOD]------------------------------*/
 
     public void Open()
     {
         Show();
-        transform.DOScale(1, 0.25f).SetEase(Ease.OutBack);
+        _childPanel.transform.DOScale(1, 0.25f).SetEase(Ease.OutBack);
     }
 
     /*----------------[PROTECTED && PRIVATE METHOD]----------------*/
 
     private void Close()
     {
-        transform.DOScale(0, 0.25f).SetEase(Ease.InQuad).OnComplete(() => Hide());
+        _childPanel.transform.DOScale(0, 0.25f).SetEase(Ease.InQuad).OnComplete(() => Hide());
     }
 
     protected override void OnClickButtons(string buttonName)

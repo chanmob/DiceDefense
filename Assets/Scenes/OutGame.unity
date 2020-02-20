@@ -1102,7 +1102,7 @@ RectTransform:
   m_GameObject: {fileID: 527657900}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1326188123}
   - {fileID: 1339963931}
@@ -2374,7 +2374,7 @@ RectTransform:
   m_GameObject: {fileID: 1236347289}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1620588207}
   - {fileID: 527657901}
@@ -2399,6 +2399,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _defaultShow: 0
+  _childPanel: {fileID: 527657900}
 --- !u!222 &1236347292
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3884,6 +3885,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _defaultShow: 0
+  _childPanel: {fileID: 7578396836994941104}
 --- !u!222 &7578396835810658517
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4335,7 +4337,7 @@ RectTransform:
   m_GameObject: {fileID: 7578396836994941104}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 7578396837119613021}
   - {fileID: 7578396835608401011}

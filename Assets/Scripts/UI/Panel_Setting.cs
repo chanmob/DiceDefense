@@ -53,6 +53,7 @@ public class Panel_Setting : UI_Base
                 }
                 break;
             case "Button_Language":
+                InGameUIManager.instance.popup_Language.Open();
                 break;
             case "Button_Retry":
                 SceneControl.instance.SceneLoad("InGame");
