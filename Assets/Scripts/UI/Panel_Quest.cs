@@ -16,6 +16,12 @@ public class Panel_Quest : UI_Base
 
     /* [PROTECTED && PRIVATE VARIABLE]		*/
 
+    [SerializeField] private float[] _questCoolTimes;
+
+    [SerializeField] private Image[] _questCoolTimeImages;
+
+    [SerializeField] private Button[] _questButtons;
+
     private Animator _animator;
 
     /*----------------[PUBLIC METHOD]------------------------------*/
@@ -41,22 +47,22 @@ public class Panel_Quest : UI_Base
                 _animator.SetTrigger("Off");
                 break;
             case "Button_Quest1":
-                CreateQuestMonster(0);
-                break;
-            case "Button_Quest2":
                 CreateQuestMonster(1);
                 break;
-            case "Button_Quest3":
+            case "Button_Quest2":
                 CreateQuestMonster(2);
                 break;
-            case "Button_Quest4":
+            case "Button_Quest3":
                 CreateQuestMonster(3);
                 break;
-            case "Button_Quest5":
+            case "Button_Quest4":
                 CreateQuestMonster(4);
                 break;
-            case "Button_Quest6":
+            case "Button_Quest5":
                 CreateQuestMonster(5);
+                break;
+            case "Button_Quest6":
+                CreateQuestMonster(6);
                 break;
         }
     }
@@ -66,7 +72,29 @@ public class Panel_Quest : UI_Base
         QuestMonster questMonsterPrefab = ResourceManager.instance.GetMonoBehavioursObject<QuestMonster>("QuestMonster");
         QuestMonster questMonster = Instantiate(questMonsterPrefab);
         questMonster.questIndex = level;
+        questMonster.SetQuestMonster();
         questMonster.transform.SetParent(null);
         InGameManager.instance.monsterList.Add(questMonster);
+    }
+
+    private IEnumerator WaitWaveCoroutine(int idx)
+    {
+        Image timeImage = _questCoolTimeImages[idx];
+        _questButtons[idx].interactable = false;
+
+        timeImage.fillAmount = 1;
+
+        float cooltime = _questCoolTimes[idx];
+        float checkTime = cooltime;
+
+        while (timeImage.fillAmount > 0)
+        {
+            timeImage.fillAmount -= Time.deltaTime / cooltime;
+            checkTime -= Time.deltaTime;
+
+            yield return null;
+        }
+
+        _questButtons[idx].interactable = true;
     }
 }

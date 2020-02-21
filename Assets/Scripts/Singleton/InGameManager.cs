@@ -13,8 +13,6 @@ public class InGameManager : Singleton<InGameManager>
 {
     /* [PUBLIC VARIABLE]					*/
 
-    public Unit unit;
-
 	public List<Monster> roundCheckMonster;
 	public List<Monster> monsterList;
 

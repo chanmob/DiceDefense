@@ -63,7 +63,7 @@ public class Unit : MonoBehaviour
         UnitFusion(fusionUnit);
         gameObject.name = gameObject.name + "_" + unitLevel;
 
-        if(firstAttribue == DataDefine.Attribute.None && unitLevel >= 4)
+        if(firstAttribue == DataDefine.Attribute.None && unitLevel >= 3)
         {
             SetAttribute();
         }

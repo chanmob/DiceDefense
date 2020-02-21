@@ -14,22 +14,15 @@ public class QuestMonster : Monster
     /* [PUBLIC VARIABLE]					*/
 
     public int questIndex = -1;
-    
+
     /* [PROTECTED && PRIVATE VARIABLE]		*/
 
 
     /*----------------[PUBLIC METHOD]------------------------------*/
 
-
-    /*----------------[PROTECTED && PRIVATE METHOD]----------------*/
-
-    protected override void Die()
+    public void SetQuestMonster()
     {
-    }
-
-    protected override void Enable()
-    {
-        if(questIndex == -1)
+        if (questIndex == -1)
         {
             Debug.Log("퀘스트 몬스터 인덱스 에러");
             return;
@@ -37,7 +30,22 @@ public class QuestMonster : Monster
 
         SetHP((int)Mathf.Pow(questIndex, 2) * 150);
         speed += 0.15f * (questIndex % 2);
-        _shield = questIndex >= 2 ? 50 * questIndex : 0;
+        _shield = questIndex >= 3 ? 50 * questIndex : 0;
+        if (_shield > 0)
+            _shieldTransform.gameObject.SetActive(true);
+    }
+
+    /*----------------[PROTECTED && PRIVATE METHOD]----------------*/
+
+    protected override void Die()
+    {
+        InGameManager.instance.monsterList.Remove(this);
+        Destroy(this.gameObject);
+    }
+
+    protected override void Enable()
+    {
+
     }
 
     protected override void Disable()
