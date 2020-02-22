@@ -15,7 +15,7 @@ public class Panel_Quest : UI_Base
     /* [PUBLIC VARIABLE]					*/
 
     /* [PROTECTED && PRIVATE VARIABLE]		*/
-
+ 
     [SerializeField] private float[] _questCoolTimes;
 
     [SerializeField] private Image[] _questCoolTimeImages;
