@@ -3602,7 +3602,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 1
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -9366,7 +9366,9 @@ MonoBehaviour:
   _defaultShow: 1
   text_gold: {fileID: 676086637}
   text_time: {fileID: 2093813380}
+  text_monsterCount: {fileID: 2061256211}
   image_timeCheck: {fileID: 653440108}
+  image_monsterFill: {fileID: 347166812}
   _text_Speed: {fileID: 1957607461}
 --- !u!222 &994000148
 CanvasRenderer:
@@ -19652,7 +19654,6 @@ GameObject:
   - component: {fileID: 2061256209}
   - component: {fileID: 2061256212}
   - component: {fileID: 2061256211}
-  - component: {fileID: 2061256210}
   m_Layer: 5
   m_Name: Text_Monster
   m_TagString: Untagged
@@ -19679,19 +19680,6 @@ RectTransform:
   m_AnchoredPosition: {x: 25, y: -25}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0, y: 1}
---- !u!114 &2061256210
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2061256208}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 347c71f09fd79ce48b32478361a3b942, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  key: Text_Gold
 --- !u!114 &2061256211
 MonoBehaviour:
   m_ObjectHideFlags: 0

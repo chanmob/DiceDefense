@@ -30,7 +30,7 @@ public class DataManager : Singleton<DataManager>
     public bool CheckRenewal(int round)
     {
         if (ObscuredPrefs.HasKey(roundSaveName) == false)
-            return false;
+            return true;
 
         return ObscuredPrefs.GetInt(roundSaveName) < round;
     }

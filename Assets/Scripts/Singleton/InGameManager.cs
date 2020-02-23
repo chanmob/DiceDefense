@@ -70,8 +70,9 @@ public class InGameManager : Singleton<InGameManager>
         if (gameEnd)
             return;
 
+        Time.timeScale = 0;
         gameEnd = true;
-        //InGameUIManager.instance.panel_Result.ShowResult();
+        InGameUIManager.instance.panel_Result.ShowResult(round, DataManager.instance.CheckRenewal(round));
     }
 
     public void MonsterUIRefresh()
@@ -81,7 +82,7 @@ public class InGameManager : Singleton<InGameManager>
         Panel_MainInGame mainUI = InGameUIManager.instance.panel_MainInGame;
 
         mainUI.text_monsterCount.text = len + " / " + 40;
-        mainUI.image_monsterFill.fillAmount = len / 40;
+        mainUI.image_monsterFill.fillAmount = (float)len / 40;
     }
 
 	/*----------------[PROTECTED && PRIVATE METHOD]----------------*/
@@ -92,7 +93,9 @@ public class InGameManager : Singleton<InGameManager>
 
         Time.timeScale = 1;
 
-		monsterList = new List<Monster>();
+        round = 1;
+
+        monsterList = new List<Monster>();
 		spawnIndex = new List<int>();
 		spawnTransform = new List<Transform>();
 
@@ -139,8 +142,6 @@ public class InGameManager : Singleton<InGameManager>
 
 	private IEnumerator MonsterWaveCoroutine()
 	{
-		round = 1;
-
         yield return StartCoroutine(WaitWaveCoroutine(5));
 
         while (true)
@@ -205,7 +206,7 @@ public class InGameManager : Singleton<InGameManager>
         {
             timeImage.fillAmount -= Time.deltaTime / time;
             checkTime -= Time.deltaTime;
-            timeText.text = ((int)checkTime).ToString();
+            timeText.text = ((int)checkTime + 1).ToString();
 
             yield return null;
         }
