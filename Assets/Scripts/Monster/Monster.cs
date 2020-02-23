@@ -89,7 +89,8 @@ public class Monster : MonoBehaviour
 
     protected virtual void Enable()
     {
-        SetHP(_ingameManager.round * ((int)(_ingameManager.round * 0.1f) + 1) * 10);
+        SetHP(_ingameManager.round * 30);
+        //SetHP(_ingameManager.round * ((int)(_ingameManager.round * 0.1f) + 1) * 10);
 	}
 
     private void PublicEnable()
@@ -173,13 +174,16 @@ public class Monster : MonoBehaviour
             if (_waypointIndex < WayPointManager.instance.waypointLength - 1)
             {
                 _waypointIndex++;
-                _waypoint = _waypoint = WayPointManager.instance.waypoints[_waypointIndex];
+                _waypoint = WayPointManager.instance.waypoints[_waypointIndex];
             }
 
             else
             {
-                Debug.Log("게임 종료");
-                _ingameManager.EndGame();
+                _waypointIndex = 0;
+                _waypoint = WayPointManager.instance.waypoints[_waypointIndex];
+
+                //Debug.Log("게임 종료");
+                //_ingameManager.EndGame();
             }
         }
     }

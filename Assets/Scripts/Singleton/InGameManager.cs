@@ -32,9 +32,9 @@ public class InGameManager : Singleton<InGameManager>
     public int amount_Upgrade2 = 0;
     public int amount_Upgrade3 = 0;
 
-    public int cost_Upgrade1 = 28;
-    public int cost_Upgrade2 = 30;
-    public int cost_Upgrade3 = 32;
+    public int cost_Upgrade1 = 3;
+    public int cost_Upgrade2 = 5;
+    public int cost_Upgrade3 = 7;
     
 	public int indexLength = 0;
 
@@ -124,9 +124,11 @@ public class InGameManager : Singleton<InGameManager>
 	{
 		round = 1;
 
+        yield return StartCoroutine(WaitWaveCoroutine(5));
+
         while (true)
 		{
-            yield return StartCoroutine(WaitWaveCoroutine(5));
+            //yield return StartCoroutine(WaitWaveCoroutine(30));
 
             InGameUIManager.instance.panel_MainInGame.text_time.text = round.ToString();
 
@@ -141,7 +143,7 @@ public class InGameManager : Singleton<InGameManager>
 
             else
             {
-                for (int i = 0; i < round; i++)
+                for (int i = 0; i < 10; i++)
                 {
                     Monster monster = _objectpoolManager.GetMonster();
                     monster.SetSpriteOrder(round - i);
@@ -152,11 +154,13 @@ public class InGameManager : Singleton<InGameManager>
                 }
             }			
 
-			yield return new WaitUntil(() => roundCheckMonster.Count <= 0);
+			//yield return new WaitUntil(() => roundCheckMonster.Count <= 0);
 
 			round++;
+
+            yield return StartCoroutine(WaitWaveCoroutine(30));
         }
-	}
+    }
 
     private IEnumerator WaitWaveCoroutine(int time)
     {
