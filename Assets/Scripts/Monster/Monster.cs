@@ -126,6 +126,7 @@ public class Monster : MonoBehaviour
     {
         _ingameManager.monsterList.Remove(this);
 		_ingameManager.roundCheckMonster.Remove(this);
+        _ingameManager.MonsterUIRefresh();
         _objectpoolManager.ReturnMonster(this);
     }
 

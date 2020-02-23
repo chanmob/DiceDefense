@@ -26,6 +26,7 @@ public class BossMonster : Monster
     {
         _ingameManager.monsterList.Remove(this);
         _ingameManager.roundCheckMonster.Remove(this);
+        _ingameManager.MonsterUIRefresh();
         gameObject.SetActive(false);
     }
 

@@ -74,6 +74,16 @@ public class InGameManager : Singleton<InGameManager>
         //InGameUIManager.instance.panel_Result.ShowResult();
     }
 
+    public void MonsterUIRefresh()
+    {
+        int len = monsterList.Count;
+
+        Panel_MainInGame mainUI = InGameUIManager.instance.panel_MainInGame;
+
+        mainUI.text_monsterCount.text = len + " / " + 40;
+        mainUI.image_monsterFill.fillAmount = len / 40;
+    }
+
 	/*----------------[PROTECTED && PRIVATE METHOD]----------------*/
 
 	protected override void Awake()
@@ -120,6 +130,13 @@ public class InGameManager : Singleton<InGameManager>
 		return returnValue;
 	}
 
+    private bool IsMonsterOver()
+    {
+        int len = monsterList.Count;
+
+        return len > 40;
+    }
+
 	private IEnumerator MonsterWaveCoroutine()
 	{
 		round = 1;
@@ -139,6 +156,12 @@ public class InGameManager : Singleton<InGameManager>
                 bossMonster.transform.SetParent(null);
                 roundCheckMonster.Add(bossMonster);
                 monsterList.Add(bossMonster);
+
+                MonsterUIRefresh();
+                if (IsMonsterOver())
+                {
+                    EndGame();
+                }
             }
 
             else
@@ -150,6 +173,13 @@ public class InGameManager : Singleton<InGameManager>
                     monster.gameObject.SetActive(true);
                     roundCheckMonster.Add(monster);
                     monsterList.Add(monster);
+
+                    MonsterUIRefresh();
+                    if (IsMonsterOver())
+                    {
+                        EndGame();
+                    }
+
                     yield return new WaitForSeconds(0.25f);
                 }
             }			

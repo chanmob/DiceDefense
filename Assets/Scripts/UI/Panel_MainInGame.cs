@@ -16,7 +16,10 @@ public class Panel_MainInGame : UI_Base
 
 	public Text text_gold;
     public Text text_time;
+    public Text text_monsterCount;
+
     public Image image_timeCheck;
+    public Image image_monsterFill;
 
     /* [PROTECTED && PRIVATE VARIABLE]		*/
 
