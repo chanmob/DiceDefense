@@ -44,6 +44,9 @@ public class UnitManager : Singleton<UnitManager>
             if (idxSet.Contains(i) == true)
                 continue;
 
+            if (unitList[i].unitLevel >= 5)
+                continue;
+
             unitName = unitList[i].name;
 
             for(int j = i + 1; j < len; j++)
@@ -82,31 +85,31 @@ public class UnitManager : Singleton<UnitManager>
         }
     }
 
-    public void SetUnitFirstAttribute(DataDefine.UnitType type, DataDefine.Attribute attribute)
-    {
-        switch (type)
-        {
-            case DataDefine.UnitType.Unit1:
-                _ingameManager.unitOneFirstAttribute = attribute;
-                break;
-            case DataDefine.UnitType.Unit2:
-                _ingameManager.unitTwoFirstAttribute = attribute;
-                break;
-            case DataDefine.UnitType.Unit3:
-                _ingameManager.unitThreeFirstAttribute = attribute;
-                break;
-        }
+    //public void SetUnitFirstAttribute(DataDefine.UnitType type, DataDefine.Attribute attribute)
+    //{
+    //    switch (type)
+    //    {
+    //        case DataDefine.UnitType.Unit1:
+    //            _ingameManager.unitOneFirstAttribute = attribute;
+    //            break;
+    //        case DataDefine.UnitType.Unit2:
+    //            _ingameManager.unitTwoFirstAttribute = attribute;
+    //            break;
+    //        case DataDefine.UnitType.Unit3:
+    //            _ingameManager.unitThreeFirstAttribute = attribute;
+    //            break;
+    //    }
 
-        int len = unitList.Count;
-        for (int i = 0; i < len; i++)
-        {
-            if(unitList[i].unitType == type)
-            {
-                unitList[i].firstAttribue = attribute;
-                unitList[i].SetFirstAttribute();
-            }
-        }
-    }
+    //    int len = unitList.Count;
+    //    for (int i = 0; i < len; i++)
+    //    {
+    //        if(unitList[i].unitType == type)
+    //        {
+    //            unitList[i].firstAttribue = attribute;
+    //            unitList[i].SetFirstAttribute();
+    //        }
+    //    }
+    //}
 
     public void BuyUnit()
 	{
@@ -143,30 +146,30 @@ public class UnitManager : Singleton<UnitManager>
 		unitArray[index] = unitObject;
         unitObject.unitPositionIndex = index;
 
-        switch (division)
-        {
-            case 0:
-                if(_ingameManager.unitOneFirstAttribute != DataDefine.Attribute.None)
-                {
-                    unitObject.firstAttribue = _ingameManager.unitOneFirstAttribute;
-                    unitObject.SetFirstAttribute();
-                }
-                break;
-            case 1:
-                if (_ingameManager.unitTwoFirstAttribute != DataDefine.Attribute.None)
-                {
-                    unitObject.firstAttribue = _ingameManager.unitTwoFirstAttribute;
-                    unitObject.SetFirstAttribute();
-                }
-                break;
-            case 2:
-                if (_ingameManager.unitThreeFirstAttribute != DataDefine.Attribute.None)
-                {
-                    unitObject.firstAttribue = _ingameManager.unitThreeFirstAttribute;
-                    unitObject.SetFirstAttribute();
-                }
-                break;
-        }
+        //switch (division)
+        //{
+        //    case 0:
+        //        if(_ingameManager.unitOneFirstAttribute != DataDefine.Attribute.None)
+        //        {
+        //            unitObject.firstAttribue = _ingameManager.unitOneFirstAttribute;
+        //            unitObject.SetFirstAttribute();
+        //        }
+        //        break;
+        //    case 1:
+        //        if (_ingameManager.unitTwoFirstAttribute != DataDefine.Attribute.None)
+        //        {
+        //            unitObject.firstAttribue = _ingameManager.unitTwoFirstAttribute;
+        //            unitObject.SetFirstAttribute();
+        //        }
+        //        break;
+        //    case 2:
+        //        if (_ingameManager.unitThreeFirstAttribute != DataDefine.Attribute.None)
+        //        {
+        //            unitObject.firstAttribue = _ingameManager.unitThreeFirstAttribute;
+        //            unitObject.SetFirstAttribute();
+        //        }
+        //        break;
+        //}
 
         _ingameManager.isSpawned[index] = true;
 	}

@@ -23,11 +23,11 @@ public class Panel_UnitAttribute : UI_Base
 
     /*----------------[PUBLIC METHOD]------------------------------*/
 
-    public void ShowForSetAttribute(int index)
-    {
-        unitIndex = index;
-        Show();
-    }
+    //public void ShowForSetAttribute(int index)
+    //{
+    //    unitIndex = index;
+    //    Show();
+    //}
 
     /*----------------[PROTECTED && PRIVATE METHOD]----------------*/
 
@@ -59,45 +59,45 @@ public class Panel_UnitAttribute : UI_Base
             _unitManager = UnitManager.instance;
     }
 
-    protected override void OnClickButtons(string buttonName)
-    {
-        base.OnClickButtons(buttonName);
+    //protected override void OnClickButtons(string buttonName)
+    //{
+    //    base.OnClickButtons(buttonName);
 
-        switch (buttonName)
-        {
-            case "Button_FirstAttribute1":
-                SetUnitAttribute(DataDefine.Attribute.Cloud);
-                break;
-            case "Button_FirstAttribute2":
-                SetUnitAttribute(DataDefine.Attribute.Infernal);
-                break;
-            case "Button_FirstAttribute3":
-                SetUnitAttribute(DataDefine.Attribute.Ocean);
-                break;
-            case "Button_FirstAttribute4":
-                SetUnitAttribute(DataDefine.Attribute.Mountain);
-                break;
-        }
-    }
+    //    switch (buttonName)
+    //    {
+    //        case "Button_FirstAttribute1":
+    //            SetUnitAttribute(DataDefine.Attribute.Cloud);
+    //            break;
+    //        case "Button_FirstAttribute2":
+    //            SetUnitAttribute(DataDefine.Attribute.Infernal);
+    //            break;
+    //        case "Button_FirstAttribute3":
+    //            SetUnitAttribute(DataDefine.Attribute.Ocean);
+    //            break;
+    //        case "Button_FirstAttribute4":
+    //            SetUnitAttribute(DataDefine.Attribute.Mountain);
+    //            break;
+    //    }
+    //}
 
-    private void SetUnitAttribute(DataDefine.Attribute attribute)
-    {
-        switch (unitIndex)
-        {
-            case -1:
-                Debug.LogError("Unit Index Error");
-                break;
-            case 0:
-                _unitManager.SetUnitFirstAttribute(DataDefine.UnitType.Unit1, attribute);
-                break;
-            case 1:
-                _unitManager.SetUnitFirstAttribute(DataDefine.UnitType.Unit2, attribute);
-                break;
-            case 2:
-                _unitManager.SetUnitFirstAttribute(DataDefine.UnitType.Unit3, attribute);
-                break;
-        }
+    //private void SetUnitAttribute(DataDefine.Attribute attribute)
+    //{
+    //    switch (unitIndex)
+    //    {
+    //        case -1:
+    //            Debug.LogError("Unit Index Error");
+    //            break;
+    //        case 0:
+    //            _unitManager.SetUnitFirstAttribute(DataDefine.UnitType.Unit1, attribute);
+    //            break;
+    //        case 1:
+    //            _unitManager.SetUnitFirstAttribute(DataDefine.UnitType.Unit2, attribute);
+    //            break;
+    //        case 2:
+    //            _unitManager.SetUnitFirstAttribute(DataDefine.UnitType.Unit3, attribute);
+    //            break;
+    //    }
 
-        Hide();
-    }
+    //    Hide();
+    //}
 }

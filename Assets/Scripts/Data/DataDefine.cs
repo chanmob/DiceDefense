@@ -13,19 +13,6 @@ public static class DataDefine
 {
     /* [PUBLIC VARIABLE]					*/
 
-    public enum Attribute
-    {
-        Infernal,
-        Ocean,
-        Cloud,
-        Mountain,
-        Second1,
-        Second2,
-        Second3,
-        Second4,
-        None
-    }
-
 	public enum ResourceType
 	{
 		Resource,

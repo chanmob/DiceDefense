@@ -21,18 +21,11 @@ public class Bullet : MonoBehaviour
 	private Monster _targetMonster;
 	private ObjectPoolManager _objectpoolManager;
 
-	private DataDefine.Attribute _firstAttribute = DataDefine.Attribute.None;
-
 	/*----------------[PUBLIC METHOD]------------------------------*/
 
 	public void SetTarget(Monster monster)
 	{
 		_targetMonster = monster;
-	}
-
-	public void SetAttribute(DataDefine.Attribute first = DataDefine.Attribute.None)
-	{
-		_firstAttribute = first;
 	}
 
 	/*----------------[PROTECTED && PRIVATE METHOD]----------------*/
@@ -65,28 +58,6 @@ public class Bullet : MonoBehaviour
 	{
 		if(collision.gameObject == _targetMonster.gameObject)
 		{
-            float firstAttributeMulti = 1f;
-
-			if (_firstAttribute != DataDefine.Attribute.None)
-			{
-				switch (_firstAttribute)
-				{
-					case DataDefine.Attribute.Cloud:
-                        firstAttributeMulti = _targetMonster.CheckFirstAttribute(DataDefine.Attribute.Infernal, DataDefine.Attribute.Mountain);
-						break;
-					case DataDefine.Attribute.Infernal:
-                        firstAttributeMulti = _targetMonster.CheckFirstAttribute(DataDefine.Attribute.Ocean, DataDefine.Attribute.Cloud);
-                        break;
-					case DataDefine.Attribute.Ocean:
-                        firstAttributeMulti = _targetMonster.CheckFirstAttribute(DataDefine.Attribute.Mountain, DataDefine.Attribute.Infernal);
-                        break;
-					case DataDefine.Attribute.Mountain:
-                        firstAttributeMulti = _targetMonster.CheckFirstAttribute(DataDefine.Attribute.Cloud, DataDefine.Attribute.Ocean);
-                        break;
-				}			
-			}
-
-            power = (int)(power * firstAttributeMulti);
             _targetMonster.Hit(power);
 			_objectpoolManager.ReturnBullet(this);
         }

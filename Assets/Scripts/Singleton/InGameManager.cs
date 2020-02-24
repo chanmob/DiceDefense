@@ -38,10 +38,6 @@ public class InGameManager : Singleton<InGameManager>
     
 	public int indexLength = 0;
 
-    [HideInInspector] public DataDefine.Attribute unitOneFirstAttribute = DataDefine.Attribute.None;
-    [HideInInspector] public DataDefine.Attribute unitTwoFirstAttribute = DataDefine.Attribute.None;
-    [HideInInspector] public DataDefine.Attribute unitThreeFirstAttribute = DataDefine.Attribute.None;
-
     /* [PROTECTED && PRIVATE VARIABLE]		*/
 
     [SerializeField] private Transform backgroundParent;

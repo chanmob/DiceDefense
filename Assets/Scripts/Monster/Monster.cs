@@ -16,8 +16,6 @@ public class Monster : MonoBehaviour
 
     public float speed;
 
-    public DataDefine.Attribute firstAttribute = DataDefine.Attribute.None;
-
     /* [PROTECTED && PRIVATE VARIABLE]		*/
 
     private SpriteRenderer _spriteRenderer;
@@ -60,22 +58,6 @@ public class Monster : MonoBehaviour
         }
     }
 
-	public float CheckFirstAttribute(DataDefine.Attribute strength, DataDefine.Attribute weakness)
-	{
-		if(firstAttribute == strength)
-		{
-			return 2;
-		}
-		else if(firstAttribute == weakness)
-		{
-            return 0.5f;
-		}
-		else
-		{
-            return 1;
-		}
-	}
-
 	/*----------------[PROTECTED && PRIVATE METHOD]----------------*/
 
 	private void OnEnable()
@@ -89,8 +71,8 @@ public class Monster : MonoBehaviour
 
     protected virtual void Enable()
     {
-        SetHP(_ingameManager.round * 50);
-        //SetHP(_ingameManager.round * ((int)(_ingameManager.round * 0.1f) + 1) * 10);
+        //SetHP(_ingameManager.round * 50);
+        SetHP(_ingameManager.round * ((int)(_ingameManager.round * 0.1f) + 1) * 50);
 	}
 
     private void PublicEnable()

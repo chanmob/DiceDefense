@@ -18,7 +18,6 @@ public class InGameUIManager : UIManager<InGameUIManager>
     [HideInInspector] public Panel_Upgrade panel_Upgrade;
     [HideInInspector] public Panel_Quest panel_Quest;
     [HideInInspector] public Panel_Setting panel_Setting;
-    [HideInInspector] public Panel_UnitAttribute panel_UnitAttribute;
     [HideInInspector] public Popup_UnitInfo popup_UnitInfo;
     [HideInInspector] public Panel_Result panel_Result;
     [HideInInspector] public Popup_GameExit popup_GameExit;
@@ -39,7 +38,6 @@ public class InGameUIManager : UIManager<InGameUIManager>
         GetUiInstance(out panel_Upgrade);
         GetUiInstance(out panel_Quest);
         GetUiInstance(out panel_Setting);
-        GetUiInstance(out panel_UnitAttribute);
         GetUiInstance(out popup_UnitInfo);
         GetUiInstance(out panel_Result);
         GetUiInstance(out popup_GameExit);

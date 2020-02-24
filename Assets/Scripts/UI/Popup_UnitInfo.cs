@@ -24,7 +24,6 @@ public class Popup_UnitInfo : UI_Base
     [SerializeField] private Text _text_Level;
     [SerializeField] private Text _text_Power;
     [SerializeField] private Text _text_Speed;
-    [SerializeField] private Text _text_Attribute;
 
     /*----------------[PUBLIC METHOD]------------------------------*/
 
@@ -68,8 +67,6 @@ public class Popup_UnitInfo : UI_Base
         }
 
         _text_Speed.text = LanguageManager.instance.GetCurrentLanguageText("Text_Speed") + " : " + unit.attackSpeed.ToString();
-
-        SetAttributeText(unit.firstAttribue);
 
         Show();
         transform.DOScale(1, 0.25f).SetEase(Ease.OutBack);
@@ -119,31 +116,5 @@ public class Popup_UnitInfo : UI_Base
                 transform.DOScale(0, 0.25f).SetEase(Ease.InQuad).OnComplete(() => Hide());
                 break;
         }
-    }
-
-    private void SetAttributeText(DataDefine.Attribute first)
-    {
-        string firstAttribute = "없음";
-        
-        switch (first)
-        {
-            case DataDefine.Attribute.Cloud:
-                firstAttribute = LanguageManager.instance.GetCurrentLanguageText("Text_Attribute1");
-                break;
-
-            case DataDefine.Attribute.Infernal:
-                firstAttribute = LanguageManager.instance.GetCurrentLanguageText("Text_Attribute2");
-                break;
-
-            case DataDefine.Attribute.Ocean:
-                firstAttribute = LanguageManager.instance.GetCurrentLanguageText("Text_Attribute3");
-                break;
-
-            case DataDefine.Attribute.Mountain:
-                firstAttribute = LanguageManager.instance.GetCurrentLanguageText("Text_Attribute4");
-                break;
-        }
-
-        _text_Attribute.text = string.Format(LanguageManager.instance.GetCurrentLanguageText("Text_Attribute") + " : {0}", firstAttribute);
     }
 }
