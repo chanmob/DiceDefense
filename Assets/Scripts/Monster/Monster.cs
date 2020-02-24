@@ -89,7 +89,7 @@ public class Monster : MonoBehaviour
 
     protected virtual void Enable()
     {
-        SetHP(_ingameManager.round * 30);
+        SetHP(_ingameManager.round * 50);
         //SetHP(_ingameManager.round * ((int)(_ingameManager.round * 0.1f) + 1) * 10);
 	}
 

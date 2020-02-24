@@ -15,7 +15,9 @@ public class Panel_Quest : UI_Base
     /* [PUBLIC VARIABLE]					*/
 
     /* [PROTECTED && PRIVATE VARIABLE]		*/
- 
+
+    [SerializeField] private GameObject[] _cooltimeObjects;
+
     [SerializeField] private float[] _questCoolTimes;
 
     [SerializeField] private Image[] _questCoolTimeImages;
@@ -79,6 +81,7 @@ public class Panel_Quest : UI_Base
 
     private IEnumerator WaitWaveCoroutine(int idx)
     {
+        _cooltimeObjects[idx].SetActive(true);
         Image timeImage = _questCoolTimeImages[idx];
         _questButtons[idx].interactable = false;
 
@@ -95,6 +98,7 @@ public class Panel_Quest : UI_Base
             yield return null;
         }
 
+        _cooltimeObjects[idx].SetActive(false);
         _questButtons[idx].interactable = true;
     }
 }

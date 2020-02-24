@@ -26,7 +26,11 @@ public class Panel_Result : UI_Base
     public void ShowResult(int round, bool renewal = false)
     {
         Show();
-        transform.DOScale(1, 1).SetEase(Ease.OutBack).OnComplete(() => RoundTextCounting(round, renewal));
+        transform.DOScale(1, 1).SetEase(Ease.OutBack).OnComplete(() => 
+        {
+            RoundTextCounting(round, renewal);
+            Time.timeScale = 0;
+        });
     }
 
     /*----------------[PROTECTED && PRIVATE METHOD]----------------*/
@@ -50,7 +54,7 @@ public class Panel_Result : UI_Base
 
         while (min < max)
         {
-            min += offset * Time.deltaTime;
+            min += offset * Time.unscaledDeltaTime;
             text.text = LanguageManager.instance.GetCurrentLanguageText("Text_CurrenWave") + " : " + ((int)min).ToString();
             yield return null;
         }
@@ -67,7 +71,7 @@ public class Panel_Result : UI_Base
 
         while (min < max)
         {
-            min += offset * Time.deltaTime;
+            min += offset * Time.unscaledDeltaTime;
             text.text = LanguageManager.instance.GetCurrentLanguageText("Text_BestWave") + " : " + ((int)min).ToString();
             yield return null;
         }

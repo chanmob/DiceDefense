@@ -65,7 +65,7 @@ public class Unit : MonoBehaviour
 
         if(firstAttribue == DataDefine.Attribute.None && unitLevel >= 3)
         {
-            SetAttribute();
+            //SetAttribute();
         }
 
         _animator.SetTrigger("SizeUp");

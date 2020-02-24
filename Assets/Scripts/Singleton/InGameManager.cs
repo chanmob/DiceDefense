@@ -70,7 +70,6 @@ public class InGameManager : Singleton<InGameManager>
         if (gameEnd)
             return;
 
-        Time.timeScale = 0;
         gameEnd = true;
         InGameUIManager.instance.panel_Result.ShowResult(round, DataManager.instance.CheckRenewal(round));
     }
