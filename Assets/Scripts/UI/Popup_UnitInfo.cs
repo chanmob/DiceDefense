@@ -33,19 +33,17 @@ public class Popup_UnitInfo : UI_Base
         {
             case DataDefine.UnitRanking.Normal:
                 _text_UnitName.text = LanguageManager.instance.GetCurrentLanguageText("Text_UnitName_Normal");
-                SetUnitSprite(unit.unitType, false);
                 break;
             case DataDefine.UnitRanking.Super:
                 _text_UnitName.text = LanguageManager.instance.GetCurrentLanguageText("Text_UnitName_Super");
-                SetUnitSprite(unit.unitType, false);
                 break;
             case DataDefine.UnitRanking.Hidden:
                 _text_UnitName.text = LanguageManager.instance.GetCurrentLanguageText("Text_UnitName_Hidden");
-                SetUnitSprite(unit.unitType, true);
                 break;
         }
-        
-        _text_Level.text = "레벨 : " + (unit.unitLevel + 1).ToString();
+
+        SetUnitSprite(unit.unitType);
+        _text_Level.text = LanguageManager.instance.GetCurrentLanguageText("Text_Level") + " : " + (unit.unitLevel + 1).ToString();
 
         switch (unit.unitType)
         {
@@ -74,37 +72,19 @@ public class Popup_UnitInfo : UI_Base
 
     /*----------------[PROTECTED && PRIVATE METHOD]----------------*/
 
-    private void SetUnitSprite(DataDefine.UnitType type, bool hidden)
+    private void SetUnitSprite(DataDefine.UnitType type)
     {
-        if (hidden)
+        switch (type)
         {
-            switch (type)
-            {
-                case DataDefine.UnitType.Unit1:
-                    _image_UnitImage.sprite = ResourceManager.instance.GetObject<Sprite>("Head_HiddenUndead");
-                    break;
-                case DataDefine.UnitType.Unit2:
-                    _image_UnitImage.sprite = ResourceManager.instance.GetObject<Sprite>("Head_HiddenKnight");
-                    break;
-                case DataDefine.UnitType.Unit3:
-                    _image_UnitImage.sprite = ResourceManager.instance.GetObject<Sprite>("Head_HiddenRouge");
-                    break;
-            }
-        }
-        else
-        {
-            switch (type)
-            {
-                case DataDefine.UnitType.Unit1:
-                    _image_UnitImage.sprite = ResourceManager.instance.GetObject<Sprite>("Head_NormalUndead");
-                    break;
-                case DataDefine.UnitType.Unit2:
-                    _image_UnitImage.sprite = ResourceManager.instance.GetObject<Sprite>("Head_NormalKnight");
-                    break;
-                case DataDefine.UnitType.Unit3:
-                    _image_UnitImage.sprite = ResourceManager.instance.GetObject<Sprite>("Head_NormalRouge");
-                    break;
-            }
+            case DataDefine.UnitType.Unit1:
+                _image_UnitImage.color = new Color32(198, 12, 49, 255);
+                break;
+            case DataDefine.UnitType.Unit2:
+                _image_UnitImage.color = new Color32(0, 52, 120, 255);
+                break;
+            case DataDefine.UnitType.Unit3:
+                _image_UnitImage.color = new Color32(54, 60, 64, 255);
+                break;
         }
     }
 
