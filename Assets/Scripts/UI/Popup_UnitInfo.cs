@@ -77,13 +77,13 @@ public class Popup_UnitInfo : UI_Base
         switch (type)
         {
             case DataDefine.UnitType.Unit1:
-                _image_UnitImage.color = new Color32(198, 12, 49, 255);
+                _image_UnitImage.color = new Color32(242, 82, 82, 255);
                 break;
             case DataDefine.UnitType.Unit2:
-                _image_UnitImage.color = new Color32(0, 52, 120, 255);
+                _image_UnitImage.color = new Color32(242, 157, 53, 255);
                 break;
             case DataDefine.UnitType.Unit3:
-                _image_UnitImage.color = new Color32(54, 60, 64, 255);
+                _image_UnitImage.color = new Color32(20, 166, 151, 255);
                 break;
         }
     }
