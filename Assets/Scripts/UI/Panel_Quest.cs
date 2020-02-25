@@ -71,6 +71,7 @@ public class Panel_Quest : UI_Base
 
     private void CreateQuestMonster(int level)
     {
+        StartCoroutine(WaitWaveCoroutine(level));
         QuestMonster questMonsterPrefab = ResourceManager.instance.GetMonoBehavioursObject<QuestMonster>("QuestMonster");
         QuestMonster questMonster = Instantiate(questMonsterPrefab);
         questMonster.questIndex = level;
@@ -79,22 +80,21 @@ public class Panel_Quest : UI_Base
         InGameManager.instance.monsterList.Add(questMonster);
     }
 
-    private IEnumerator WaitWaveCoroutine(int idx)
+    private IEnumerator WaitWaveCoroutine(int number)
     {
+        int idx = number - 1;
+
         _cooltimeObjects[idx].SetActive(true);
         Image timeImage = _questCoolTimeImages[idx];
         _questButtons[idx].interactable = false;
 
-        timeImage.fillAmount = 1;
+        timeImage.fillAmount = 0;
 
         float cooltime = _questCoolTimes[idx];
-        float checkTime = cooltime;
 
-        while (timeImage.fillAmount > 0)
+        while (timeImage.fillAmount < 1)
         {
-            timeImage.fillAmount -= Time.deltaTime / cooltime;
-            checkTime -= Time.deltaTime;
-
+            timeImage.fillAmount += Time.deltaTime / cooltime;
             yield return null;
         }
 
