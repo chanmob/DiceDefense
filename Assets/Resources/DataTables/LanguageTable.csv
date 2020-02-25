@@ -20,3 +20,8 @@ Text_CurrenWave,이번 웨이브,Current Wave
 Text_BestWave,최고 웨이브,Best Wave
 Text_GamePlay,게임 시작,Game Start
 Text_HowToPlay,게임 방법,How To Play
+Text_Tutorial1,주사위를 생성하여\n몰려오는 적들을 막으세요.\n\n적들은 30초마다\n10개씩 생성됩니다.\n\n적이 40명을 초과하면\n게임이 종료됩니다.,Create dice\nto stop the enemys.\n\nEnemies spawn 10\nevery 30 seconds\n\nThe game ends\nwhen the enemy\nhas exceeded 40.
+Text_Tutorial2,주사위 구입 비용은\n30골드로 고정입니다.\n\n주사위 색상마다\n일반/슈퍼/히든유닛으로 나뉩니다.,Dice purchase cost\nIt is fixed at 30 golds.\n\nDice color\nIt is divided into\nnormal/super/hidden unit.
+Text_Tutorial3,주사위 색상마다\n능력치가 다른 대신\n업그레이드 비용도\n차이가 있습니다.,Dice color\nInstead of different stats\nUpgrade cost\nThere is a difference.
+Text_Tutorial4,슈퍼 유닛은 일반 유닛보다\n공격속도가 조금 빠르고\n공격력의 2배입니다.\n\n히든 유닛은 랜덤으로\n공격력과 공격속도가\n정해집니다.,Super unit is\nbetter than normal\nAttack speed is a little faster\nDouble the damage.\n\nHidden units are\nrandom Attack Damage\nand Attack Speed\nIt is decided.
+Text_Title,주사위 운 디펜스,Lucky Dice Defense
