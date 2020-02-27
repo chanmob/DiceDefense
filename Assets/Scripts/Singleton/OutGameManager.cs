@@ -24,6 +24,7 @@ public class OutGameManager : Singleton<OutGameManager>
 
     private void Start()
     {
+        AdMobManager.instance.ShowBannerAD();
         SoundManager.instance.PlaySound(SoundManager.AudioType.BGM, "BGM_OutGame");
     }
 }

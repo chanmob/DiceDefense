@@ -47,6 +47,7 @@ public class Panel_MainOutGame : UI_Base
         switch (buttonName)
         {
             case "Button_GamePlay":
+                AdMobManager.instance.HideBannerAD();
                 SceneControl.instance.SceneLoad("InGame");
                 break;
             case "Button_HowToPlay":
@@ -76,8 +77,10 @@ public class Panel_MainOutGame : UI_Base
                 OutGameUIManager.instance.popup_Language.Open();
                 break;
             case "Button_Ranking":
+                GooglePlayManager.instance.ShowRanking(GPGSIds.leaderboard);
                 break;
             case "Button_Archieve":
+                GooglePlayManager.instance.ShowAchievements();
                 break;
         }
     }

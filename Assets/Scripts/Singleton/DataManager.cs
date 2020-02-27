@@ -17,13 +17,15 @@ public class DataManager : Singleton<DataManager>
     public enum SaveDataType
     {
         Round,
-        Sound
+        Sound,
+        UploadScrore
     }
 
     /* [PROTECTED && PRIVATE VARIABLE]		*/
 
     private const string roundSaveName = "BestRound";
     private const string soundSaveName = "SoundOnOff";
+    private const string uploadScoreSaveName = "UploadRound";
 
     /*----------------[PUBLIC METHOD]------------------------------*/
 
@@ -45,6 +47,9 @@ public class DataManager : Singleton<DataManager>
             case SaveDataType.Sound:
                 ObscuredPrefs.SetInt(soundSaveName, value);
                 break;
+            case SaveDataType.UploadScrore:
+                ObscuredPrefs.SetInt(uploadScoreSaveName, value);
+                break;
         }
     }
 
@@ -59,14 +64,14 @@ public class DataManager : Singleton<DataManager>
                 return ObscuredPrefs.GetInt(roundSaveName);
             case SaveDataType.Sound:
                 return ObscuredPrefs.GetInt(soundSaveName);
+            case SaveDataType.UploadScrore:
+                return ObscuredPrefs.GetInt(uploadScoreSaveName);
             default:
                 return 0;
         }
     }
 
-    /*----------------[PROTECTED && PRIVATE METHOD]----------------*/
-
-    private bool CheckData(SaveDataType type)
+    public bool CheckData(SaveDataType type)
     {
         switch (type)
         {
@@ -74,8 +79,30 @@ public class DataManager : Singleton<DataManager>
                 return ObscuredPrefs.HasKey(roundSaveName);
             case SaveDataType.Sound:
                 return ObscuredPrefs.HasKey(soundSaveName);
+            case SaveDataType.UploadScrore:
+                return ObscuredPrefs.HasKey(uploadScoreSaveName);
             default:
                 return false;
         }
     }
+
+    public void DeleteKey(SaveDataType type)
+    {
+        switch (type)
+        {
+            case SaveDataType.Round:
+                ObscuredPrefs.DeleteKey(roundSaveName);
+                break;
+            case SaveDataType.Sound:
+                ObscuredPrefs.DeleteKey(soundSaveName);
+                break;
+            case SaveDataType.UploadScrore:
+                ObscuredPrefs.DeleteKey(uploadScoreSaveName);
+                break;
+        }
+    }
+
+    /*----------------[PROTECTED && PRIVATE METHOD]----------------*/
+
+
 }

@@ -2324,7 +2324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da0f6907971da324db16ba740ac242ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dontDestroyOnLoad: 0
+  dontDestroyOnLoad: 1
   isTest: 1
 --- !u!4 &835887131
 Transform:
@@ -3316,7 +3316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7e8c582ba70c2d49a346b6b652e48ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dontDestroyOnLoad: 0
+  dontDestroyOnLoad: 1
 --- !u!4 &1292611350
 Transform:
   m_ObjectHideFlags: 0

@@ -22,64 +22,47 @@ public class GooglePlayManager : Singleton<GooglePlayManager>
 
     /*----------------[PUBLIC METHOD]------------------------------*/
 
-    public bool GooglePlayLogine()
+
+    public void ShowRanking(string id)
     {
-        bool result = false;
+        if (GooglePlayLogine() == false)
+            return;
 
-        if (!Social.localUser.authenticated)
-        {
-            Social.localUser.Authenticate((bool success) =>
-            {
-                if (success)
-                {
-                    result = true;
-                    Debug.Log("로그인 성공");
-                }
-                else
-                {
-                    result = false;
-                    Debug.Log("로그인 실패");
-                }
-            });
-        }
-        else
-        {
-            result = true;
-            Debug.Log("이미 로그인");
-        }
-
-        return result;
+        PlayGamesPlatform.Instance.ShowLeaderboardUI(id);
     }
 
-    //public void ShowRanking()
-    //{
-    //    PlayGamesPlatform.Instance.ShowLeaderboardUI(GPGSIds.leaderboard);
-    //}
+    public void UploadRanking(string id, int _score, Action successAction = null, Action failAction = null)
+    {
+        if (GooglePlayLogine() == false)
+            return;
 
-    //public void UploadRanking(int _score)
-    //{
-    //    Social.ReportScore(_score, GPGSIds.leaderboard, (bool succsee) =>
-    //    {
-    //        if (succsee)
-    //        {
-    //            ObscuredPrefs.SetInt("UPLOADSCORE", _score);
-    //            Debug.Log("업로드 성공");
-    //        }
-    //        else
-    //        {
-    //            ObscuredPrefs.DeleteKey("UPLOADSCORE");
-    //        }
-    //    }
-    //    );
-    //}
+        Social.ReportScore(_score, id, (bool succsee) =>
+        {
+            if (succsee)
+            {
+                successAction?.Invoke();
+            }
+            else
+            {
+                failAction?.Invoke();
+            }
+        }
+        );
+    }
 
     public void ShowAchievements()
     {
+        if (GooglePlayLogine() == false)
+            return;
+
         Social.ShowAchievementsUI();
     }
 
     public void GetAchievement(string _id)
     {
+        if (GooglePlayLogine() == false)
+            return;
+
         Social.ReportProgress(_id, 100f, null);
     }
 
@@ -91,5 +74,31 @@ public class GooglePlayManager : Singleton<GooglePlayManager>
         PlayGamesPlatform.InitializeInstance(config);
         PlayGamesPlatform.DebugLogEnabled = true;
         PlayGamesPlatform.Activate();
+    }
+
+    private bool GooglePlayLogine()
+    {
+        bool result = false;
+
+        if (!Social.localUser.authenticated)
+        {
+            Social.localUser.Authenticate((bool success) =>
+            {
+                if (success)
+                {
+                    result = true;
+                }
+                else
+                {
+                    result = false;
+                }
+            });
+        }
+        else
+        {
+            result = true;
+        }
+
+        return result;
     }
 }
