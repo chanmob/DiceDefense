@@ -76,13 +76,13 @@ public class InGameManager : Singleton<InGameManager>
             DataManager.instance.SaveIntData(DataManager.SaveDataType.UploadScrore, round);
         }
 
-        if (DataManager.instance.CheckData(DataManager.SaveDataType.UploadScrore))
-        {
-            GooglePlayManager.instance.UploadRanking(
-                GPGSIds.leaderboard,
-                DataManager.instance.GetIntData(DataManager.SaveDataType.UploadScrore),
-                () => { DataManager.instance.DeleteKey(DataManager.SaveDataType.UploadScrore);});
-        }
+        //if (DataManager.instance.CheckData(DataManager.SaveDataType.UploadScrore))
+        //{
+        //    GooglePlayManager.instance.UploadRanking(
+        //        GPGSIds.leaderboard,
+        //        DataManager.instance.GetIntData(DataManager.SaveDataType.UploadScrore),
+        //        () => { DataManager.instance.DeleteKey(DataManager.SaveDataType.UploadScrore);});
+        //}
         
         InGameUIManager.instance.panel_Result.ShowResult(round, renewal);
     }
@@ -147,26 +147,26 @@ public class InGameManager : Singleton<InGameManager>
 
     private void UnlockAcheive()
     {
-        if (round >= 100)
-        {
-            GooglePlayManager.instance.GetAchievement(GPGSIds.achievement_100);
-        }
-        if (round >= 80)
-        {
-            GooglePlayManager.instance.GetAchievement(GPGSIds.achievement_80);
-        }
-        if (round >= 60)
-        {
-            GooglePlayManager.instance.GetAchievement(GPGSIds.achievement_60);
-        }
-        if (round >= 40)
-        {
-            GooglePlayManager.instance.GetAchievement(GPGSIds.achievement_40);
-        }
-        if (round >= 20)
-        {
-            GooglePlayManager.instance.GetAchievement(GPGSIds.achievement_20);
-        }
+        //if (round >= 100)
+        //{
+        //    GooglePlayManager.instance.GetAchievement(GPGSIds.achievement_100);
+        //}
+        //if (round >= 80)
+        //{
+        //    GooglePlayManager.instance.GetAchievement(GPGSIds.achievement_80);
+        //}
+        //if (round >= 60)
+        //{
+        //    GooglePlayManager.instance.GetAchievement(GPGSIds.achievement_60);
+        //}
+        //if (round >= 40)
+        //{
+        //    GooglePlayManager.instance.GetAchievement(GPGSIds.achievement_40);
+        //}
+        //if (round >= 20)
+        //{
+        //    GooglePlayManager.instance.GetAchievement(GPGSIds.achievement_20);
+        //}
     }
 
     private bool IsMonsterOver()
