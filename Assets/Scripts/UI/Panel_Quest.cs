@@ -16,13 +16,11 @@ public class Panel_Quest : UI_Base
 
     /* [PROTECTED && PRIVATE VARIABLE]		*/
 
-    [SerializeField] private GameObject[] _cooltimeObjects;
+    [SerializeField] public GameObject[] _cooltimeObjects;
 
-    [SerializeField] private float[] _questCoolTimes;
+    [SerializeField] public Image[] _questCoolTimeImages;
 
-    [SerializeField] private Image[] _questCoolTimeImages;
-
-    [SerializeField] private Button[] _questButtons;
+    [SerializeField] public Button[] _questButtons;
 
     private Animator _animator;
 
@@ -71,34 +69,12 @@ public class Panel_Quest : UI_Base
 
     private void CreateQuestMonster(int level)
     {
-        StartCoroutine(WaitWaveCoroutine(level));
+        QuestCoolTimeManager.instance.QuestStarted(level);
         QuestMonster questMonsterPrefab = ResourceManager.instance.GetMonoBehavioursObject<QuestMonster>("QuestMonster");
         QuestMonster questMonster = Instantiate(questMonsterPrefab);
         questMonster.questIndex = level;
         questMonster.SetQuestMonster();
         questMonster.transform.SetParent(null);
         InGameManager.instance.monsterList.Add(questMonster);
-    }
-
-    private IEnumerator WaitWaveCoroutine(int number)
-    {
-        int idx = number - 1;
-
-        _cooltimeObjects[idx].SetActive(true);
-        Image timeImage = _questCoolTimeImages[idx];
-        _questButtons[idx].interactable = false;
-
-        timeImage.fillAmount = 0;
-
-        float cooltime = _questCoolTimes[idx];
-
-        while (timeImage.fillAmount < 1)
-        {
-            timeImage.fillAmount += Time.deltaTime / cooltime;
-            yield return null;
-        }
-
-        _cooltimeObjects[idx].SetActive(false);
-        _questButtons[idx].interactable = true;
     }
 }
