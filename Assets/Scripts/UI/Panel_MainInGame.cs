@@ -64,7 +64,9 @@ public class Panel_MainInGame : UI_Base
                 break;
             case "Button_BuyUnit":
                 int cost = 30 + (_ingameManager.unitPurchaseCount * 10);
-                if (_ingameManager.CheckGold(cost))
+                int len = _ingameManager.spawnIndex.Count;
+
+                if (_ingameManager.CheckGold(cost) && len > 0)
                 {
                     _ingameManager.GetGold(-cost);
                     _ingameManager.unitPurchaseCount++;

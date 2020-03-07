@@ -28,9 +28,9 @@ public class QuestMonster : Monster
             return;
         }
 
-        SetHP((int)Mathf.Pow(questIndex, 2) * 150);
+        SetHP((int)Mathf.Pow(questIndex, 2) * 400);
         speed += 0.15f * (questIndex % 2);
-        _shield = questIndex >= 3 ? 50 * questIndex : 0;
+        _shield = questIndex >= 3 ? 50 * (int)Mathf.Pow(questIndex, 2) : 0;
         if (_shield > 0)
             _shieldTransform.gameObject.SetActive(true);
     }
@@ -50,6 +50,7 @@ public class QuestMonster : Monster
 
     protected override void Disable()
     {
-        _ingameManager.GetGold((int)Mathf.Pow(questIndex, 2) * 200);
+        _ingameManager.GetGold(questIndex * 200);
+        //_ingameManager.GetGold((int)Mathf.Pow(questIndex, 2) * 100);
     }
 }
