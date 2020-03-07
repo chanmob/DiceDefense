@@ -60,6 +60,15 @@ public class AdMobManager : Singleton<AdMobManager>
         RewardCoroutine();
     }
 
+    public void EventRelease()
+    {
+        if (afterRewardEvent != null)
+            afterRewardEvent = null;
+
+        if (rewardFailEvent != null)
+            rewardFailEvent = null;
+    }
+
     /*----------------[PROTECTED && PRIVATE METHOD]----------------*/
 
     void Start()

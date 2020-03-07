@@ -8,6 +8,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class InGameManager : Singleton<InGameManager>
 {
@@ -66,9 +67,23 @@ public class InGameManager : Singleton<InGameManager>
     {
         if (gameEnd)
             return;
-
         gameEnd = true;
 
+        StopCoroutine(waveCoroutine);
+        int len = monsterList.Count;
+        for(int i = 0; i < len; i++)
+        {
+            QuestMonster qm = monsterList[i] as QuestMonster;
+            BossMonster bm = monsterList[i] as BossMonster;
+
+            if(bm != null && qm != null)
+            {
+                Destroy(monsterList[i]);
+            }
+            else
+                _objectpoolManager.ReturnMonster(monsterList[i]);
+        }
+        
         bool renewal = DataManager.instance.CheckRenewal(round);
 
         if (renewal)
@@ -96,6 +111,17 @@ public class InGameManager : Singleton<InGameManager>
 
         mainUI.text_monsterCount.text = len + " / " + 40;
         mainUI.image_monsterFill.fillAmount = (float)len / 40;
+    }
+
+    public void Restart()
+    {
+        InGameUIManager.instance.panel_Result.transform.DOScale(0, 0.25f).SetEase(Ease.InQuad).OnComplete(() => 
+        {
+            AdMobManager.instance.EventRelease();
+            InGameUIManager.instance.panel_Result.Hide();
+            MonsterUIRefresh();
+            StartCoroutine(waveCoroutine);
+        });
     }
 
 	/*----------------[PROTECTED && PRIVATE METHOD]----------------*/
@@ -148,26 +174,26 @@ public class InGameManager : Singleton<InGameManager>
 
     private void UnlockAcheive()
     {
-        //if (round >= 100)
-        //{
-        //    GooglePlayManager.instance.GetAchievement(GPGSIds.achievement_100);
-        //}
-        //if (round >= 80)
-        //{
-        //    GooglePlayManager.instance.GetAchievement(GPGSIds.achievement_80);
-        //}
-        //if (round >= 60)
-        //{
-        //    GooglePlayManager.instance.GetAchievement(GPGSIds.achievement_60);
-        //}
-        //if (round >= 40)
-        //{
-        //    GooglePlayManager.instance.GetAchievement(GPGSIds.achievement_40);
-        //}
-        //if (round >= 20)
-        //{
-        //    GooglePlayManager.instance.GetAchievement(GPGSIds.achievement_20);
-        //}
+        if (round >= 100)
+        {
+            GooglePlayManager.instance.GetAchievement(GPGSIds.achievement_100);
+        }
+        if (round >= 80)
+        {
+            GooglePlayManager.instance.GetAchievement(GPGSIds.achievement_80);
+        }
+        if (round >= 60)
+        {
+            GooglePlayManager.instance.GetAchievement(GPGSIds.achievement_60);
+        }
+        if (round >= 40)
+        {
+            GooglePlayManager.instance.GetAchievement(GPGSIds.achievement_40);
+        }
+        if (round >= 20)
+        {
+            GooglePlayManager.instance.GetAchievement(GPGSIds.achievement_20);
+        }
     }
 
     private bool IsMonsterOver()

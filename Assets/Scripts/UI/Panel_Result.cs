@@ -18,6 +18,8 @@ public class Panel_Result : UI_Base
 
     /* [PROTECTED && PRIVATE VARIABLE]		*/
 
+    [SerializeField] private GameObject _noReward;
+
     [SerializeField] private Text _text_Round;
     [SerializeField] private Text _text_Best;
 
@@ -87,12 +89,24 @@ public class Panel_Result : UI_Base
         switch (buttonName)
         {
             case "Button_Continue":
+                AdMobManager.instance.rewardFailEvent += () => 
+                {
+                    _noReward.SetActive(true);
+                };
+                AdMobManager.instance.afterRewardEvent += () =>
+                {
+                    InGameManager.instance.Restart();
+                };
                 break;
             case "Button_RePlay":
                 SceneControl.instance.SceneLoad("InGame");
                 break;
             case "Button_Exit":
                 SceneControl.instance.SceneLoad("OutGame");
+                break;
+            case "Button_RewardClose":
+                _noReward.SetActive(false);
+                AdMobManager.instance.EventRelease();
                 break;
         }
     }
