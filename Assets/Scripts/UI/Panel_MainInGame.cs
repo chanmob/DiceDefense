@@ -63,9 +63,11 @@ public class Panel_MainInGame : UI_Base
                 InGameUIManager.instance.panel_Quest.Show();
                 break;
             case "Button_BuyUnit":
-                if (_ingameManager.CheckGold(30))
+                int cost = 30 + (_ingameManager.unitPurchaseCount * 10);
+                if (_ingameManager.CheckGold(cost))
                 {
-                    _ingameManager.GetGold(-30);
+                    _ingameManager.GetGold(-cost);
+                    _ingameManager.unitPurchaseCount++;
                     _unitManager.BuyUnit();
                 }
                 break;

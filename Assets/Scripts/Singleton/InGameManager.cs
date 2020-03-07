@@ -25,6 +25,7 @@ public class InGameManager : Singleton<InGameManager>
 
 	[HideInInspector] public int round;
 	public int gold = 30;
+    public int unitPurchaseCount = 0;
 
     public int[] percent = new int[3];
 
