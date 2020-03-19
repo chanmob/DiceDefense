@@ -26,7 +26,6 @@ public class InGameManager : Singleton<InGameManager>
 
 	[HideInInspector] public int round;
 	public int gold = 30;
-    public int unitPurchaseCount = 0;
 
     public int[] percent = new int[3];
 
@@ -210,7 +209,7 @@ public class InGameManager : Singleton<InGameManager>
         while (true)
 		{
             //yield return StartCoroutine(WaitWaveCoroutine(30));
-
+            InGameUIManager.instance.panel_MainInGame.text_round.text = LanguageManager.instance.GetCurrentLanguageText("Text_Round") + " : " + round;
             InGameUIManager.instance.panel_MainInGame.text_time.text = round.ToString();
 
             if(round % 10 == 0)

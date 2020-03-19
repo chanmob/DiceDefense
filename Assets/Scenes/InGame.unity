@@ -1225,7 +1225,6 @@ MonoBehaviour:
   gameEnd: 0
   round: 0
   gold: 30
-  unitPurchaseCount: 0
   percent: 46000000140000000a000000
   amount_Upgrade1: 0
   amount_Upgrade2: 0
@@ -8884,6 +8883,7 @@ MonoBehaviour:
   text_gold: {fileID: 676086637}
   text_time: {fileID: 2093813380}
   text_monsterCount: {fileID: 2061256211}
+  text_round: {fileID: 1854874373}
   image_timeCheck: {fileID: 653440108}
   image_monsterFill: {fileID: 347166812}
   _text_Speed: {fileID: 1957607461}
@@ -9528,7 +9528,6 @@ GameObject:
   - component: {fileID: 1053535691}
   - component: {fileID: 1053535693}
   - component: {fileID: 1053535692}
-  - component: {fileID: 1053535694}
   m_Layer: 5
   m_Name: Text_UnitName
   m_TagString: Untagged
@@ -9595,19 +9594,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1053535690}
   m_CullTransparentMesh: 0
---- !u!114 &1053535694
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1053535690}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 347c71f09fd79ce48b32478361a3b942, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  key: Text_UnitName
 --- !u!1 &1070174108
 GameObject:
   m_ObjectHideFlags: 0
@@ -17246,7 +17232,6 @@ GameObject:
   - component: {fileID: 1854874371}
   - component: {fileID: 1854874374}
   - component: {fileID: 1854874373}
-  - component: {fileID: 1854874372}
   m_Layer: 5
   m_Name: Text_Round
   m_TagString: Untagged
@@ -17273,19 +17258,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -25}
   m_SizeDelta: {x: 400, y: 70}
   m_Pivot: {x: 0.5, y: 1}
---- !u!114 &1854874372
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1854874370}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 347c71f09fd79ce48b32478361a3b942, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  key: Text_Gold
 --- !u!114 &1854874373
 MonoBehaviour:
   m_ObjectHideFlags: 0

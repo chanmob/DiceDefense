@@ -17,6 +17,7 @@ public class Panel_MainInGame : UI_Base
 	public Text text_gold;
     public Text text_time;
     public Text text_monsterCount;
+    public Text text_round;
 
     public Image image_timeCheck;
     public Image image_monsterFill;
@@ -47,7 +48,7 @@ public class Panel_MainInGame : UI_Base
 			_unitManager = UnitManager.instance;
 		}
 
-        text_gold.text = "Gold : " + _ingameManager.gold.ToString();
+        text_gold.text = LanguageManager.instance.GetCurrentLanguageText("Text_Gold") + " : " + _ingameManager.gold.ToString();
     }
 
     protected override void OnClickButtons(string buttonName)
@@ -63,13 +64,12 @@ public class Panel_MainInGame : UI_Base
                 InGameUIManager.instance.panel_Quest.Show();
                 break;
             case "Button_BuyUnit":
-                int cost = 30 + (_ingameManager.unitPurchaseCount * 10);
+                int cost = 30;
                 int len = _ingameManager.spawnIndex.Count;
 
                 if (_ingameManager.CheckGold(cost) && len > 0)
                 {
                     _ingameManager.GetGold(-cost);
-                    _ingameManager.unitPurchaseCount++;
                     _unitManager.BuyUnit();
                 }
                 break;
