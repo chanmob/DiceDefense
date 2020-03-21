@@ -97,6 +97,8 @@ public class Panel_Result : UI_Base
                 {
                     InGameManager.instance.Restart();
                 };
+
+                AdMobManager.instance.ShowRewardAD();
                 break;
             case "Button_RePlay":
                 SceneControl.instance.SceneLoad("InGame");

@@ -7877,7 +7877,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _defaultShow: 0
-  _noReward: {fileID: 0}
+  _noReward: {fileID: 186081552}
   _text_Round: {fileID: 1300959395}
   _text_Best: {fileID: 257340027}
 --- !u!1 &912565623
